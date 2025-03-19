@@ -1,0 +1,12 @@
+[
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerController",
+    "Method": "GetCustommer",
+    "RelativePath": "api/Custommer/GetCustommer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
