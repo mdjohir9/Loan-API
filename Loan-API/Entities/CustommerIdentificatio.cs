@@ -2,10 +2,10 @@
 
 namespace Loan_API.Entities
 {
-    public class PersonnelIdentificationDetails
+    public class CustommerIdentificatio
     {
         [Key]
-        public int IdentificationID { get; set; }
+        public int ID { get; set; }
 
         [Required]
         public string? NationalIDOrPassport { get; set; }

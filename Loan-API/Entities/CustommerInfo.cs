@@ -2,7 +2,7 @@
 
 namespace Loan_API.Entities
 {
-    public class PersonnelPersonalInfo
+    public class CustommerInfo
     {
         [Key]
         public int ID { get; set; }

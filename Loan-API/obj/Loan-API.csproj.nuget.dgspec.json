@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Apps\\Loan-API\\Loan-API\\Loan-API.csproj": {}
+    "E:\\My-personnel-project\\Loan-API\\Loan-API\\Loan-API.csproj": {}
   },
   "projects": {
-    "C:\\Apps\\Loan-API\\Loan-API\\Loan-API.csproj": {
+    "E:\\My-personnel-project\\Loan-API\\Loan-API\\Loan-API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Apps\\Loan-API\\Loan-API\\Loan-API.csproj",
+        "projectUniqueName": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Loan-API.csproj",
         "projectName": "Loan-API",
-        "projectPath": "C:\\Apps\\Loan-API\\Loan-API\\Loan-API.csproj",
-        "packagesPath": "C:\\Users\\Johirull Islam\\.nuget\\packages\\",
-        "outputPath": "C:\\Apps\\Loan-API\\Loan-API\\obj\\",
+        "projectPath": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Loan-API.csproj",
+        "packagesPath": "C:\\Users\\mdjoh\\.nuget\\packages\\",
+        "outputPath": "E:\\My-personnel-project\\Loan-API\\Loan-API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Johirull Islam\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\mdjoh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +25,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,8 +43,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -78,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -2,10 +2,10 @@
 
 namespace Loan_API.Entities
 {
-    public class PersonnelPersonnelContact
+    public class CustommerContact
     {
         [Key]
-        public int ContactID { get; set; }
+        public int ID { get; set; }
 
         [Required]
         [MaxLength(20)]
