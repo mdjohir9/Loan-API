@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Loan_API.Entities
 {
-    public class LoanProduct
+    public class LoanPlan
     {
         [Key]
         public int ProductID { get; set; }

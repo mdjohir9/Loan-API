@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Loan_API.Entities
 {
@@ -24,5 +25,10 @@ namespace Loan_API.Entities
         public string? WorkOrBusnAddress { get; set; }
 
         public string? EmployerOrBusnContact { get; set; }
+
+        [Required]
+        public int? CustomerID { get; set; }
+        [ForeignKey("CustomerID")]
+        public virtual CustommerPersonnelInfo? CustommerPersonnelInfo { get; set; }
     }
 }
