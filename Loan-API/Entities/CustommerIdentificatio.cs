@@ -8,7 +8,6 @@ namespace Loan_API.Entities
         [Key]
         public int ID { get; set; }
 
-        [Required]
         public string? NationalIDOrPassport { get; set; }
 
         public string? TaxIdentificationNumber { get; set; }

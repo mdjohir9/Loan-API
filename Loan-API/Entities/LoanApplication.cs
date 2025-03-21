@@ -32,14 +32,14 @@ namespace Loan_API.Entities
 
         [Required]
         [MaxLength(255)]
-        public string Purpose { get; set; }
+        public string? PurposeOfLoan { get; set; }
 
         public string? CollateralDetails { get; set; }  // If applicable
 
         // Repayment and Loan History
         [Required]
         [MaxLength(50)]
-        public string PreferredRepaymentMethod { get; set; } // Bank Transfer, Cash, Mobile Payment
+        public string? PreferredRepaymentMethod { get; set; } // Bank Transfer, Cash, Mobile Payment
 
         public bool HasExistingLoans { get; set; } = false;
 

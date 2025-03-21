@@ -10,12 +10,10 @@ namespace Loan_API.Entities
         [Required(ErrorMessage = "CustCardNo is required")]
         public string? CustCardNo { get; set; }
         [Required(ErrorMessage = "CompanyId is required")]
-
         public int? CompanyId { get; set; }
 
-        [Required(ErrorMessage = "CustommerImage is required")]
         public string? CustommerImage { get; set; } // Stores the image as binary data
-        [Required(ErrorMessage = "CustommerSignature is required")]
+
         public string ? CustommerSignature { get; set; }
 
         [Required(ErrorMessage = "FullName is required")]
@@ -31,10 +29,8 @@ namespace Loan_API.Entities
         [Required(ErrorMessage = "Nationality is required")]
         [MaxLength(100)]
         public string? Nationality { get; set; }
-        [Required(ErrorMessage = "MaritalStatus is required")]
         public string? MaritalStatus { get; set; } // Single, Married, Divorced
 
-        [Required(ErrorMessage = "EducationLevel is required")]
         public int? EducationLevel { get; set; } // High School, Bachelor, Master, PhD
 
         [MaxLength(100)]
@@ -51,7 +47,6 @@ namespace Loan_API.Entities
         public CustommerContact? CustommerContact { get; set; }
         public CustommerIdentificatio? CustommerIdentificatio { get; set; }
         public CustommerEmployment? CustommerEmployment { get; set; }
-        //public LoanApplication LoanApplication { get; set; }
         public CustommerFinancialInfo? CustommerFinancialInfo { get; set; }
         public CustommerGuarantorDetails? CustommerGuarantorDetails { get; set; }
     }
