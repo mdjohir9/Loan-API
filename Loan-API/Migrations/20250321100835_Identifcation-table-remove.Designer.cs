@@ -4,6 +4,7 @@ using Loan_API.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Loan_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250321100835_Identifcation-table-remove")]
+    partial class Identifcationtableremove
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -195,6 +198,34 @@ namespace Loan_API.Migrations
                     b.ToTable("CustommerGuarantorDetails");
                 });
 
+            modelBuilder.Entity("Loan_API.Entities.CustommerIdentificatio", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("CustomerID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DrivingLicenseNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NationalIDOrPassport")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TaxIdentificationNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CustomerID")
+                        .IsUnique();
+
+                    b.ToTable("CustommerIdentificatio");
+                });
+
             modelBuilder.Entity("Loan_API.Entities.CustommerPersonnelInfo", b =>
                 {
                     b.Property<int>("CustomerID")
@@ -327,6 +358,17 @@ namespace Loan_API.Migrations
                     b.Navigation("CustommerPersonnelInfo");
                 });
 
+            modelBuilder.Entity("Loan_API.Entities.CustommerIdentificatio", b =>
+                {
+                    b.HasOne("Loan_API.Entities.CustommerPersonnelInfo", "CustommerPersonnelInfo")
+                        .WithOne("CustommerIdentificatio")
+                        .HasForeignKey("Loan_API.Entities.CustommerIdentificatio", "CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CustommerPersonnelInfo");
+                });
+
             modelBuilder.Entity("Loan_API.Entities.CustommerPersonnelInfo", b =>
                 {
                     b.Navigation("CustommerContact");
@@ -336,6 +378,8 @@ namespace Loan_API.Migrations
                     b.Navigation("CustommerFinancialInfo");
 
                     b.Navigation("CustommerGuarantorDetails");
+
+                    b.Navigation("CustommerIdentificatio");
                 });
 #pragma warning restore 612, 618
         }

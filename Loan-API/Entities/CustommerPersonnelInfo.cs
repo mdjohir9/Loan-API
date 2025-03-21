@@ -35,7 +35,12 @@ namespace Loan_API.Entities
 
         [MaxLength(100)]
         public string? Occupation { get; set; }
+        [MaxLength(50)]
+        public string? NationalIDOrPassport { get; set; }
 
+        public string? TaxIdentificationNumber { get; set; }
+        [MaxLength(50)]
+        public string? DrivingLicenseNumber { get; set; }
         public bool? IsActive { get; set; }
         public DateTime? CreatedAt { get; set; }
         public int? CreatedBy { get; set; }
@@ -45,7 +50,6 @@ namespace Loan_API.Entities
         public int? DeletedBy { get; set; }
         public Boolean ? IsDeleted { get; set; }
         public CustommerContact? CustommerContact { get; set; }
-        public CustommerIdentificatio? CustommerIdentificatio { get; set; }
         public CustommerEmployment? CustommerEmployment { get; set; }
         public CustommerFinancialInfo? CustommerFinancialInfo { get; set; }
         public CustommerGuarantorDetails? CustommerGuarantorDetails { get; set; }
