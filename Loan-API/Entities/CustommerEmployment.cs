@@ -16,15 +16,15 @@ namespace Loan_API.Entities
         [MaxLength(100)]
         public string? JobTitleOrBusnType { get; set; }
 
-        public decimal MonthlyIncOrBusnRev { get; set; }
+        public decimal? MonthlyIncOrBusnRev { get; set; }
 
-        public int YearsOfExpOrBusnAge { get; set; }
+        public int? YearsOfExpOrBusnAge { get; set; }
 
         public string? WorkOrBusnAddress { get; set; }
 
         public string? EmployerOrBusnContact { get; set; }
 
-        [Required]
+      
         public int? CustomerID { get; set; }
         [ForeignKey("CustomerID")]
         public virtual CustommerPersonnelInfo? CustommerPersonnelInfo { get; set; }

@@ -34,17 +34,17 @@ namespace Loan_API.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int>("CustomerID")
+                    b.Property<int?>("CustomerID")
                         .HasColumnType("int");
 
                     b.Property<string>("EmailAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PerCity")
-                        .HasColumnType("int");
+                    b.Property<string>("PerCity")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PerState")
-                        .HasColumnType("int");
+                    b.Property<string>("PerState")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PerStreet")
                         .HasColumnType("nvarchar(max)");
@@ -56,11 +56,11 @@ namespace Loan_API.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int>("PreCity")
-                        .HasColumnType("int");
+                    b.Property<string>("PreCity")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PreState")
-                        .HasColumnType("int");
+                    b.Property<string>("PreState")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PreStreet")
                         .HasColumnType("nvarchar(max)");
@@ -71,7 +71,8 @@ namespace Loan_API.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("CustomerID")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[CustomerID] IS NOT NULL");
 
                     b.ToTable("CustommerContact");
                 });
@@ -84,7 +85,7 @@ namespace Loan_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int>("CustomerID")
+                    b.Property<int?>("CustomerID")
                         .HasColumnType("int");
 
                     b.Property<string>("EmployerOrBusnContact")
@@ -101,19 +102,20 @@ namespace Loan_API.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<decimal>("MonthlyIncOrBusnRev")
+                    b.Property<decimal?>("MonthlyIncOrBusnRev")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("WorkOrBusnAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("YearsOfExpOrBusnAge")
+                    b.Property<int?>("YearsOfExpOrBusnAge")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("CustomerID")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[CustomerID] IS NOT NULL");
 
                     b.ToTable("CustommerEmployment");
                 });
@@ -135,7 +137,7 @@ namespace Loan_API.Migrations
                     b.Property<string>("BankName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CustomerID")
+                    b.Property<int?>("CustomerID")
                         .HasColumnType("int");
 
                     b.Property<string>("Liabilities")
@@ -150,7 +152,8 @@ namespace Loan_API.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("CustomerID")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[CustomerID] IS NOT NULL");
 
                     b.ToTable("CustommerFinancialInfo");
                 });
@@ -163,7 +166,7 @@ namespace Loan_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int>("CustomerID")
+                    b.Property<int?>("CustomerID")
                         .HasColumnType("int");
 
                     b.Property<string>("GuarantorAddress")
@@ -190,7 +193,8 @@ namespace Loan_API.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("CustomerID")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[CustomerID] IS NOT NULL");
 
                     b.ToTable("CustommerGuarantorDetails");
                 });
@@ -287,9 +291,7 @@ namespace Loan_API.Migrations
                 {
                     b.HasOne("Loan_API.Entities.CustommerPersonnelInfo", "CustommerPersonnelInfo")
                         .WithOne("CustommerContact")
-                        .HasForeignKey("Loan_API.Entities.CustommerContact", "CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Loan_API.Entities.CustommerContact", "CustomerID");
 
                     b.Navigation("CustommerPersonnelInfo");
                 });
@@ -298,9 +300,7 @@ namespace Loan_API.Migrations
                 {
                     b.HasOne("Loan_API.Entities.CustommerPersonnelInfo", "CustommerPersonnelInfo")
                         .WithOne("CustommerEmployment")
-                        .HasForeignKey("Loan_API.Entities.CustommerEmployment", "CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Loan_API.Entities.CustommerEmployment", "CustomerID");
 
                     b.Navigation("CustommerPersonnelInfo");
                 });
@@ -309,9 +309,7 @@ namespace Loan_API.Migrations
                 {
                     b.HasOne("Loan_API.Entities.CustommerPersonnelInfo", "CustommerPersonnelInfo")
                         .WithOne("CustommerFinancialInfo")
-                        .HasForeignKey("Loan_API.Entities.CustommerFinancialInfo", "CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Loan_API.Entities.CustommerFinancialInfo", "CustomerID");
 
                     b.Navigation("CustommerPersonnelInfo");
                 });
@@ -320,9 +318,7 @@ namespace Loan_API.Migrations
                 {
                     b.HasOne("Loan_API.Entities.CustommerPersonnelInfo", "CustommerPersonnelInfo")
                         .WithOne("CustommerGuarantorDetails")
-                        .HasForeignKey("Loan_API.Entities.CustommerGuarantorDetails", "CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Loan_API.Entities.CustommerGuarantorDetails", "CustomerID");
 
                     b.Navigation("CustommerPersonnelInfo");
                 });

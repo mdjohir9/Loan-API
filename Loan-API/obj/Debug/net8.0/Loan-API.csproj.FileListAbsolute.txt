@@ -215,3 +215,6 @@ E:\My-personnel-project\Loan-API\Loan-API\bin\Debug\net8.0\runtimes\win\lib\net6
 E:\My-personnel-project\Loan-API\Loan-API\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 E:\My-personnel-project\Loan-API\Loan-API\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 E:\My-personnel-project\Loan-API\Loan-API\obj\Debug\net8.0\Loan-API.sourcelink.json
+E:\My-personnel-project\Loan-API\Loan-API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\My-personnel-project\Loan-API\Loan-API\bin\Debug\net8.0\Newtonsoft.Json.dll
+E:\My-personnel-project\Loan-API\Loan-API\bin\Debug\net8.0\Loan-API.staticwebassets.runtime.json

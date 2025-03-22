@@ -4,32 +4,43 @@ using Microsoft.Extensions.Options;
 
 namespace Loan_API.Implementation
 {
-    public class UnitOfWork:IUnitOfWork
+    public class UnitOfWork: IUnitOfWork
     {
-        //private readonly ApplicationDbContext _dbContext;
-        //private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ApplicationDbContext _dbContext;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        ////private IGenericRepository<Users> _usersRepository;
-        ////private IGenericRepository<UserModule> _userModuleRepository;
-        //private readonly IConfiguration _configuration;
-        //private readonly string _connectionString;
-        //public UnitOfWork(ApplicationDbContext dbContext, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
-        //{
-        //    _dbContext = dbContext;
-        //    _configuration = configuration;
-        //    _httpContextAccessor = httpContextAccessor;
-        //    _connectionString = _configuration.GetConnectionString("DefaultConnection");
-        //}
+      
+        private readonly IConfiguration _configuration;
+        private readonly string _connectionString;
+        public UnitOfWork(ApplicationDbContext dbContext, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
+        {
+            _dbContext = dbContext;
+            _configuration = configuration;
+            _httpContextAccessor = httpContextAccessor;
+            _connectionString = _configuration.GetConnectionString("DbConnection");
 
+            Custommer = new CustommerRepository(_dbContext);
+            Contact = new CustommerContactRepository(_dbContext);
+            Employment = new CustommerEmploymentRepository(_dbContext);
+            FinancialInfo = new CustommerFinancialInfoRepository (_dbContext);
+            Guarantor = new CustommerGuarantorRepository(_dbContext);
 
-        //public void Dispose()
-        //{
-        //    _dbContext.Dispose();
-        //}
+        }
 
-        //public Task<int> Save()
-        //{
-        //    return _dbContext.SaveChangesAsync();
-        //}
+        public ICustommerRepository Custommer { get; private set; }
+        public ICustommerContactRepository Contact { get; private set; }
+        public ICustommerEmploymentRepository Employment { get; private set; }
+        public ICustommerFinancialInfoRepository FinancialInfo { get; private set; }
+        public ICustommerGuarantorRepository Guarantor { get; private set; }
+
+        public void Dispose()
+        {
+            _dbContext.Dispose();
+        }
+
+        public Task<int> Save()
+        {
+            return _dbContext.SaveChangesAsync();
+        }
     }
 }

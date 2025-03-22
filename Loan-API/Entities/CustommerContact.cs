@@ -27,18 +27,18 @@ namespace Loan_API.Entities
         public string? PerZIP { get; set; }
 
    
-        public int PreCity { get; set; }
+        public string? PreCity { get; set; }
 
-        public int PerCity { get; set; }
-
-
-        public int PreState { get; set; }
+        public string? PerCity { get; set; }
 
 
-        public int PerState { get; set; }
+        public string? PreState { get; set; }
 
 
-        [Required(ErrorMessage = "CustomerID is required")]
+        public string? PerState { get; set; }
+
+
+    
         public int? CustomerID { get; set; }
         [ForeignKey("CustomerID")]
         public virtual CustommerPersonnelInfo? CustommerPersonnelInfo { get; set; }

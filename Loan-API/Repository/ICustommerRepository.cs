@@ -1,0 +1,16 @@
+﻿using Loan_API.DTO;
+using Loan_API.Entities;
+
+namespace Loan_API.Repository
+{
+    public interface ICustommerRepository: IGenericRepository<CustommerPersonnelInfo>
+    {
+        Task<int> AddCustomerAsync(CustommerPersonnelInfoDTO customerDto, int userId);
+        Task<IEnumerable<CustommerDetailesDTO>> GetAllWithDetailsAsync();
+        Task<int> AddCustomerContactAsync(CustommerContactDTO ContactDo, int userId);
+        Task<int> AddCustomerEmploymentAsync(CustommerEmploymentDTO employmentDto, int userId);
+        Task<int> AddCustomerFinancialInfoAsync(CustommerFinancialInfoDTO financialInfoDto, int userId);
+        Task<int> AddCustomerGuarantorAsync(CustommerGuarantorDetailsDTO GuarantorDto, int userId);
+
+    }
+}

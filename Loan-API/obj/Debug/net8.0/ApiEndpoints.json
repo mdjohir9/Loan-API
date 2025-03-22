@@ -1,12 +1,273 @@
 [
   {
     "ContainingType": "Loan_API.Controllers.CustommerController",
-    "Method": "GetCustommer",
-    "RelativePath": "api/Custommer/GetCustommer",
+    "Method": "PostCustomer",
+    "RelativePath": "api/Custommer/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerDto",
+        "Type": "Loan_API.DTO.CustommerPersonnelInfoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerController",
+    "Method": "GetCustommerById",
+    "RelativePath": "api/Custommer/custommer/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerController",
+    "Method": "GetCustommers",
+    "RelativePath": "api/Custommer/custommers",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerController",
+    "Method": "DeleteCustomer",
+    "RelativePath": "api/Custommer/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerController",
+    "Method": "UpdateCustomer",
+    "RelativePath": "api/Custommer/update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "customerDto",
+        "Type": "Loan_API.DTO.CustommerPersonnelInfoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerContactController",
+    "Method": "GetContactById",
+    "RelativePath": "api/CustommerContact/contact/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerContactController",
+    "Method": "PostCustomer",
+    "RelativePath": "api/CustommerContact/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "contactDto",
+        "Type": "Loan_API.DTO.CustommerContactDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerContactController",
+    "Method": "UpdateCustomer",
+    "RelativePath": "api/CustommerContact/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "contactDto",
+        "Type": "Loan_API.DTO.CustommerContactDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerEmploymentController",
+    "Method": "PostCustomerEmployment",
+    "RelativePath": "api/CustommerEmployment/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "employmentDto",
+        "Type": "Loan_API.DTO.CustommerEmploymentDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerEmploymentController",
+    "Method": "GetEmploymentById",
+    "RelativePath": "api/CustommerEmployment/employment/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerEmploymentController",
+    "Method": "UpdateCustomerEmployment",
+    "RelativePath": "api/CustommerEmployment/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "employmentDto",
+        "Type": "Loan_API.DTO.CustommerEmploymentDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerFinancialController",
+    "Method": "PostCustomerFinancialInfo",
+    "RelativePath": "api/CustommerFinancial/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "financialInfoDto",
+        "Type": "Loan_API.DTO.CustommerFinancialInfoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerFinancialController",
+    "Method": "GetFinancialInfoById",
+    "RelativePath": "api/CustommerFinancial/financial/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerFinancialController",
+    "Method": "UpdateCustomerFinancialInfo",
+    "RelativePath": "api/CustommerFinancial/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "financialInfoDto",
+        "Type": "Loan_API.DTO.CustommerFinancialInfoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerGuarantorController",
+    "Method": "CreateCustomerGuarantor",
+    "RelativePath": "api/CustommerGuarantor/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "guarantorDto",
+        "Type": "Loan_API.DTO.CustommerGuarantorDetailsDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerGuarantorController",
+    "Method": "GetGuarantorById",
+    "RelativePath": "api/CustommerGuarantor/Guarantor/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerGuarantorController",
+    "Method": "UpdateCustomerGuarantor",
+    "RelativePath": "api/CustommerGuarantor/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "guarantorDto",
+        "Type": "Loan_API.DTO.CustommerGuarantorDetailsDTO",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   }
 ]

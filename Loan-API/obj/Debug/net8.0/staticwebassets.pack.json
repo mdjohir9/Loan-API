@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerImage\\opsload2444.jpeg",
+      "PackagePath": "staticwebassets\\1111\\CustommerImage\\opsload2444.jpeg"
+    },
+    {
+      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerSignature\\opsload2444.jpeg",
+      "PackagePath": "staticwebassets\\1111\\CustommerSignature\\opsload2444.jpeg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Loan-API.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Loan-API.props",
+      "PackagePath": "build\\Loan-API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Loan-API.props",
+      "PackagePath": "buildMultiTargeting\\Loan-API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Loan-API.props",
+      "PackagePath": "buildTransitive\\Loan-API.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

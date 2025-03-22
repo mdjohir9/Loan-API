@@ -21,7 +21,6 @@ namespace Loan_API.Entities
         public string? GuarantorNationalIDOrPassport { get; set; }
 
         public string? GuarantorSignature { get; set; } // Stores the signature as binary data
-        [Required]
         public int? CustomerID { get; set; }
         [ForeignKey("CustomerID")]
         public virtual CustommerPersonnelInfo? CustommerPersonnelInfo { get; set; }

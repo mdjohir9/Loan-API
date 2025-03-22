@@ -14,8 +14,6 @@ namespace Loan_API.Entities
         public string? AssetsOwned { get; set; } // Land, House, Vehicles, Business Equipment
 
         public string? Liabilities { get; set; } // Other Loans, Credit Card Debts
-
-        [Required]
         public int? CustomerID { get; set; }
         [ForeignKey("CustomerID")]
         public virtual CustommerPersonnelInfo? CustommerPersonnelInfo { get; set; }
