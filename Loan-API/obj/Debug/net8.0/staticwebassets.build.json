@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "SyNFics84kBkwohZCxorUiyy4fH7a3KVY3AOgNirjE0=",
+  "Hash": "A1c+2Pd35tGnp3OPYX6KM2TBpaW9uJ+xx4UzkFOkDXk=",
   "Source": "Loan-API",
   "BasePath": "_content/Loan-API",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerImage\\opsload2444.jpeg",
+      "Identity": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\0001\\CustommerImage\\opsload2444.jpeg",
       "SourceId": "Loan-API",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\",
       "BasePath": "_content/Loan-API",
-      "RelativePath": "1111/CustommerImage/opsload2444.jpeg",
+      "RelativePath": "0001/CustommerImage/opsload2444.jpeg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -33,15 +33,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\1111\\CustommerImage\\opsload2444.jpeg"
+      "OriginalItemSpec": "wwwroot\\0001\\CustommerImage\\opsload2444.jpeg"
     },
     {
-      "Identity": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerSignature\\opsload2444.jpeg",
+      "Identity": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\0001\\CustommerSignature\\opsload2444.jpeg",
       "SourceId": "Loan-API",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\",
       "BasePath": "_content/Loan-API",
-      "RelativePath": "1111/CustommerSignature/opsload2444.jpeg",
+      "RelativePath": "0001/CustommerSignature/opsload2444.jpeg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -52,7 +52,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\1111\\CustommerSignature\\opsload2444.jpeg"
+      "OriginalItemSpec": "wwwroot\\0001\\CustommerSignature\\opsload2444.jpeg"
     }
   ]
 }

@@ -19,12 +19,13 @@ namespace Loan_API.Implementation
             _httpContextAccessor = httpContextAccessor;
             _connectionString = _configuration.GetConnectionString("DbConnection");
 
-            Custommer = new CustommerRepository(_dbContext);
+            Custommer = new CustommerRepository(_dbContext , _httpContextAccessor);
             Contact = new CustommerContactRepository(_dbContext);
             Employment = new CustommerEmploymentRepository(_dbContext);
             FinancialInfo = new CustommerFinancialInfoRepository (_dbContext);
             Guarantor = new CustommerGuarantorRepository(_dbContext);
-
+            User = new UserRepository(_dbContext, _httpContextAccessor);
+            UserRole = new UserRoleRepository(_dbContext);
         }
 
         public ICustommerRepository Custommer { get; private set; }
@@ -32,7 +33,8 @@ namespace Loan_API.Implementation
         public ICustommerEmploymentRepository Employment { get; private set; }
         public ICustommerFinancialInfoRepository FinancialInfo { get; private set; }
         public ICustommerGuarantorRepository Guarantor { get; private set; }
-
+        public IUserRepository User { get; private set; }
+        public IUserRoleRepository UserRole { get; private set; }
         public void Dispose()
         {
             _dbContext.Dispose();

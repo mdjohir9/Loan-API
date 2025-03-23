@@ -1,6 +1,8 @@
 ﻿using Loan_API.DTO;
 using Loan_API.Entities;
 using Loan_API.Repository;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace Loan_API.Implementation
@@ -8,11 +10,12 @@ namespace Loan_API.Implementation
     public class CustommerRepository: GenericRepository<CustommerPersonnelInfo>,ICustommerRepository
     {
         private readonly ApplicationDbContext _dbContext;
-        public CustommerRepository(ApplicationDbContext dbContext) : base(dbContext)
+        public CustommerRepository(ApplicationDbContext dbContext, IHttpContextAccessor httpContextAccessor) : base(dbContext)
         {
             _dbContext = dbContext;
+            _httpContextAccessor = httpContextAccessor;
         }
-
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public async Task<int> AddCustomerAsync(CustommerPersonnelInfoDTO customerDto, int userId)
         {
             var customer = new CustommerPersonnelInfo
@@ -59,10 +62,13 @@ namespace Loan_API.Implementation
              await _dbContext.CustommerContact.AddAsync(contact);
              await _dbContext.SaveChangesAsync();
              return contact.ID;
-         
         }
+
         public async Task<IEnumerable<CustommerDetailesDTO>> GetAllWithDetailsAsync()
         {
+            var request = _httpContextAccessor.HttpContext.Request;
+            var baseUrl = $"{request.Scheme}://{request.Host}{request.PathBase}";
+
             return await (from cpi in _dbContext.CustommerPersonnelInfo
                           join cc in _dbContext.CustommerContact on cpi.CustomerID equals cc.CustomerID into contactGroup
                           from cc in contactGroup.DefaultIfEmpty()
@@ -76,8 +82,8 @@ namespace Loan_API.Implementation
                           {
                               CustCardNo = cpi.CustCardNo,
                               CompanyId = cpi.CompanyId,
-                              CustommerImage = cpi.CustommerImage,
-                              CustommerSignature = cpi.CustommerSignature,
+                              CustommerImage = $"{baseUrl}/0001/CustommerImage/{cpi.CustommerImage}",
+                              CustommerSignature = $"{baseUrl}/0001/CustommerSignature/{cpi.CustommerSignature}",
                               FullName = cpi.FullName,
                               Gender = cpi.Gender,
                               DateOfBirth = cpi.DateOfBirth,

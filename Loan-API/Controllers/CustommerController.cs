@@ -115,7 +115,7 @@ namespace Loan_API.Controllers
 
                 string result = null;
                 string resultSignature = null;
-
+                string CompanyId = "0001";
                 // Process Employee Image if available
                 if (customerDto.CustommerImage != null && customerDto.CustommerImage.Any())
                 {
@@ -123,7 +123,7 @@ namespace Loan_API.Controllers
                     result = await _unitOfWork.Custommer.SaveDocumentsListsAsync(
                         customerDto.CustommerImage,
                         customerDto.CustCardNo,
-                        customerDto.CompanyId.ToString(),
+                        CompanyId,
                         DocumentType
                     );
                 }
@@ -135,7 +135,7 @@ namespace Loan_API.Controllers
                     resultSignature = await _unitOfWork.Custommer.SaveDocumentsListsAsync(
                         customerDto.CustommerSignature,
                         customerDto.CustCardNo,
-                        customerDto.CompanyId.ToString(),
+                        CompanyId,
                         DocumentTypeSigImage
                     );
                 }

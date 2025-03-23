@@ -145,6 +145,7 @@ app.Use(async (context, next) =>
     Console.WriteLine("Custom cache-control middleware executed and headers set!"); // Debugging
     await next();
 });
+builder.Services.AddHttpContextAccessor();
 
 app.UseAuthentication();
 app.UseAuthorization();

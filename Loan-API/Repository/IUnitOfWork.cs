@@ -7,6 +7,8 @@
         ICustommerFinancialInfoRepository FinancialInfo { get; }
         ICustommerEmploymentRepository Employment { get; }
         ICustommerGuarantorRepository Guarantor { get; }
+        IUserRepository User { get; }
+        IUserRoleRepository UserRole { get; }
         Task<int> Save();
     }
 }
