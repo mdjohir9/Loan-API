@@ -9,6 +9,7 @@
         ICustommerGuarantorRepository Guarantor { get; }
         IUserRepository User { get; }
         IUserRoleRepository UserRole { get; }
+        ILoginRepository Login { get; }
         Task<int> Save();
     }
 }

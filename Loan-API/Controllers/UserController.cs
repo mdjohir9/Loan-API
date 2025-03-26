@@ -183,7 +183,7 @@ namespace Loan_API.Controllers
 
         [HttpPost]
         [Route("users/create")]
-        public async Task<IActionResult> PostUsers([FromBody] UsersDTO usersDTO)
+        public async Task<IActionResult> PostUsers([FromBody] UserCreateDTO usersDTO)
         {
             try
             {
@@ -212,9 +212,8 @@ namespace Loan_API.Controllers
                     FirstName = usersDTO.FirstName,
                     LastName = usersDTO.LastName,
                     UserName = ComplexScriptingSystem.ComplexLetters.getTangledLetters(usersDTO.UserName),
-                    UserImage = usersDTO.UserImage,
                     UserPassword = ComplexScriptingSystem.ComplexLetters.getTangledLetters(usersDTO.UserPassword),
-                    Email = usersDTO.Email,
+                    Email = usersDTO.UserName,
                     UserRoleID = usersDTO.UserRoleID,
                     IsGuestUser = usersDTO.IsGuestUser,
                     IsApprovingAuthority = usersDTO.IsApprovingAuthority,

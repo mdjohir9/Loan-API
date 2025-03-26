@@ -60,6 +60,16 @@ namespace Loan_API.Controllers
                     return BadRequest(ModelState);
                 }
 
+                // Check if financial information already exists
+                var existingFinancialInfo =  _unitOfWork.FinancialInfo.GetCustommerFinancialByCustomerId(financialInfoDto.CustomerID);
+
+                if (existingFinancialInfo != null)
+                {
+                    // If financial information exists, update it
+                    return await UpdateCustomerFinancialInfo(financialInfoDto, financialInfoDto.CustomerID);
+                }
+
+                // If no existing record, create a new one
                 var financialInfo = new CustommerFinancialInfo
                 {
                     CustomerID = financialInfoDto.CustomerID,
@@ -73,6 +83,7 @@ namespace Loan_API.Controllers
 
                 await _unitOfWork.FinancialInfo.AddAsync(financialInfo);
                 await _unitOfWork.Save();
+
                 return Ok(new { StatusCode = 200, message = "Customer financial information saved successfully." });
             }
             catch (Exception ex)
@@ -81,8 +92,8 @@ namespace Loan_API.Controllers
             }
         }
 
-        [HttpPut("update")]
-        public async Task<IActionResult> UpdateCustomerFinancialInfo([FromBody] CustommerFinancialInfoDTO financialInfoDto)
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateCustomerFinancialInfo([FromBody] CustommerFinancialInfoDTO financialInfoDto, int id)
         {
             try
             {
@@ -96,20 +107,20 @@ namespace Loan_API.Controllers
                     return BadRequest(ModelState);
                 }
 
-                var existingFinancialInfo = await _unitOfWork.FinancialInfo.GetByIdAsync(financialInfoDto.CustomerID);
+                // Use UpdateByForeignKeyAsync to update financial details based on CustomerID
+                await _unitOfWork.FinancialInfo.UpdateByForeignKeyAsync<CustommerFinancialInfo>(
+                    f => f.CustomerID == id,
+                    existingFinancialInfo =>
+                    {
+                        existingFinancialInfo.BankName = financialInfoDto.BankName;
+                        existingFinancialInfo.AccountNumber = financialInfoDto.AccountNumber;
+                        existingFinancialInfo.MonthlyIncomeSources = financialInfoDto.MonthlyIncomeSources;
+                        existingFinancialInfo.MonthlyExpenses = financialInfoDto.MonthlyExpenses;
+                        existingFinancialInfo.AssetsOwned = financialInfoDto.AssetsOwned;
+                        existingFinancialInfo.Liabilities = financialInfoDto.Liabilities;
+                    }
+                );
 
-                if (existingFinancialInfo == null)
-                {
-                    return NotFound("Customer financial information not found.");
-                }
-
-                existingFinancialInfo.BankName = financialInfoDto.BankName;
-                existingFinancialInfo.AccountNumber = financialInfoDto.AccountNumber;
-                existingFinancialInfo.MonthlyIncomeSources = financialInfoDto.MonthlyIncomeSources;
-                existingFinancialInfo.MonthlyExpenses = financialInfoDto.MonthlyExpenses;
-                existingFinancialInfo.AssetsOwned = financialInfoDto.AssetsOwned;
-                existingFinancialInfo.Liabilities = financialInfoDto.Liabilities;
-                await _unitOfWork.FinancialInfo.UpdateAsync(existingFinancialInfo);
                 await _unitOfWork.Save();
                 return Ok(new { StatusCode = 200, message = "Customer financial information updated successfully." });
             }
@@ -118,6 +129,7 @@ namespace Loan_API.Controllers
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
+
 
 
     }

@@ -6,6 +6,6 @@ namespace Loan_API.Repository
     public interface ICustommerEmploymentRepository : IGenericRepository<CustommerEmployment>
     {
 
-
+        CustommerEmployment GetCustommerEmploymentByCustomerId(int customerId);
     }
 }

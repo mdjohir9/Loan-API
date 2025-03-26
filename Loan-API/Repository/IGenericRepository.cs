@@ -1,4 +1,6 @@
-﻿namespace Loan_API.Repository
+﻿using System.Linq.Expressions;
+
+namespace Loan_API.Repository
 {
     public interface IGenericRepository<T> where T : class 
     {
@@ -9,6 +11,8 @@
         Task<T> GetByIdAsync(int id);
         Task<T> GetByIdAsync(string id);
 
+        Task UpdateByForeignKeyAsync<T>(Expression<Func<T, bool>> predicate, Action<T> updateAction) where T : class;
+        Task<T> GetByCustomerIdWithForeignKeysAsync<T>(string customerId, params Expression<Func<T, object>>[] includeProperties) where T : class;
 
         Task AddAsync(T entity);
         Task UpdateAsync(T entity);

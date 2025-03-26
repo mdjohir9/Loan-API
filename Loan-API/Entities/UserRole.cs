@@ -9,7 +9,6 @@ namespace Loan_API.Entities
         [Required]
         [Key]
         public int UserRoleId { get; set; }
-
         public string? CompanyId { get; set; }
 
         [Required(ErrorMessage = "UserRole Name is required")]

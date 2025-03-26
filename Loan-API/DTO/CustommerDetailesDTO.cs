@@ -20,6 +20,7 @@ namespace Loan_API.DTO
         public string? DrivingLicenseNumber { get; set; }
 
         // Contact Information
+        public int ? ContactId { get; set; }
         public string? PhoneNumber { get; set; }
         public string? AlternativePhoneNumber { get; set; }
         public string? EmailAddress { get; set; }

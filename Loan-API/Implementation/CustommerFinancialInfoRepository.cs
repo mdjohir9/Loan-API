@@ -10,5 +10,11 @@ namespace Loan_API.Implementation
         {
             _dbContext = dbContext;
         }
+
+        public CustommerFinancialInfo GetCustommerFinancialByCustomerId(int customerId)
+        {
+            return _dbContext.CustommerFinancialInfo
+                             .FirstOrDefault(c => c.CustomerID == customerId);
+        }
     }
 }

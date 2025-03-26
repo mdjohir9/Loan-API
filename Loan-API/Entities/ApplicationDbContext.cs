@@ -15,6 +15,8 @@ namespace Loan_API.Entities
         public DbSet<CustommerEmployment> CustommerEmployment { get; set; }
         public DbSet<CustommerContact> CustommerContact { get; set; }
         public DbSet<UserRole> UserRole { get; set; }
-        public DbSet<User> User { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<HrdCompanyInfo> HrdCompanyInfo { get; set; }
+
     }
 }

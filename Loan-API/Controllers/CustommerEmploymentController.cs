@@ -63,7 +63,16 @@ namespace Loan_API.Controllers
                     return BadRequest(ModelState);
                 }
 
-                 
+                // Check if employment details for the given CustomerID already exist
+                var existingEmployment =  _unitOfWork.Employment.GetCustommerEmploymentByCustomerId(employmentDto.CustomerID);
+
+                if (existingEmployment != null)
+                {
+                    // If employment exists, update it
+                    return await UpdateCustomerEmployment(employmentDto, employmentDto.CustomerID);
+                }
+
+                // If employment does not exist, create new employment details
                 var employment = new CustommerEmployment
                 {
                     CustomerID = employmentDto.CustomerID,
@@ -85,9 +94,8 @@ namespace Loan_API.Controllers
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
-
         [HttpPut("update")]
-        public async Task<IActionResult> UpdateCustomerEmployment([FromBody] CustommerEmploymentDTO employmentDto)
+        public async Task<IActionResult> UpdateCustomerEmployment([FromBody] CustommerEmploymentDTO employmentDto, int id)
         {
             try
             {
@@ -101,21 +109,22 @@ namespace Loan_API.Controllers
                     return BadRequest(ModelState);
                 }
 
-                var existingEmployment = await _unitOfWork.Employment.GetByIdAsync(employmentDto.CustomerID);
+                // Use UpdateByForeignKeyAsync to update employment details based on CustomerID
+                await _unitOfWork.Employment.UpdateByForeignKeyAsync<CustommerEmployment>(
+                    e => e.CustomerID == employmentDto.CustomerID,
+                    existingEmployment =>
+                    {
+                        // Apply updates to existing employment details
+                        existingEmployment.EmploymentType = employmentDto.EmploymentType;
+                        existingEmployment.EmployerOrBusnName = employmentDto.EmployerOrBusnName;
+                        existingEmployment.JobTitleOrBusnType = employmentDto.JobTitleOrBusnType;
+                        existingEmployment.MonthlyIncOrBusnRev = employmentDto.MonthlyIncOrBusnRev;
+                        existingEmployment.YearsOfExpOrBusnAge = employmentDto.YearsOfExpOrBusnAge;
+                        existingEmployment.WorkOrBusnAddress = employmentDto.WorkOrBusnAddress;
+                        existingEmployment.EmployerOrBusnContact = employmentDto.EmployerOrBusnContact;
+                    }
+                );
 
-                if (existingEmployment == null)
-                {
-                    return NotFound("Customer employment details not found.");
-                }
-
-                existingEmployment.EmploymentType = employmentDto.EmploymentType;
-                existingEmployment.EmployerOrBusnName = employmentDto.EmployerOrBusnName;
-                existingEmployment.JobTitleOrBusnType = employmentDto.JobTitleOrBusnType;
-                existingEmployment.MonthlyIncOrBusnRev = employmentDto.MonthlyIncOrBusnRev;
-                existingEmployment.YearsOfExpOrBusnAge = employmentDto.YearsOfExpOrBusnAge;
-                existingEmployment.WorkOrBusnAddress = employmentDto.WorkOrBusnAddress;
-                existingEmployment.EmployerOrBusnContact = employmentDto.EmployerOrBusnContact;
-                await _unitOfWork.Employment.UpdateAsync(existingEmployment);
                 await _unitOfWork.Save();
                 return Ok(new { StatusCode = 200, message = "Customer employment details updated successfully." });
             }
@@ -124,6 +133,7 @@ namespace Loan_API.Controllers
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
+
 
     }
 }

@@ -33,8 +33,6 @@ namespace Loan_API.Controllers
             {
                 string cacheKey = $"custommer_{id}";
 
-                if (!_cache.TryGetValue(cacheKey, out CustommerPersonnelInfo cachedResult))
-                {
                     var result = await _unitOfWork.Custommer.GetByIdAsync(id);
 
                     if (result == null)
@@ -43,21 +41,44 @@ namespace Loan_API.Controllers
                     }
 
                     // Cache the result for future requests
-                    _cache.Set(cacheKey, result, TimeSpan.FromMinutes(1));
+                   
 
                     return Ok(new { StatusCode = 200, message = "Success", data = result });
-                }
-                else
-                {
-                    return Ok(new { StatusCode = 200, message = "Success", data = cachedResult });
-                }
+                
+              
             }
             catch (Exception ex)
             {
                 return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
             }
         }
+        [HttpGet]
+        [Route("custommerDetailes/{id}")]
+        public async Task<IActionResult> GetCustommerDetailesById(int id)
+        {
+            try
+            {
+                string cacheKey = $"custommer_{id}";
 
+                var result = await _unitOfWork.Custommer.GetAllWithDetailsAsync(id);
+
+                if (result == null)
+                {
+                    return NotFound(new { StatusCode = 404, message = "Customer not found!" });
+                }
+
+                // Cache the result for future requests
+
+
+                return Ok(new { StatusCode = 200, message = "Success", data = result });
+
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
+            }
+        }
 
         [HttpGet]
         [Route("custommers")]
@@ -71,7 +92,7 @@ namespace Loan_API.Controllers
                 if (!_cache.TryGetValue(cacheKey, out List<CustommerPersonnelInfo> cachedResult))
                 {
 
-                    var result = await _unitOfWork.Custommer.GetAllWithDetailsAsync();
+                    var result = await _unitOfWork.Custommer.GetAllWithDetailsAsync(null);
 
 
                     _cache.Set(cacheKey, result, TimeSpan.FromMinutes(1));
@@ -111,11 +132,12 @@ namespace Loan_API.Controllers
                     return BadRequest(ModelState);
                 }
 
-                int userId = 1;
+                int userId = customerDto.UserId ?? 0; // Convert nullable int to non-nullable
 
                 string result = null;
                 string resultSignature = null;
                 string CompanyId = "0001";
+
                 // Process Employee Image if available
                 if (customerDto.CustommerImage != null && customerDto.CustommerImage.Any())
                 {
@@ -155,13 +177,24 @@ namespace Loan_API.Controllers
                     DrivingLicenseNumber = customerDto.DrivingLicenseNumber,
                     NationalIDOrPassport = customerDto.NationalIDOrPassport,
                     TaxIdentificationNumber = customerDto.TaxIdentificationNumber,
+                    EducationLevel=customerDto.EducationLevel,
                     CreatedAt = DateTime.Now,
-                    CreatedBy = userId,
+                    CreatedBy = userId, // Use the converted int value
                     IsActive = false
                 };
 
-                // Add the customer to the database
+                // **Step 1: Save Customer and Ensure ID is Retrieved**
                 await _unitOfWork.Custommer.AddAsync(customer);
+                await _unitOfWork.Save(); // This ensures the database assigns CustomerID
+
+                // **Step 2: Retrieve the Generated ID**
+                int newCustomerId = customer.CustomerID; // Assuming CustomerID is an identity field
+
+                // **Step 3: Update User with the New Customer ID**
+                var user = new User { UserId = userId };
+                await _unitOfWork.User.UpdateAsync(user, "ReferenceID", newCustomerId.ToString()); // Ensure ReferenceID is string
+
+                // **Step 4: Save Changes** 
                 await _unitOfWork.Save();
 
                 return Ok(new { StatusCode = 200, message = "Customer personnel information created successfully." });
@@ -172,8 +205,9 @@ namespace Loan_API.Controllers
             }
         }
 
+
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateCustomer(int id, [FromBody] CustommerPersonnelInfoDTO customerDto)
+        public async Task<IActionResult> UpdateCustomer(int id, [FromBody] PersonnelInfoUpdateDTO customerDto)
         {
             try
             {
@@ -193,16 +227,18 @@ namespace Loan_API.Controllers
                     return NotFound("Customer personnel information not found.");
                 }
 
-                existingCustomer.CustCardNo = customerDto.CustCardNo;
-                existingCustomer.CompanyId = customerDto.CompanyId;
                 existingCustomer.FullName = customerDto.FullName;
                 existingCustomer.Gender = customerDto.Gender;
                 existingCustomer.DateOfBirth = customerDto.DateOfBirth;
                 existingCustomer.Nationality = customerDto.Nationality;
                 existingCustomer.MaritalStatus = customerDto.MaritalStatus;
                 existingCustomer.Occupation = customerDto.Occupation;
+                existingCustomer.NationalIDOrPassport = customerDto.NationalIDOrPassport;
+                existingCustomer.DrivingLicenseNumber = customerDto.DrivingLicenseNumber;
+                existingCustomer.TaxIdentificationNumber = customerDto.TaxIdentificationNumber;
+                existingCustomer.EducationLevel = customerDto.EducationLevel;
                 existingCustomer.UpdatedAt = DateTime.Now;
-                existingCustomer.UpdatedBy = 1; 
+                existingCustomer.UpdatedBy = customerDto.UserId; 
 
                 await _unitOfWork.Custommer.UpdateAsync(existingCustomer);
                 await _unitOfWork.Save();

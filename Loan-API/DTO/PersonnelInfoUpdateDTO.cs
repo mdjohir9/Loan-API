@@ -2,12 +2,8 @@
 
 namespace Loan_API.DTO
 {
-    public class CustommerPersonnelInfoDTO
+    public class PersonnelInfoUpdateDTO
     {
-  
-        public string? CustCardNo { get; set; }
-        public int? CompanyId { get; set; }
-
         public List<string>? CustommerImage { get; set; } = new List<string>();
         public List<string>? CustommerSignature { get; set; } = new List<string>();
 
@@ -32,10 +28,10 @@ namespace Loan_API.DTO
         [MaxLength(50)]
         [Required(ErrorMessage = "NationalIDOrPassport is required")]
         public string? NationalIDOrPassport { get; set; }
- 
+
 
         public string? TaxIdentificationNumber { get; set; }
-        [MaxLength(50)]
+
         public string? DrivingLicenseNumber { get; set; }
         public int? UserId { get; set; }
     }

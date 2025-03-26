@@ -29,6 +29,7 @@ builder.Services.AddCors(options =>
 });
 // Add services to the container.
 
+
 builder.Services.AddControllers();
 builder.Services.AddDistributedMemoryCache(); // Add this line
 
@@ -101,11 +102,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 
-
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICustommerRepository, CustommerRepository>();
 
 // Add your custom repository
-
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

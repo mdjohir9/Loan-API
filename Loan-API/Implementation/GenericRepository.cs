@@ -45,6 +45,22 @@ namespace Loan_API.Implementation
             }
             return entity;
         }
+
+        public async Task UpdateByForeignKeyAsync<T>(Expression<Func<T, bool>> predicate, Action<T> updateAction) where T : class
+        {
+            var entity = await _dbContext.Set<T>().FirstOrDefaultAsync(predicate);
+
+            if (entity == null)
+            {
+                throw new KeyNotFoundException("Entity not found.");
+            }
+
+            // Apply the update action
+            updateAction(entity);
+
+            await _dbContext.SaveChangesAsync();
+        }
+
         public async Task<T> GetByIdAsync(string id)
         {
             var entity = await _dbSet.FindAsync(id);
@@ -60,6 +76,28 @@ namespace Loan_API.Implementation
             await _dbSet.AddAsync(entity);
 
         }
+        public async Task<T> GetByCustomerIdWithForeignKeysAsync<T>(string customerId, params Expression<Func<T, object>>[] includeProperties) where T : class
+        {
+            IQueryable<T> query = (IQueryable<T>)_dbSet;
+
+            // Dynamically include related entities based on the provided includeProperties
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+
+            // Ensure you're querying the correct navigation property, not just a simple field
+            var entity = await query.FirstOrDefaultAsync(e => EF.Property<string>(e, "CustomerId") == customerId);
+
+            if (entity == null)
+            {
+                throw new KeyNotFoundException("Entity not found.");
+            }
+
+            return entity;
+        }
+
+
 
         public async Task UpdateAsync(T entity)
         {

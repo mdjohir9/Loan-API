@@ -5,7 +5,7 @@ namespace Loan_API.Repository
 {
     public interface ICustommerFinancialInfoRepository : IGenericRepository<CustommerFinancialInfo>
     {
-    
 
+        CustommerFinancialInfo GetCustommerFinancialByCustomerId(int customerId);
     }
 }

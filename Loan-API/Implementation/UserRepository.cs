@@ -29,7 +29,7 @@ namespace Loan_API.Implementation
         public async Task<bool> CheckUserNameIsExist(string userName)
         {
 
-            var existingUser = await _dbContext.User
+            var existingUser = await _dbContext.Users
                                                .Where(u => u.UserName == ComplexScriptingSystem.ComplexLetters.getTangledLetters(userName) &&
                                                            (u.Deleted == false || u.Deleted == null))
                                                .FirstOrDefaultAsync();
@@ -41,7 +41,7 @@ namespace Loan_API.Implementation
         public async Task<bool> CheckUserNameIsExistById(string userName, int UserId)
         {
             // Step 1: Check if the username exists for the specific UserId
-            var existingUser = await _dbContext.User
+            var existingUser = await _dbContext.Users
                                                .Where(u => u.UserId == UserId &&
                                                            u.UserName == ComplexScriptingSystem.ComplexLetters.getTangledLetters(userName) &&
                                                            (u.Deleted == false || u.Deleted == null))
@@ -54,7 +54,7 @@ namespace Loan_API.Implementation
             }
 
             // Step 2: If the user doesn't match, check if any other user has this username
-            var otherUser = await _dbContext.User
+            var otherUser = await _dbContext.Users
                                             .Where(u => u.UserId != UserId &&
                                                         u.UserName == ComplexScriptingSystem.ComplexLetters.getTangledLetters(userName) &&
                                                         (u.Deleted == false || u.Deleted == null))
@@ -112,7 +112,7 @@ namespace Loan_API.Implementation
             var request = _httpContextAccessor.HttpContext.Request;
             var baseUrl = $"{request.Scheme}://{request.Host}{request.PathBase}";
 
-            var query = from user in _dbContext.User
+            var query = from user in _dbContext.Users
                         join userRole in _dbContext.UserRole
                         on user.UserRoleID equals userRole.UserRoleId into userRolesGroup
                         from userRole in userRolesGroup.DefaultIfEmpty()

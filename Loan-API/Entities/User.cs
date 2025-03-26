@@ -42,7 +42,7 @@ namespace Loan_API.Entities
         public bool? IsApprovingAuthority { get; set; }
 
         [Column(TypeName = "varchar(50)")]
-        public string? ReferenceID { get; set; }
+        public string? ReferenceID { get; set; }//Refarence Id ==CustommerID
         [Column(TypeName = "nvarchar(max)")]
         public string? AdditionalPermissions { get; set; }
 

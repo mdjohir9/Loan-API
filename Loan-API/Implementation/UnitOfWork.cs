@@ -1,5 +1,7 @@
 ﻿using Loan_API.Entities;
 using Loan_API.Repository;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
 namespace Loan_API.Implementation
@@ -26,6 +28,7 @@ namespace Loan_API.Implementation
             Guarantor = new CustommerGuarantorRepository(_dbContext);
             User = new UserRepository(_dbContext, _httpContextAccessor);
             UserRole = new UserRoleRepository(_dbContext);
+            Login = new LoginRepository(_dbContext, _configuration);
         }
 
         public ICustommerRepository Custommer { get; private set; }
@@ -35,6 +38,8 @@ namespace Loan_API.Implementation
         public ICustommerGuarantorRepository Guarantor { get; private set; }
         public IUserRepository User { get; private set; }
         public IUserRoleRepository UserRole { get; private set; }
+   
+        public ILoginRepository Login { get; private set; }
         public void Dispose()
         {
             _dbContext.Dispose();
