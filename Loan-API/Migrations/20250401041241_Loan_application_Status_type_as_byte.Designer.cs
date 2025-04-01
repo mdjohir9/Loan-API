@@ -4,6 +4,7 @@ using Loan_API.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Loan_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250401041241_Loan_application_Status_type_as_byte")]
+    partial class Loan_application_Status_type_as_byte
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -466,7 +469,7 @@ namespace Loan_API.Migrations
                     b.Property<byte>("LoanStatus")
                         .HasColumnType("tinyint");
 
-                    b.Property<decimal>("PaidAmount")
+                    b.Property<decimal>("PainAmount")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("PayMethodId")
@@ -498,18 +501,6 @@ namespace Loan_API.Migrations
                     b.Property<DateTime>("ApplicationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("ApplyedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ApplyedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ApprovedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ApprovedBy")
-                        .HasColumnType("int");
-
                     b.Property<int>("CustomerID")
                         .HasColumnType("int");
 
@@ -539,23 +530,11 @@ namespace Loan_API.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<DateTime?>("RejectAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("RejectedBy")
-                        .HasColumnType("int");
-
                     b.Property<int>("RepaymentPeriod")
                         .HasColumnType("int");
 
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
 
                     b.HasKey("ApplicationID");
 

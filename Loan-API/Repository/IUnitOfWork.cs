@@ -1,4 +1,6 @@
-﻿namespace Loan_API.Repository
+﻿using Microsoft.EntityFrameworkCore.Storage;
+
+namespace Loan_API.Repository
 {
     public interface IUnitOfWork: IDisposable
     {
@@ -10,6 +12,11 @@
         IUserRepository User { get; }
         IUserRoleRepository UserRole { get; }
         ILoginRepository Login { get; }
+        ILoanApplicationRepository LoanApplication { get; }
+        IloanRepository Loan { get; }
+        ILoanInstalmentRepository LoanInstalment { get; }
+        ILoanPlanRepository LoanPlan { get; }
+        Task<IDbContextTransaction> BeginTransactionAsync();
         Task<int> Save();
     }
 }

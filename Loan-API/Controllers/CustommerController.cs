@@ -53,32 +53,28 @@ namespace Loan_API.Controllers
             }
         }
         [HttpGet]
-        [Route("custommerDetailes/{id}")]
-        public async Task<IActionResult> GetCustommerDetailesById(int id)
+        [Route("custommerDetailes/{id?}")]
+        public async Task<IActionResult> GetCustommerDetailesById(int? id)
         {
             try
             {
-                string cacheKey = $"custommer_{id}";
+                string cacheKey = id.HasValue ? $"custommer_{id}" : "custommer_all";
 
                 var result = await _unitOfWork.Custommer.GetAllWithDetailsAsync(id);
 
                 if (result == null)
                 {
-                    return NotFound(new { StatusCode = 404, message = "Customer not found!" });
+                    return NotFound(new { StatusCode = 404, message = "Customer(s) not found!" });
                 }
 
-                // Cache the result for future requests
-
-
                 return Ok(new { StatusCode = 200, message = "Success", data = result });
-
-
             }
             catch (Exception ex)
             {
                 return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
             }
         }
+
 
         [HttpGet]
         [Route("custommers")]
@@ -92,7 +88,7 @@ namespace Loan_API.Controllers
                 if (!_cache.TryGetValue(cacheKey, out List<CustommerPersonnelInfo> cachedResult))
                 {
 
-                    var result = await _unitOfWork.Custommer.GetAllWithDetailsAsync(null);
+                    var result = await _unitOfWork.Custommer.GetAllWithDetailsAsync();
 
 
                     _cache.Set(cacheKey, result, TimeSpan.FromMinutes(1));
@@ -179,15 +175,14 @@ namespace Loan_API.Controllers
                     TaxIdentificationNumber = customerDto.TaxIdentificationNumber,
                     EducationLevel=customerDto.EducationLevel,
                     CreatedAt = DateTime.Now,
-                    CreatedBy = userId, // Use the converted int value
+                    CreatedBy = userId, 
                     IsActive = false
                 };
 
-                // **Step 1: Save Customer and Ensure ID is Retrieved**
                 await _unitOfWork.Custommer.AddAsync(customer);
-                await _unitOfWork.Save(); // This ensures the database assigns CustomerID
+                await _unitOfWork.Save(); 
 
-                // **Step 2: Retrieve the Generated ID**
+
                 int newCustomerId = customer.CustomerID; // Assuming CustomerID is an identity field
 
                 // **Step 3: Update User with the New Customer ID**
@@ -220,8 +215,9 @@ namespace Loan_API.Controllers
                 {
                     return BadRequest(ModelState);
                 }
-
+            
                 var existingCustomer = await _unitOfWork.Custommer.GetByIdAsync(id);
+
                 if (existingCustomer == null)
                 {
                     return NotFound("Customer personnel information not found.");

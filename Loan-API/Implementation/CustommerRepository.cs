@@ -63,6 +63,79 @@ namespace Loan_API.Implementation
              await _dbContext.SaveChangesAsync();
              return contact.ID;
         }
+
+        public async Task<IEnumerable<CustommerDetailesDTO>> GetAllWithDetailsAsync()
+        {
+            var request = _httpContextAccessor.HttpContext.Request;
+            var baseUrl = $"{request.Scheme}://{request.Host}{request.PathBase}";
+
+            return await (from cpi in _dbContext.CustommerPersonnelInfo
+                          join cc in _dbContext.CustommerContact on cpi.CustomerID equals cc.CustomerID into contactGroup
+                          from cc in contactGroup.DefaultIfEmpty()
+                          join ce in _dbContext.CustommerEmployment on cpi.CustomerID equals ce.CustomerID into employmentGroup
+                          from ce in employmentGroup.DefaultIfEmpty()
+                          join cfi in _dbContext.CustommerFinancialInfo on cpi.CustomerID equals cfi.CustomerID into financialGroup
+                          from cfi in financialGroup.DefaultIfEmpty()
+                          join cgd in _dbContext.CustommerGuarantorDetails on cpi.CustomerID equals cgd.CustomerID into guarantorGroup
+                          from cgd in guarantorGroup.DefaultIfEmpty()
+                          select new CustommerDetailesDTO
+                          {
+                              CustomerID=cpi.CustomerID,
+                              CustCardNo = cpi.CustCardNo,
+                              CompanyId = cpi.CompanyId,
+                              CustommerImage = $"{baseUrl}/0001/CustommerImage/{cpi.CustommerImage}",
+                              CustommerSignature = $"{baseUrl}/0001/CustommerSignature/{cpi.CustommerSignature}",
+                              FullName = cpi.FullName,
+                              Gender = cpi.Gender,
+                              DateOfBirth = cpi.DateOfBirth,
+                              Nationality = cpi.Nationality,
+                              MaritalStatus = cpi.MaritalStatus,
+                              Occupation = cpi.Occupation,
+                              NationalIDOrPassport = cpi.NationalIDOrPassport,
+                              TaxIdentificationNumber = cpi.TaxIdentificationNumber,
+                              DrivingLicenseNumber = cpi.DrivingLicenseNumber,
+
+                              // Contact Information
+                              PhoneNumber = cc != null ? cc.PhoneNumber : null,
+                              AlternativePhoneNumber = cc != null ? cc.AlternativePhoneNumber : null,
+                              EmailAddress = cc != null ? cc.EmailAddress : null,
+                              PreStreet = cc != null ? cc.PreStreet : null,
+                              PerStreet = cc != null ? cc.PerStreet : null,
+                              PreZIP = cc != null ? cc.PreZIP : null,
+                              PerZIP = cc != null ? cc.PerZIP : null,
+                              PreCity = cc != null ? cc.PreCity : null, // Default value for nullable int
+                              PerCity = cc != null ? cc.PerCity : null,
+                              PreState = cc != null ? cc.PreState : null,
+                              PerState = cc != null ? cc.PerState : null,
+
+                              // Employment Information
+                              EmploymentType = ce != null ? ce.EmploymentType : null,
+                              EmployerOrBusnName = ce != null ? ce.EmployerOrBusnName : null,
+                              JobTitleOrBusnType = ce != null ? ce.JobTitleOrBusnType : null,
+                              MonthlyIncOrBusnRev = ce != null ? ce.MonthlyIncOrBusnRev : 0m, // Default value for decimal
+                              YearsOfExpOrBusnAge = ce != null ? ce.YearsOfExpOrBusnAge : 0,
+                              WorkOrBusnAddress = ce != null ? ce.WorkOrBusnAddress : null,
+                              EmployerOrBusnContact = ce != null ? ce.EmployerOrBusnContact : null,
+
+                              // Financial Information
+                              BankName = cfi != null ? cfi.BankName : null,
+                              AccountNumber = cfi != null ? cfi.AccountNumber : null,
+                              MonthlyIncomeSources = cfi != null ? cfi.MonthlyIncomeSources : 0m, // Default for decimal
+                              MonthlyExpenses = cfi != null ? cfi.MonthlyExpenses : 0m,
+                              AssetsOwned = cfi != null ? cfi.AssetsOwned : null,
+                              Liabilities = cfi != null ? cfi.Liabilities : null,
+
+                              // Guarantor Details
+                              GuarantorImage = cgd != null ? cgd.GuarantorImage : null,
+                              GuarantorFullName = cgd != null ? cgd.GuarantorFullName : null,
+                              RelationshipWithApplicant = cgd != null ? cgd.RelationshipWithApplicant : null,
+                              GuarantorContactNumber = cgd != null ? cgd.GuarantorContactNumber : null,
+                              GuarantorAddress = cgd != null ? cgd.GuarantorAddress : null,
+                              GuarantorNationalIDOrPassport = cgd != null ? cgd.GuarantorNationalIDOrPassport : null,
+                              GuarantorSignature = cgd != null ? cgd.GuarantorSignature : null
+                          }).ToListAsync();
+
+        }
         public async Task<IEnumerable<CustommerDetailesDTO>> GetAllWithDetailsAsync(int? customerId = null)
         {
             var request = _httpContextAccessor.HttpContext.Request;
@@ -285,7 +358,11 @@ namespace Loan_API.Implementation
             
             
         }
- 
 
+        public CustommerPersonnelInfo GetPersonnelInfoByCustomerId(int customerId)
+        {
+            return _dbContext.CustommerPersonnelInfo
+                             .FirstOrDefault(c => c.CustomerID == customerId);
+        }
     }
 }

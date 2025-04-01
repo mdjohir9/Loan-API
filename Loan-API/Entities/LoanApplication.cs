@@ -6,26 +6,11 @@ namespace Loan_API.Entities
     public class LoanApplication
     {
         [Key]
-        public int LoanID { get; set; }
+        public int ApplicationID { get; set; }
 
-        // Foreign Key - Customer
-        [Required]
-        public int CustomerID { get; set; }
-        [ForeignKey("CustomerID")]
-        public CustommerPersonnelInfo Customer { get; set; }
 
-        // Foreign Key - Loan Plan/Product
-        [Required]
-        public int ProductID { get; set; }
-        [ForeignKey("ProductID")]
-        public LoanPlan LoanPlan { get; set; }
-
-        // Loan Details
         [Required]
         public decimal LoanAmount { get; set; }
-
-        [Required]
-        public decimal InterestRate { get; set; }
 
         [Required]
         public int RepaymentPeriod { get; set; } // In months
@@ -34,12 +19,6 @@ namespace Loan_API.Entities
         [MaxLength(255)]
         public string? PurposeOfLoan { get; set; }
 
-        public string? CollateralDetails { get; set; }  // If applicable
-
-        // Repayment and Loan History
-        [Required]
-        [MaxLength(50)]
-        public string? PreferredRepaymentMethod { get; set; } // Bank Transfer, Cash, Mobile Payment
 
         public bool HasExistingLoans { get; set; } = false;
 
@@ -49,13 +28,34 @@ namespace Loan_API.Entities
 
         public decimal? MonthlyInstallments { get; set; }
 
-        // Loan Status and Timestamps
         [Required]
-        [MaxLength(50)]
-        public string Status { get; set; } = "Pending";  // Pending, Approved, Rejected, Disbursed, Closed
+        public byte Status { get; set; } //0=pending, 1=approve, 2=Reject 
 
         public DateTime ApplicationDate { get; set; } = DateTime.UtcNow;
 
-        public DateTime? DisbursementDate { get; set; }
+        public DateTime? ApplyedAt { get; set; }
+        public int? ApplyedBy { get; set; }
+        public DateTime? ApprovedAt { get; set; }
+        public int? ApprovedBy { get; set; }
+        public DateTime? RejectAt { get; set; }
+        public int? RejectedBy { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public int? UpdatedBy { get; set; }
+
+
+        [Required]
+        public int PlanID { get; set; }
+        [ForeignKey(nameof(PlanID))]
+        public LoanPlan? LoanPlan { get; set; } = null!;
+
+        [Required]
+        public int CustomerID { get; set; }
+        [ForeignKey("CustomerID")]
+        public CustommerPersonnelInfo Customer { get; set; }
+        public int? PayMethodID { get; set; }
+        [ForeignKey("PayMethodID")]
+        public virtual PaymentMethod? PaymentMethod { get; set; }
+
+        
     }
 }

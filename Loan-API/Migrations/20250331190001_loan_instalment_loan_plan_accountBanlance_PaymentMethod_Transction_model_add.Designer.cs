@@ -4,6 +4,7 @@ using Loan_API.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Loan_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250331190001_loan_instalment_loan_plan_accountBanlance_PaymentMethod_Transction_model_add")]
+    partial class loan_instalment_loan_plan_accountBanlance_PaymentMethod_Transction_model_add
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -466,7 +469,7 @@ namespace Loan_API.Migrations
                     b.Property<byte>("LoanStatus")
                         .HasColumnType("tinyint");
 
-                    b.Property<decimal>("PaidAmount")
+                    b.Property<decimal>("PainAmount")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("PayMethodId")
@@ -498,18 +501,6 @@ namespace Loan_API.Migrations
                     b.Property<DateTime>("ApplicationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("ApplyedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ApplyedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ApprovedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ApprovedBy")
-                        .HasColumnType("int");
-
                     b.Property<int>("CustomerID")
                         .HasColumnType("int");
 
@@ -528,7 +519,7 @@ namespace Loan_API.Migrations
                     b.Property<decimal?>("MonthlyInstallments")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("PayMethodID")
+                    b.Property<int?>("PaytMethodID")
                         .HasColumnType("int");
 
                     b.Property<int>("PlanID")
@@ -539,29 +530,18 @@ namespace Loan_API.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<DateTime?>("RejectAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("RejectedBy")
-                        .HasColumnType("int");
-
                     b.Property<int>("RepaymentPeriod")
                         .HasColumnType("int");
 
-                    b.Property<byte>("Status")
-                        .HasColumnType("tinyint");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
+                    b.Property<bool>("Status")
+                        .HasMaxLength(50)
+                        .HasColumnType("bit");
 
                     b.HasKey("ApplicationID");
 
                     b.HasIndex("CustomerID");
 
-                    b.HasIndex("PayMethodID");
+                    b.HasIndex("PaytMethodID");
 
                     b.HasIndex("PlanID");
 
@@ -673,11 +653,11 @@ namespace Loan_API.Migrations
 
             modelBuilder.Entity("Loan_API.Entities.PaymentMethod", b =>
                 {
-                    b.Property<int>("PayMethodID")
+                    b.Property<int>("PaytMethodID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PayMethodID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaytMethodID"));
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -689,7 +669,7 @@ namespace Loan_API.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.HasKey("PayMethodID");
+                    b.HasKey("PaytMethodID");
 
                     b.ToTable("PaymentMethod");
                 });
@@ -953,7 +933,7 @@ namespace Loan_API.Migrations
 
                     b.HasOne("Loan_API.Entities.PaymentMethod", "PaymentMethod")
                         .WithMany()
-                        .HasForeignKey("PayMethodID");
+                        .HasForeignKey("PaytMethodID");
 
                     b.HasOne("Loan_API.Entities.LoanPlan", "LoanPlan")
                         .WithMany()

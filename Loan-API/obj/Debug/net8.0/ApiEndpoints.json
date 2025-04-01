@@ -41,8 +41,8 @@
     "Parameters": [
       {
         "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -296,6 +296,106 @@
       {
         "Name": "guarantorDto",
         "Type": "Loan_API.DTO.CustommerGuarantorDetailsDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanApplicationController",
+    "Method": "ApproveLoanApplication",
+    "RelativePath": "api/LoanApplication/approve/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "approveDto",
+        "Type": "Loan_API.DTO.LoanApplicationDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanApplicationController",
+    "Method": "CreateLoanApplication",
+    "RelativePath": "api/LoanApplication/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loanDto",
+        "Type": "Loan_API.DTO.LoanApplicationDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanApplicationController",
+    "Method": "GetLoanApplicationById",
+    "RelativePath": "api/LoanApplication/loan/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanApplicationController",
+    "Method": "GetAllLoanApplications",
+    "RelativePath": "api/LoanApplication/loans",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanApplicationController",
+    "Method": "RejectLoanApplication",
+    "RelativePath": "api/LoanApplication/reject/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanApplicationController",
+    "Method": "UpdateLoanApplication",
+    "RelativePath": "api/LoanApplication/update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "loanDto",
+        "Type": "Loan_API.DTO.LoanApplicationDTO",
         "IsRequired": true
       }
     ],

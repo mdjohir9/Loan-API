@@ -1,6 +1,7 @@
 ﻿using Loan_API.Entities;
 using Loan_API.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
@@ -29,6 +30,10 @@ namespace Loan_API.Implementation
             User = new UserRepository(_dbContext, _httpContextAccessor);
             UserRole = new UserRoleRepository(_dbContext);
             Login = new LoginRepository(_dbContext, _configuration);
+            LoanApplication = new LoanApplicationRepository(_dbContext);
+            Loan = new LoanRepository(_dbContext);
+            LoanInstalment = new LoanInstalmentRepository(_dbContext);
+            LoanPlan = new LoanPlanRepository(_dbContext);
         }
 
         public ICustommerRepository Custommer { get; private set; }
@@ -40,6 +45,14 @@ namespace Loan_API.Implementation
         public IUserRoleRepository UserRole { get; private set; }
    
         public ILoginRepository Login { get; private set; }
+        public ILoanApplicationRepository LoanApplication { get; private set; }
+        public IloanRepository Loan { get; private set; }
+        public ILoanInstalmentRepository LoanInstalment { get; private set; }
+        public ILoanPlanRepository LoanPlan { get; private set; }
+        public async Task<IDbContextTransaction> BeginTransactionAsync()
+        {
+            return await _dbContext.Database.BeginTransactionAsync();
+        }
         public void Dispose()
         {
             _dbContext.Dispose();

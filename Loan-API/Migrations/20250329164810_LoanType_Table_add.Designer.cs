@@ -4,6 +4,7 @@ using Loan_API.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Loan_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250329164810_LoanType_Table_add")]
+    partial class LoanType_Table_add
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,57 +24,6 @@ namespace Loan_API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Loan_API.Entities.AccountBalance", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AccountNo")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("BalanceAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<bool?>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("DeletedBy")
-                        .HasColumnType("int");
-
-                    b.Property<byte>("IsActive")
-                        .HasColumnType("tinyint");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccountNo")
-                        .IsUnique();
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("AccountBalance");
-                });
 
             modelBuilder.Entity("Loan_API.Entities.CustommerContact", b =>
                 {
@@ -433,306 +385,26 @@ namespace Loan_API.Migrations
                     b.ToTable("HrdCompanyInfo");
                 });
 
-            modelBuilder.Entity("Loan_API.Entities.Loan", b =>
+            modelBuilder.Entity("Loan_API.Entities.LoanType", b =>
                 {
-                    b.Property<int>("LoanID")
+                    b.Property<int>("LoanTypeID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LoanID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LoanTypeID"));
 
-                    b.Property<int>("CustomerID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DisbursementDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("DueAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("LoanAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime?>("LoanEndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LoanNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("LoanStartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<byte>("LoanStatus")
-                        .HasColumnType("tinyint");
-
-                    b.Property<decimal>("PaidAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("PayMethodId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Purpose")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TenureMonths")
-                        .HasColumnType("int");
-
-                    b.HasKey("LoanID");
-
-                    b.HasIndex("CustomerID");
-
-                    b.HasIndex("PayMethodId");
-
-                    b.ToTable("Loan");
-                });
-
-            modelBuilder.Entity("Loan_API.Entities.LoanApplication", b =>
-                {
-                    b.Property<int>("ApplicationID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ApplicationID"));
-
-                    b.Property<DateTime>("ApplicationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ApplyedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ApplyedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ApprovedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ApprovedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CustomerID")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("ExistingLoanAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<bool>("HasExistingLoans")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("LenderName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("LoanAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("MonthlyInstallments")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("PayMethodID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PlanID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PurposeOfLoan")
-                        .IsRequired()
+                    b.Property<string>("Description")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<DateTime?>("RejectAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("RejectedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RepaymentPeriod")
-                        .HasColumnType("int");
-
-                    b.Property<byte>("Status")
-                        .HasColumnType("tinyint");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.HasKey("ApplicationID");
-
-                    b.HasIndex("CustomerID");
-
-                    b.HasIndex("PayMethodID");
-
-                    b.HasIndex("PlanID");
-
-                    b.ToTable("LoanApplication");
-                });
-
-            modelBuilder.Entity("Loan_API.Entities.LoanInstalment", b =>
-                {
-                    b.Property<int>("InstalmentID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InstalmentID"));
-
-                    b.Property<int?>("AccountId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("AmountPaid")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("LoanID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PayMethodId")
-                        .HasColumnType("int");
-
-                    b.Property<DateOnly>("PaymentDate")
-                        .HasColumnType("date");
-
-                    b.Property<byte>("Status")
-                        .HasColumnType("tinyint");
-
-                    b.HasKey("InstalmentID");
-
-                    b.HasIndex("AccountId");
-
-                    b.HasIndex("LoanID");
-
-                    b.HasIndex("PayMethodId");
-
-                    b.ToTable("LoanInstalment");
-                });
-
-            modelBuilder.Entity("Loan_API.Entities.LoanPlan", b =>
-                {
-                    b.Property<int>("PlanID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlanID"));
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<bool?>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("DeletedBy")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Descraption")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("InterestRate")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<byte>("IsActive")
-                        .HasColumnType("tinyint");
-
-                    b.Property<decimal>("LatePaymentPenalty")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("MaxAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("MaxRepaymentPeriod")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("MinAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("MinRepaymentPeriod")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PlanName")
+                    b.Property<string>("LoanTypeName")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<decimal>("ProcessingFee")
-                        .HasColumnType("decimal(18,2)");
+                    b.HasKey("LoanTypeID");
 
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.HasKey("PlanID");
-
-                    b.ToTable("LoanPlan");
-                });
-
-            modelBuilder.Entity("Loan_API.Entities.PaymentMethod", b =>
-                {
-                    b.Property<int>("PayMethodID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PayMethodID"));
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.HasKey("PayMethodID");
-
-                    b.ToTable("PaymentMethod");
-                });
-
-            modelBuilder.Entity("Loan_API.Entities.Transaction", b =>
-                {
-                    b.Property<int>("TransctionID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransctionID"));
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("LoanID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PaytMethodID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Remarks")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("TransactionDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("TransactionType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("TransctionID");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("LoanID");
-
-                    b.HasIndex("PaytMethodID");
-
-                    b.ToTable("Transaction");
+                    b.ToTable("LoanType");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.User", b =>
@@ -879,17 +551,6 @@ namespace Loan_API.Migrations
                     b.ToTable("UserRole");
                 });
 
-            modelBuilder.Entity("Loan_API.Entities.AccountBalance", b =>
-                {
-                    b.HasOne("Loan_API.Entities.CustommerPersonnelInfo", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-                });
-
             modelBuilder.Entity("Loan_API.Entities.CustommerContact", b =>
                 {
                     b.HasOne("Loan_API.Entities.CustommerPersonnelInfo", "CustommerPersonnelInfo")
@@ -926,96 +587,6 @@ namespace Loan_API.Migrations
                     b.Navigation("CustommerPersonnelInfo");
                 });
 
-            modelBuilder.Entity("Loan_API.Entities.Loan", b =>
-                {
-                    b.HasOne("Loan_API.Entities.CustommerPersonnelInfo", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Loan_API.Entities.PaymentMethod", "PaymentMethod")
-                        .WithMany()
-                        .HasForeignKey("PayMethodId");
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("PaymentMethod");
-                });
-
-            modelBuilder.Entity("Loan_API.Entities.LoanApplication", b =>
-                {
-                    b.HasOne("Loan_API.Entities.CustommerPersonnelInfo", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Loan_API.Entities.PaymentMethod", "PaymentMethod")
-                        .WithMany()
-                        .HasForeignKey("PayMethodID");
-
-                    b.HasOne("Loan_API.Entities.LoanPlan", "LoanPlan")
-                        .WithMany()
-                        .HasForeignKey("PlanID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("LoanPlan");
-
-                    b.Navigation("PaymentMethod");
-                });
-
-            modelBuilder.Entity("Loan_API.Entities.LoanInstalment", b =>
-                {
-                    b.HasOne("Loan_API.Entities.AccountBalance", "AccountBalance")
-                        .WithMany()
-                        .HasForeignKey("AccountId");
-
-                    b.HasOne("Loan_API.Entities.Loan", "Loan")
-                        .WithMany()
-                        .HasForeignKey("LoanID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Loan_API.Entities.PaymentMethod", "PaymentMethod")
-                        .WithMany()
-                        .HasForeignKey("PayMethodId");
-
-                    b.Navigation("AccountBalance");
-
-                    b.Navigation("Loan");
-
-                    b.Navigation("PaymentMethod");
-                });
-
-            modelBuilder.Entity("Loan_API.Entities.Transaction", b =>
-                {
-                    b.HasOne("Loan_API.Entities.CustommerPersonnelInfo", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Loan_API.Entities.Loan", "Loan")
-                        .WithMany("Transactions")
-                        .HasForeignKey("LoanID");
-
-                    b.HasOne("Loan_API.Entities.PaymentMethod", "PaymentMethod")
-                        .WithMany()
-                        .HasForeignKey("PaytMethodID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Loan");
-
-                    b.Navigation("PaymentMethod");
-                });
-
             modelBuilder.Entity("Loan_API.Entities.CustommerPersonnelInfo", b =>
                 {
                     b.Navigation("CustommerContact");
@@ -1025,11 +596,6 @@ namespace Loan_API.Migrations
                     b.Navigation("CustommerFinancialInfo");
 
                     b.Navigation("CustommerGuarantorDetails");
-                });
-
-            modelBuilder.Entity("Loan_API.Entities.Loan", b =>
-                {
-                    b.Navigation("Transactions");
                 });
 #pragma warning restore 612, 618
         }

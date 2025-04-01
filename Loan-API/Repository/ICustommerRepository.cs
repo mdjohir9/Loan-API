@@ -8,11 +8,13 @@ namespace Loan_API.Repository
     {
         Task<int> AddCustomerAsync(CustommerPersonnelInfoDTO customerDto, int userId);
         Task<IEnumerable<CustommerDetailesDTO>> GetAllWithDetailsAsync(int? CustommerId);
+        Task<IEnumerable<CustommerDetailesDTO>> GetAllWithDetailsAsync();
 
         Task<int> AddCustomerContactAsync(CustommerContactDTO ContactDo, int userId);
         Task<int> AddCustomerEmploymentAsync(CustommerEmploymentDTO employmentDto, int userId);
         Task<int> AddCustomerFinancialInfoAsync(CustommerFinancialInfoDTO financialInfoDto, int userId);
         Task<int> AddCustomerGuarantorAsync(CustommerGuarantorDetailsDTO GuarantorDto, int userId);
+        CustommerPersonnelInfo GetPersonnelInfoByCustomerId(int customerId);
 
     }
 }

@@ -6,16 +6,11 @@ namespace Loan_API.Entities
     public class LoanPlan
     {
         [Key]
-        public int ProductID { get; set; }
-
-        [Required]
-        public int LoanTypeID { get; set; }  // Foreign Key
-        [ForeignKey("LoanTypeID")]
-        public LoanType? LoanType { get; set; }
+        public int PlanID { get; set; }
 
         [Required]
         [MaxLength(150)]
-        public string? ProductName { get; set; }
+        public string? PlanName { get; set; }
 
         [Required]
         public decimal MinAmount { get; set; }
@@ -32,10 +27,20 @@ namespace Loan_API.Entities
         [Required]
         public int MaxRepaymentPeriod { get; set; }
 
-        public bool CollateralRequired { get; set; } = false;
-
         public decimal ProcessingFee { get; set; } = 0;
 
         public decimal LatePaymentPenalty { get; set; } = 0;
+
+        public string? Descraption { get; set; }
+
+        [Required]
+        public byte? IsActive { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public int? CreatedBy { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public int? UpdatedBy { get; set; }
+        public bool? Deleted { get; set; }
+        public DateTime? DeletedAt { get; set; }
+        public int? DeletedBy { get; set; }
     }
 }
