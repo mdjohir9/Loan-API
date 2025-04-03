@@ -1,4 +1,6 @@
-﻿using System.Linq.Expressions;
+﻿using Loan_API.DTO;
+using Microsoft.AspNetCore.Http;
+using System.Linq.Expressions;
 
 namespace Loan_API.Repository
 {
@@ -21,6 +23,7 @@ namespace Loan_API.Repository
         Task SoftDeleteAsync(int id, int deletedBy);
         Task DeleteAsync(int id);
         Task<string> SaveDocumentsListsAsync(List<string> documentsBase64, string id, string companyId, string documentType);
+        Task<EMIResultDTO> CalculateEMIAsync(decimal loanAmount, decimal annualInterestRate, int tenureMonths);
 
     }
 }

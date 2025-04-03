@@ -62,6 +62,30 @@ namespace Loan_API.Controllers
                 return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
             }
         }
+
+        [HttpGet("calculate-emi")]
+        public async Task<IActionResult> CalculateEMI(decimal LoanAmount,int RepaymentPeriod, int PlanID)
+        {
+            if (LoanAmount <= 0 || RepaymentPeriod <= 0)
+            {
+                return BadRequest(new { StatusCode = 400, message = "Invalid input values" });
+            }
+
+            var loanPlan = await _unitOfWork.LoanPlan.GetByIdAsync(PlanID);
+            if (loanPlan == null)
+            {
+                return BadRequest(new { StatusCode = 400, message = "Invalid Loan Plan ID" });
+            }
+
+            // Get the interest rate and calculate the monthly rate
+            decimal interestRate = loanPlan.InterestRate;
+            var result = await _unitOfWork.LoanApplication.CalculateEMIAsync(
+                LoanAmount, interestRate, RepaymentPeriod
+            );
+
+            return Ok(new { StatusCode = 200, message = "Success", data = result });
+        }
+
         [HttpPut("approve/{id}")]
         public async Task<IActionResult> ApproveLoanApplication(int id, [FromBody] LoanApplicationDTO approveDto)
         {
@@ -82,8 +106,19 @@ namespace Loan_API.Controllers
                     return BadRequest(new { StatusCode = 400, message = "Loan application is already approved." });
                 }
 
-                // Update the loan application status to Approved
-                loanApplication.Status = 1; // 1 = Approved
+                var loanPlan = await _unitOfWork.LoanPlan.GetByIdAsync(approveDto.PlanID);
+                if (loanPlan == null)
+                {
+                    return BadRequest(new { StatusCode = 400, message = "Invalid Loan Plan ID" });
+                }
+                decimal interestRate = loanPlan.InterestRate;
+
+                var result = await _unitOfWork.LoanApplication.CalculateEMIAsync(
+           approveDto.LoanAmount, interestRate, approveDto.RepaymentPeriod);
+
+                int repaymentPeriod = approveDto.RepaymentPeriod;
+
+                loanApplication.Status = 1; 
                 loanApplication.PlanID = approveDto.PlanID;
                 loanApplication.LoanAmount = approveDto.LoanAmount;
                 loanApplication.RepaymentPeriod = approveDto.RepaymentPeriod;
@@ -91,7 +126,7 @@ namespace Loan_API.Controllers
                 loanApplication.HasExistingLoans = false;
                 loanApplication.ExistingLoanAmount = 0;
                 loanApplication.LenderName = "Upstartloan";
-                loanApplication.MonthlyInstallments = approveDto.MonthlyInstallments;
+                loanApplication.MonthlyInstallments = result.MonthlyInstallment;
                 loanApplication.ApplicationDate = approveDto.ApplicationDate;
                 loanApplication.PayMethodID = approveDto.PayMethodID;
                 loanApplication.ApprovedBy = approveDto.ApprovedBy;
@@ -121,47 +156,20 @@ namespace Loan_API.Controllers
                 await _unitOfWork.Save();
 
 
-                var loanPlan = await _unitOfWork.LoanPlan.GetByIdAsync(approveDto.PlanID);
-                if (loanPlan == null)
-                {
-                    return BadRequest(new { StatusCode = 400, message = "Invalid Loan Plan ID" });
-                }
+        
 
-                // Get the interest rate and calculate the monthly rate
-                decimal interestRate = loanPlan.InterestRate; // Annual interest rate (percentage)
-                decimal monthlyInterestRate = interestRate / 100 / 12; // Convert annual rate to monthly
-
-                // Loan details
-                decimal loanAmount = approveDto.LoanAmount;
-                int repaymentPeriod = approveDto.RepaymentPeriod;
-
-                // Calculate EMI using formula
-                decimal monthlyInstalmentAmount;
-                if (monthlyInterestRate > 0)
-                {
-                    monthlyInstalmentAmount = (loanAmount * monthlyInterestRate *
-                        (decimal)Math.Pow((double)(1 + monthlyInterestRate), repaymentPeriod)) /
-                        ((decimal)Math.Pow((double)(1 + monthlyInterestRate), repaymentPeriod) - 1);
-                }
-                else
-                {
-                    // If interest rate is 0 (for interest-free loans)
-                    monthlyInstalmentAmount = loanAmount / repaymentPeriod;
-                }
-
-                // Generate Installments
                 List<LoanInstalment> instalments = new List<LoanInstalment>();
-                DateTime loanStartDate = DateTime.UtcNow; // Loan Start Date
+                DateTime loanStartDate = DateTime.UtcNow; 
 
                 for (int i = 1; i <= repaymentPeriod; i++)
                 {
                     var instalment = new LoanInstalment
                     {
                         LoanID = newLoan.LoanID,
-                        PaymentDate = DateOnly.FromDateTime(loanStartDate.AddMonths(i)), // Monthly installment date
-                        Status = 0, // 0 = Pending
+                        PaymentDate = DateOnly.FromDateTime(loanStartDate.AddMonths(i)), 
+                        Status = 0, 
                         PayMethodId = approveDto.PayMethodID,
-                        AmountPaid = monthlyInstalmentAmount
+                        AmountPaid = result.MonthlyInstallment 
                     };
                     instalments.Add(instalment);
                 }
@@ -228,6 +236,17 @@ namespace Loan_API.Controllers
                 {
                     return BadRequest(ModelState);
                 }
+                var loanPlan = await _unitOfWork.LoanPlan.GetByIdAsync(loanDto.PlanID);
+                if (loanPlan == null)
+                {
+                    return BadRequest(new { StatusCode = 400, message = "Invalid Loan Plan ID" });
+                }
+                decimal interestRate = loanPlan.InterestRate;
+
+                var result = await _unitOfWork.LoanApplication.CalculateEMIAsync(
+           loanDto.LoanAmount, interestRate, loanDto.RepaymentPeriod);
+
+       
 
                 var loanApplication = new LoanApplication
                 {
@@ -239,7 +258,7 @@ namespace Loan_API.Controllers
                     HasExistingLoans = false,
                     ExistingLoanAmount = 0,
                     LenderName = "Upstartloan",
-                    MonthlyInstallments = loanDto.MonthlyInstallments,
+                    MonthlyInstallments = result.MonthlyInstallment,
                     Status = loanDto.Status,
                     ApplicationDate = loanDto.ApplicationDate,
                     PayMethodID = loanDto.PayMethodID
@@ -277,6 +296,15 @@ namespace Loan_API.Controllers
                 {
                     return NotFound($"Loan application with ID {id} not found.");
                 }
+                var loanPlan = await _unitOfWork.LoanPlan.GetByIdAsync(loanDto.PlanID);
+                if (loanPlan == null)
+                {
+                    return BadRequest(new { StatusCode = 400, message = "Invalid Loan Plan ID" });
+                }
+                decimal interestRate = loanPlan.InterestRate;
+
+                var result = await _unitOfWork.LoanApplication.CalculateEMIAsync(
+           loanDto.LoanAmount, interestRate, loanDto.RepaymentPeriod);
 
                 // Update properties
                 existingLoan.CustomerID = loanDto.CustomerID;
@@ -287,7 +315,7 @@ namespace Loan_API.Controllers
                 existingLoan.HasExistingLoans = false;
                 existingLoan.ExistingLoanAmount = 0;
                 existingLoan.LenderName =  "Upstartloan"; 
-                existingLoan.MonthlyInstallments = loanDto.MonthlyInstallments;
+                existingLoan.MonthlyInstallments = result.MonthlyInstallment;
                 existingLoan.Status = loanDto.Status;
                 existingLoan.ApplicationDate = loanDto.ApplicationDate;
                 existingLoan.PayMethodID = loanDto.PayMethodID;

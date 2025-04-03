@@ -19,7 +19,6 @@ namespace Loan_API.DTO
         [MaxLength(255)]
         public string? PurposeOfLoan { get; set; }
 
-        public decimal? MonthlyInstallments { get; set; }
 
         [Required]
         public byte Status { get; set; } //0= unpaid 1=paid  

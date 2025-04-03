@@ -324,6 +324,32 @@
   },
   {
     "ContainingType": "Loan_API.Controllers.LoanApplicationController",
+    "Method": "CalculateEMI",
+    "RelativePath": "api/LoanApplication/calculate-emi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "LoanAmount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "RepaymentPeriod",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PlanID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanApplicationController",
     "Method": "CreateLoanApplication",
     "RelativePath": "api/LoanApplication/create",
     "HttpMethod": "POST",
