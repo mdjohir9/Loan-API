@@ -23,7 +23,32 @@ namespace Loan_API.Controllers
             _cache = cache;
             _unitOfWork = unitOfWork;
         }
+        [HttpGet]
+        [Route("custommerSummary")]
+        public async Task<IActionResult> GetCustommerById()
+        {
+            try
+            {
 
+                var result = await _unitOfWork.Custommer.GetAllCustommerSummaryAsync();
+
+                if (result == null)
+                {
+                    return NotFound(new { StatusCode = 404, message = "Customer not found!" });
+                }
+
+                // Cache the result for future requests
+
+
+                return Ok(new { StatusCode = 200, message = "Success", data = result });
+
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
+            }
+        }
 
         [HttpGet]
         [Route("custommer/{id}")]

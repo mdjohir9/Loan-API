@@ -59,6 +59,16 @@
   },
   {
     "ContainingType": "Loan_API.Controllers.CustommerController",
+    "Method": "GetCustommerById",
+    "RelativePath": "api/Custommer/custommerSummary",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerController",
     "Method": "DeleteCustomer",
     "RelativePath": "api/Custommer/delete/{id}",
     "HttpMethod": "DELETE",
@@ -303,6 +313,16 @@
   },
   {
     "ContainingType": "Loan_API.Controllers.LoanApplicationController",
+    "Method": "GetAllLoanApplications",
+    "RelativePath": "api/LoanApplication/applications",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanApplicationController",
     "Method": "ApproveLoanApplication",
     "RelativePath": "api/LoanApplication/approve/{id}",
     "HttpMethod": "PUT",
@@ -378,16 +398,6 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Loan_API.Controllers.LoanApplicationController",
-    "Method": "GetAllLoanApplications",
-    "RelativePath": "api/LoanApplication/loans",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": []
   },
   {

@@ -20,8 +20,8 @@ namespace Loan_API.DTO
         public string? PurposeOfLoan { get; set; }
 
 
-        [Required]
-        public byte Status { get; set; } //0= unpaid 1=paid  
+        //[Required]
+        //public byte Status { get; set; } //0= unpaid 1=paid  
 
         public DateTime ApplicationDate { get; set; } = DateTime.UtcNow;
 

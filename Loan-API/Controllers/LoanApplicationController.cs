@@ -42,13 +42,13 @@ namespace Loan_API.Controllers
                 return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
             }
         }
-        [HttpGet("loans")]
+        [HttpGet("applications")]
         public async Task<IActionResult> GetAllLoanApplications()
         {
             try
             {
                 // Retrieve all loan applications from the unit of work
-                var result = await _unitOfWork.LoanApplication.GetAllAsync();
+                var result = await _unitOfWork.LoanApplication.GetAllLoanApplicationsWithDetailsAsync();
 
                 if (result == null || !result.Any())
                 {
@@ -259,7 +259,7 @@ namespace Loan_API.Controllers
                     ExistingLoanAmount = 0,
                     LenderName = "Upstartloan",
                     MonthlyInstallments = result.MonthlyInstallment,
-                    Status = loanDto.Status,
+                    Status = 0,
                     ApplicationDate = loanDto.ApplicationDate,
                     PayMethodID = loanDto.PayMethodID
                 };
@@ -316,7 +316,7 @@ namespace Loan_API.Controllers
                 existingLoan.ExistingLoanAmount = 0;
                 existingLoan.LenderName =  "Upstartloan"; 
                 existingLoan.MonthlyInstallments = result.MonthlyInstallment;
-                existingLoan.Status = loanDto.Status;
+                existingLoan.Status = 0;
                 existingLoan.ApplicationDate = loanDto.ApplicationDate;
                 existingLoan.PayMethodID = loanDto.PayMethodID;
 

@@ -30,7 +30,7 @@ namespace Loan_API.Implementation
             User = new UserRepository(_dbContext, _httpContextAccessor);
             UserRole = new UserRoleRepository(_dbContext);
             Login = new LoginRepository(_dbContext, _configuration);
-            LoanApplication = new LoanApplicationRepository(_dbContext);
+            LoanApplication = new LoanApplicationRepository(_dbContext, _httpContextAccessor);
             Loan = new LoanRepository(_dbContext);
             LoanInstalment = new LoanInstalmentRepository(_dbContext);
             LoanPlan = new LoanPlanRepository(_dbContext);

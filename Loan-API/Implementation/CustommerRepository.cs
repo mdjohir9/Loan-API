@@ -364,5 +364,20 @@ namespace Loan_API.Implementation
             return _dbContext.CustommerPersonnelInfo
                              .FirstOrDefault(c => c.CustomerID == customerId);
         }
+
+        public async Task<IEnumerable<CustommerIdAndNameDTO>> GetAllCustommerSummaryAsync()
+        {
+            var customers = await _dbContext.CustommerPersonnelInfo
+                .Select(c => new CustommerIdAndNameDTO
+                {
+                    CustomerID = c.CustomerID,
+                    FullName = c.FullName
+                })
+                .ToListAsync();
+
+            return customers;
+        }
+
+
     }
 }
