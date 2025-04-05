@@ -32,6 +32,7 @@ namespace Loan_API.Implementation
 
                                 select new LoanApplicationDetailesDTO
                                 {
+                                    ApplicationID=la.ApplicationID,   
                                     CustomerID = la.CustomerID,
                                     CustCardNo = cpi != null ? cpi.CustCardNo : null,
                                     FullName = cpi != null ? cpi.FullName : null,

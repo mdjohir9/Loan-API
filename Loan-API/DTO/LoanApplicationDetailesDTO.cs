@@ -2,6 +2,8 @@
 {
     public class LoanApplicationDetailesDTO
     {
+    
+        public int ApplicationID { get; set; }
         public int CustomerID { get; set; }
         public string? CustCardNo { get; set; }
         public string? FullName { get; set; }

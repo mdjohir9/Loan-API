@@ -22,7 +22,7 @@ namespace Loan_API.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [HttpGet("loan/{id}")]
+        [HttpGet("application/{id}")]
         public async Task<IActionResult> GetLoanApplicationById(int id)
         {
             try

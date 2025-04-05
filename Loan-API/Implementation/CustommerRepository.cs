@@ -148,16 +148,15 @@ namespace Loan_API.Implementation
                         from ce in employmentGroup.DefaultIfEmpty()
                         join cfi in _dbContext.CustommerFinancialInfo on cpi.CustomerID equals cfi.CustomerID into financialGroup
                         from cfi in financialGroup.DefaultIfEmpty()
-                        join cgd in _dbContext.CustommerGuarantorDetails on cpi.CustomerID equals cgd.CustomerID into guarantorGroup
-                        from cgd in guarantorGroup.DefaultIfEmpty()
+                        
                         where customerId == null || cpi.CustomerID == customerId // Apply filter early
                         select new
                         {
                             cpi,
                             cc,
                             ce,
-                            cfi,
-                            cgd
+                            cfi
+                            
                         };
 
             var result = await query.ToListAsync(); // Fetch data from database first
@@ -209,15 +208,7 @@ namespace Loan_API.Implementation
                 MonthlyExpenses = ti.cfi?.MonthlyExpenses ?? 0m,
                 AssetsOwned = ti.cfi?.AssetsOwned,
                 Liabilities = ti.cfi?.Liabilities,
-
-                // Guarantor Details
-                GuarantorImage = ti.cgd?.GuarantorImage,
-                GuarantorFullName = ti.cgd?.GuarantorFullName,
-                RelationshipWithApplicant = ti.cgd?.RelationshipWithApplicant,
-                GuarantorContactNumber = ti.cgd?.GuarantorContactNumber,
-                GuarantorAddress = ti.cgd?.GuarantorAddress,
-                GuarantorNationalIDOrPassport = ti.cgd?.GuarantorNationalIDOrPassport,
-                GuarantorSignature = ti.cgd?.GuarantorSignature
+           
             }).ToList();
         }
 
