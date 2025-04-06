@@ -40,14 +40,45 @@ namespace Loan_API.Implementation
                             LoanNumber = l.LoanNumber,
                             LoanAmount = l.LoanAmount,
                             DueAmount = l.DueAmount,
+                            PaidAmount=l.PaidAmount,
                             LoanStartDate = l.LoanStartDate,
-                            LoanEndDate = l.LoanEndDate
+                            LoanEndDate = l.LoanEndDate,
+                            TotalPayableAmount = l.TotalPayableAmount
                         };
 
             return await query.ToListAsync();
         }
 
 
+        public async Task<IEnumerable<LoanInstalmentDetailsDTO>> GetInstalmentsByMonthAsync(DateTime date)
+        {
+            var query = from li in _dbContext.LoanInstalment
+                        join l in _dbContext.Loan on li.LoanID equals l.LoanID
+                        join lp in _dbContext.LoanPlan on l.PlanID equals lp.PlanID
+                        join pm in _dbContext.PaymentMethod on li.PayMethodId equals pm.PayMethodID into pmGroup
+                        from pm in pmGroup.DefaultIfEmpty()
+                        where li.PaymentDate.Month == date.Month && li.PaymentDate.Year == date.Year
+                        select new LoanInstalmentDetailsDTO
+                        {
+                            InstalmentID = li.InstalmentID,
+                            LoanID = li.LoanID,
+                            PlanID = lp.PlanID,
+                            PlanName = lp.PlanName,
+                            PaymentDate = li.PaymentDate,
+                            Status = li.Status,
+                            AmountPaid = li.AmountPaid,
+                            PayMethodName = pm.Name,
+                            LoanNumber = l.LoanNumber,
+                            LoanAmount = l.LoanAmount,
+                            DueAmount = l.DueAmount,
+                            PaidAmount = l.PaidAmount,
+                            LoanStartDate = l.LoanStartDate,
+                            LoanEndDate = l.LoanEndDate,
+                            TotalPayableAmount = l.TotalPayableAmount
+                        };
+
+            return await query.ToListAsync();
+        }
 
     }
 

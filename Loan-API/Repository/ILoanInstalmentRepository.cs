@@ -7,6 +7,8 @@ namespace Loan_API.Repository
     {
         Task AddRangeAsync(IEnumerable<LoanInstalment> instalments);
         Task<IEnumerable<LoanInstalmentDetailsDTO>> GetInstalmentDetailsByIdAsync(int id);
+        Task<IEnumerable<LoanInstalmentDetailsDTO>> GetInstalmentsByMonthAsync(DateTime date);
+
 
     }
 }

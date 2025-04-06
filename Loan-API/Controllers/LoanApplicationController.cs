@@ -141,7 +141,10 @@ namespace Loan_API.Controllers
                     LoanNumber = Guid.NewGuid().ToString().Substring(0, 10).ToUpper(), // Generate unique Loan Number
                     LoanAmount = approveDto.LoanAmount,
                     PaidAmount = 0,
-                    DueAmount = approveDto.LoanAmount,
+                    TotalPayableAmount= result.TotalPayable,
+                    TotalInterest = result.TotalInterest,
+                    MonthlyInstallment = result.MonthlyInstallment,
+                    DueAmount = result.TotalPayable,
                     TenureMonths = approveDto.RepaymentPeriod,
                     LoanStartDate = DateTime.UtcNow,
                     LoanEndDate = DateTime.UtcNow.AddMonths(approveDto.RepaymentPeriod),

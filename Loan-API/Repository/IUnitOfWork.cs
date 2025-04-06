@@ -16,6 +16,7 @@ namespace Loan_API.Repository
         IloanRepository Loan { get; }
         ILoanInstalmentRepository LoanInstalment { get; }
         ILoanPlanRepository LoanPlan { get; }
+        ITransctionRepository Transction { get; }
         Task<IDbContextTransaction> BeginTransactionAsync();
         Task<int> Save();
     }

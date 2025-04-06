@@ -11,6 +11,7 @@
         public string? LoanNumber { get; set; }
         public decimal LoanAmount { get; set; }
         public decimal DueAmount { get; set; }
+        public decimal PaidAmount { get; set; }
         public DateTime? LoanStartDate { get; set; }
         public DateTime? LoanEndDate { get; set; }
         public string? CustommerImage { get; set; }
@@ -18,5 +19,6 @@
         public string? CustCardNo { get; set; }
         public int? PlanID { get; set; }
         public string? PlanName { get; set; }
+        public decimal ? TotalPayableAmount { get; set; }
     }
 }

@@ -20,8 +20,15 @@ namespace Loan_API.Entities
         public decimal PaidAmount { get; set; } 
     
         [Column(TypeName = "decimal(18,2)")]
-        public decimal DueAmount { get; set; } 
+        public decimal DueAmount { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal? TotalPayableAmount { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal? TotalInterest { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal? MonthlyInstallment { get; set; }
         [Required]
         public int TenureMonths { get; set; } 
 
