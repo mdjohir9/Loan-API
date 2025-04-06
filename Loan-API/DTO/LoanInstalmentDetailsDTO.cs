@@ -16,5 +16,7 @@
         public string? CustommerImage { get; set; }
         public string? FullName { get; set; }
         public string? CustCardNo { get; set; }
+        public int? PlanID { get; set; }
+        public string? PlanName { get; set; }
     }
 }

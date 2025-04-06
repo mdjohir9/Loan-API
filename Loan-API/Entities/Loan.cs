@@ -9,40 +9,40 @@ namespace Loan_API.Entities
         public int LoanID { get; set; }
 
         [Required]
-        public string LoanNumber { get; set; } = null!; // Unique loan identifier
+        public string LoanNumber { get; set; } = null!; 
 
 
         [Required]
         [Column(TypeName = "decimal(18,2)")]
-        public decimal LoanAmount { get; set; } // Total loan amount
+        public decimal LoanAmount { get; set; } 
        
         [Column(TypeName = "decimal(18,2)")]
-        public decimal PaidAmount { get; set; } // Total loan amount
+        public decimal PaidAmount { get; set; } 
     
         [Column(TypeName = "decimal(18,2)")]
-        public decimal DueAmount { get; set; } // Total loan amount
+        public decimal DueAmount { get; set; } 
 
         [Required]
-        public int TenureMonths { get; set; } // Loan period in months
+        public int TenureMonths { get; set; } 
 
 
 
         [Required]
         public DateTime LoanStartDate { get; set; } = DateTime.UtcNow;
 
-        public DateTime? LoanEndDate { get; set; } // Nullable, updated when loan is closed
+        public DateTime? LoanEndDate { get; set; } 
 
         [Required]
-        public byte LoanStatus { get; set; } //0=pending 1=Active 2=Closed
+        public byte LoanStatus { get; set; }
 
-        public string? Purpose { get; set; } // Purpose of the loan (optional)
+        public string? Purpose { get; set; } 
 
-        // Foreign key to Payment Method (optional if a default payment method is set)
+     
 
         public DateTime? DisbursementDate { get; set; }
 
         [Required]
-        public int CustomerID { get; set; } // Foreign Key to Customer
+        public int CustomerID { get; set; } 
 
         [ForeignKey(nameof(CustomerID))]
         public CustommerPersonnelInfo Customer { get; set; } = null!;
@@ -53,7 +53,10 @@ namespace Loan_API.Entities
         [ForeignKey(nameof(PayMethodId))]
         public PaymentMethod? PaymentMethod { get; set; }
 
-        // Relationship with Transactions
+        public int? PlanID { get; set; }
+
+        [ForeignKey(nameof(PlanID))]
+        public LoanPlan? LoanPlan { get; set; }
         public ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
     }
 }

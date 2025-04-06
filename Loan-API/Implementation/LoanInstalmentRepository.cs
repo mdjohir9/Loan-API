@@ -23,15 +23,16 @@ namespace Loan_API.Implementation
         {
             var query = from li in _dbContext.LoanInstalment
                         join l in _dbContext.Loan on li.LoanID equals l.LoanID
+                        join lp in _dbContext.LoanPlan on l.PlanID equals lp.PlanID
                         join pm in _dbContext.PaymentMethod on li.PayMethodId equals pm.PayMethodID into pmGroup
                         from pm in pmGroup.DefaultIfEmpty()
-                        join cpi in _dbContext.CustommerPersonnelInfo on l.CustomerID equals cpi.CustomerID
                         where l.LoanID == id
                         select new LoanInstalmentDetailsDTO
                         {
-
                             InstalmentID = li.InstalmentID,
                             LoanID = li.LoanID,
+                            PlanID = lp.PlanID,
+                            PlanName = lp.PlanName,
                             PaymentDate = li.PaymentDate,
                             Status = li.Status,
                             AmountPaid = li.AmountPaid,
@@ -40,14 +41,12 @@ namespace Loan_API.Implementation
                             LoanAmount = l.LoanAmount,
                             DueAmount = l.DueAmount,
                             LoanStartDate = l.LoanStartDate,
-                            LoanEndDate = l.LoanEndDate,
-                            CustommerImage = cpi.CustommerImage,
-                            FullName = cpi.FullName,
-                            CustCardNo = cpi.CustCardNo
+                            LoanEndDate = l.LoanEndDate
                         };
 
-            return await query.ToListAsync(); // This returns a list, but it's implicitly cast to IEnumerable<LoanInstalmentDetailsDTO>
+            return await query.ToListAsync();
         }
+
 
 
     }
