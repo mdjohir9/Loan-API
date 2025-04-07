@@ -2,6 +2,7 @@
 {
     public class LoanInstalmentDetailsDTO
     {
+
         public int InstalmentID { get; set; }
         public int LoanID { get; set; }
         public DateOnly PaymentDate { get; set; }

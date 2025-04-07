@@ -20,6 +20,7 @@ namespace Loan_API.DTO
         public string? PurposeOfLoan { get; set; }
 
 
+
         //[Required]
         //public byte Status { get; set; } //0= unpaid 1=paid  
 
@@ -38,6 +39,7 @@ namespace Loan_API.DTO
         public int CustomerID { get; set; }
         [Required]
         public int? PayMethodID { get; set; }
+
 
     }
 }

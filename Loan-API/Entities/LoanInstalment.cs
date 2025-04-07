@@ -29,5 +29,7 @@ namespace Loan_API.Entities
         [Required]
         [Column(TypeName = "decimal(18,2)")]
         public decimal AmountPaid { get; set; } // Amount deducted from account
+
+
     }
 }

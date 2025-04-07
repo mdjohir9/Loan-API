@@ -12,6 +12,13 @@ namespace Loan_API.Entities
         [Required]
         public decimal LoanAmount { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal? DepositAmount { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal? LateCharge { get; set; }
+
+
         [Required]
         public int RepaymentPeriod { get; set; } // In months
 

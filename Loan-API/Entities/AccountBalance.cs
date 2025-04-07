@@ -11,6 +11,7 @@ namespace Loan_API.Entities
         public int Id { get; set; }
 
         [Required]
+
         public int AccountNo { get; set; } // Unique account number
 
         [Required]

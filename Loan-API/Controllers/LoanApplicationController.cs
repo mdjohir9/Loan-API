@@ -231,53 +231,79 @@ namespace Loan_API.Controllers
             try
             {
                 if (loanDto == null)
-                {
                     return BadRequest("Loan application details cannot be null.");
-                }
 
                 if (!ModelState.IsValid)
-                {
                     return BadRequest(ModelState);
-                }
+
+                var account =  _unitOfWork.Account.GetAccountInfoCustomerId(loanDto.CustomerID);
+                if (account == null)
+                    return BadRequest(new { StatusCode = 400, message = "Account not found for the given Customer ID." });
+
                 var loanPlan = await _unitOfWork.LoanPlan.GetByIdAsync(loanDto.PlanID);
                 if (loanPlan == null)
-                {
                     return BadRequest(new { StatusCode = 400, message = "Invalid Loan Plan ID" });
-                }
+
                 decimal interestRate = loanPlan.InterestRate;
 
                 var result = await _unitOfWork.LoanApplication.CalculateEMIAsync(
-           loanDto.LoanAmount, interestRate, loanDto.RepaymentPeriod);
+                    loanDto.LoanAmount, interestRate, loanDto.RepaymentPeriod);
 
-       
+                if (account.BalanceAmount < result.DepositAmount)
+                    return BadRequest(new
+                    {
+                        StatusCode = 400,
+                        message = $"Your wallet balance is too low to continue. Please deposit at least {result.DepositAmount:C} to meet the minimum requirement. " +
+                                  "To apply for a loan, you need to have at least 5% of the requested loan amount in your wallet as a confirmation of your repayment ability."
+                    });
 
-                var loanApplication = new LoanApplication
+                // Begin transaction
+                using var transaction = await _unitOfWork.BeginTransactionAsync();
+
+                try
                 {
-                    CustomerID = loanDto.CustomerID,
-                    PlanID = loanDto.PlanID,
-                    LoanAmount = loanDto.LoanAmount,
-                    RepaymentPeriod = loanDto.RepaymentPeriod,
-                    PurposeOfLoan = loanDto.PurposeOfLoan,
-                    HasExistingLoans = false,
-                    ExistingLoanAmount = 0,
-                    LenderName = "Upstartloan",
-                    MonthlyInstallments = result.MonthlyInstallment,
-                    Status = 0,
-                    ApplicationDate = loanDto.ApplicationDate,
-                    PayMethodID = loanDto.PayMethodID
-                };
+                    // Deduct deposit from account
+                    account.BalanceAmount -= result.DepositAmount;
+                    await _unitOfWork.Account.UpdateAsync(account);
 
+                    var loanApplication = new LoanApplication
+                    {
+                        CustomerID = loanDto.CustomerID,
+                        PlanID = loanDto.PlanID,
+                        LoanAmount = loanDto.LoanAmount,
+                        RepaymentPeriod = loanDto.RepaymentPeriod,
+                        PurposeOfLoan = loanDto.PurposeOfLoan,
+                        HasExistingLoans = false,
+                        ExistingLoanAmount = 0,
+                        LenderName = "Upstartloan",
+                        MonthlyInstallments = result.MonthlyInstallment,
+                        Status = 0,
+                        ApplicationDate = loanDto.ApplicationDate,
+                        PayMethodID = loanDto.PayMethodID,
+                        LateCharge = result.LateCharge,
+                        DepositAmount = result.DepositAmount,
+                    };
 
-                await _unitOfWork.LoanApplication.AddAsync(loanApplication);
-                await _unitOfWork.Save();
+                    await _unitOfWork.LoanApplication.AddAsync(loanApplication);
 
-                return Ok(new { StatusCode = 200, message = "Loan application created successfully." });
+                    await _unitOfWork.Save(); // Save both operations
+
+                    await transaction.CommitAsync(); // Commit transaction
+
+                    return Ok(new { StatusCode = 200, message = "Loan application created successfully." });
+                }
+                catch (Exception)
+                {
+                    await transaction.RollbackAsync(); // Rollback on error
+                    throw;
+                }
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
+
 
         [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateLoanApplication(int id, [FromBody] LoanApplicationDTO loanDto)

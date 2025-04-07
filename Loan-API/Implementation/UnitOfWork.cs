@@ -32,9 +32,11 @@ namespace Loan_API.Implementation
             Login = new LoginRepository(_dbContext, _configuration);
             LoanApplication = new LoanApplicationRepository(_dbContext, _httpContextAccessor);
             Loan = new LoanRepository(_dbContext);
-            LoanInstalment = new LoanInstalmentRepository(_dbContext);
+            LoanInstalment = new LoanInstalmentRepository(_dbContext ,_httpContextAccessor);
             LoanPlan = new LoanPlanRepository(_dbContext);
             Transction = new TransctionRepository(_dbContext);
+
+            Account= new AccountRepository(_dbContext);
         }
 
         public ICustommerRepository Custommer { get; private set; }
@@ -51,6 +53,7 @@ namespace Loan_API.Implementation
         public ILoanInstalmentRepository LoanInstalment { get; private set; }
         public ILoanPlanRepository LoanPlan { get; private set; }
         public ITransctionRepository Transction { get; private set; }
+        public IAccountRepository Account { get; private set; }
         public async Task<IDbContextTransaction> BeginTransactionAsync()
         {
             return await _dbContext.Database.BeginTransactionAsync();

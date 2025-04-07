@@ -9,5 +9,6 @@
         public decimal MonthlyExpenses { get; set; }
         public string? AssetsOwned { get; set; }
         public string? Liabilities { get; set; }
+        public int? UserId { get; set; }
     }
 }

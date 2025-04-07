@@ -4,6 +4,7 @@ using Loan_API.Implementation;
 using Loan_API.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace Loan_API.Controllers
@@ -81,7 +82,23 @@ namespace Loan_API.Controllers
                     Liabilities = financialInfoDto.Liabilities
                 };
 
+
+                var account = new AccountBalance
+                {
+                    CustomerId = financialInfoDto.CustomerID,
+                    AccountNo = await _unitOfWork.Account.GenerateUniqueAccountNumberAsync(),
+                    BalanceAmount = 0,
+                    IsActive = 1,
+                    CreatedBy = financialInfoDto.UserId,
+                    CreatedAt = DateTime.Now,
+
+
+
+                };
+
                 await _unitOfWork.FinancialInfo.AddAsync(financialInfo);
+
+                await _unitOfWork.Account.AddAsync(account);
                 await _unitOfWork.Save();
 
                 return Ok(new { StatusCode = 200, message = "Customer financial information saved successfully." });
@@ -91,6 +108,16 @@ namespace Loan_API.Controllers
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
+
+
+
+        private string GenerateAccountNumber()
+        {
+            // You can customize this format
+            Random random = new Random();
+            return random.Next(10000000, 99999999).ToString() + random.Next(1000, 9999).ToString();
+        }
+
 
         [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateCustomerFinancialInfo([FromBody] CustommerFinancialInfoDTO financialInfoDto, int id)
@@ -121,7 +148,7 @@ namespace Loan_API.Controllers
                     }
                 );
 
-                await _unitOfWork.Save();
+                 await _unitOfWork.Save();
                 return Ok(new { StatusCode = 200, message = "Customer financial information updated successfully." });
             }
             catch (Exception ex)
