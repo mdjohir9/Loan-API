@@ -152,7 +152,10 @@ namespace Loan_API.Controllers
                     Purpose = approveDto.PurposeOfLoan,
                     CustomerID = approveDto.CustomerID,
                     PayMethodId = approveDto.PayMethodID,
-                    DisbursementDate = DateTime.UtcNow
+                    DisbursementDate = DateTime.UtcNow,
+                    LateCharge =result.LateCharge,
+                    DepositAmount = result.DepositAmount,
+
                 };
 
                 await _unitOfWork.Loan.AddAsync(newLoan);
