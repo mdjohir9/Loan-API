@@ -24,6 +24,11 @@ namespace Loan_API.Entities
         public DbSet<LoanInstalment> LoanInstalment { get; set; }
         public DbSet<Loan> Loan { get; set; }
         public DbSet<AccountBalance> AccountBalance { get; set; }
+        public DbSet<TransactionType> TransactionType { get; set; }
+        public DbSet <Deposit> Deposits { get; set; }
+        public DbSet <RechargePaymentMethod> RechargePaymentMethod { get; set; }
+        public DbSet <RechargeAccount> RechargeAccount { get; set; }
+
 
 
     }

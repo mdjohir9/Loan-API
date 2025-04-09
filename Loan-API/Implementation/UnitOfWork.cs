@@ -37,6 +37,8 @@ namespace Loan_API.Implementation
             Transction = new TransctionRepository(_dbContext);
 
             Account= new AccountRepository(_dbContext);
+            RechargeAccount = new RechargeAccountRepository(_dbContext);
+            RechargePaymentMethod= new RechargePaymentMethodRepository(_dbContext);
         }
 
         public ICustommerRepository Custommer { get; private set; }
@@ -54,6 +56,8 @@ namespace Loan_API.Implementation
         public ILoanPlanRepository LoanPlan { get; private set; }
         public ITransctionRepository Transction { get; private set; }
         public IAccountRepository Account { get; private set; }
+        public IRechargePaymentMethodRepository RechargePaymentMethod { get; private set; }
+        public IRechargeAccountRepository RechargeAccount { get; private set; }
         public async Task<IDbContextTransaction> BeginTransactionAsync()
         {
             return await _dbContext.Database.BeginTransactionAsync();

@@ -155,6 +155,7 @@ namespace Loan_API.Controllers
                     DisbursementDate = DateTime.UtcNow,
                     LateCharge =result.LateCharge,
                     DepositAmount = result.DepositAmount,
+                    PlanID=approveDto.PlanID,
 
                 };
 
@@ -241,7 +242,7 @@ namespace Loan_API.Controllers
 
                 var account =  _unitOfWork.Account.GetAccountInfoCustomerId(loanDto.CustomerID);
                 if (account == null)
-                    return BadRequest(new { StatusCode = 400, message = "Account not found for the given Customer ID." });
+                    return BadRequest(new { StatusCode = 400, message = "Account Not Create For this custommer." });
 
                 var loanPlan = await _unitOfWork.LoanPlan.GetByIdAsync(loanDto.PlanID);
                 if (loanPlan == null)
@@ -256,8 +257,7 @@ namespace Loan_API.Controllers
                     return BadRequest(new
                     {
                         StatusCode = 400,
-                        message = $"Your wallet balance is too low to continue. Please deposit at least {result.DepositAmount:C} to meet the minimum requirement. " +
-                                  "To apply for a loan, you need to have at least 5% of the requested loan amount in your wallet as a confirmation of your repayment ability."
+                        message = $"Your wallet balance is too low. Please deposit at least {result.DepositAmount:C} (5% of the requested loan amount) to proceed with the loan application."
                     });
 
                 // Begin transaction

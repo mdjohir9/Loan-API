@@ -30,8 +30,7 @@ namespace Loan_API.Entities
 
         [ForeignKey(nameof(LoanID))]
         public Loan? Loan { get; set; }
-
-        // Foreign key to PaymentMethod
+ 
         [Required]
         public int PaytMethodID { get; set; }
 
