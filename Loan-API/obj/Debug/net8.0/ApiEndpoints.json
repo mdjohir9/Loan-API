@@ -518,6 +518,74 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Loan_API.Controllers.RechargeController",
+    "Method": "PostRechargeRequest",
+    "RelativePath": "api/Recharge/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "rechargeDto",
+        "Type": "Loan_API.DTO.RechargeRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeController",
+    "Method": "GetAllRechagres",
+    "RelativePath": "api/Recharge/recharge-requerts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeAccountController",
+    "Method": "GetPaymentTypeById",
+    "RelativePath": "api/RechargeAccount/PaymentType",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeAccountController",
+    "Method": "GetRechargeAccountById",
+    "RelativePath": "api/RechargeAccount/rechargeAccount/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeAccountController",
+    "Method": "GetRechargeAccountByPeymentTypes",
+    "RelativePath": "api/RechargeAccount/rechargeAccountByPaymentType/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Loan_API.Controllers.UserController",
     "Method": "GetDynamicMenue",
     "RelativePath": "api/User/dynamicMenu",

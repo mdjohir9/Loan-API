@@ -12,5 +12,14 @@ namespace Loan_API.Implementation
             _dbContext = dbContext;
             //_httpContextAccessor = httpContextAccessor;
         }
+
+        public List<RechargeAccount> GetRechargeAccountsByPaymentType(int recPaymentMethodId)
+        {
+            return _dbContext.RechargeAccount
+                             .Where(c => c.RecPaymentMethodId == recPaymentMethodId)
+                             .ToList();
+        }
+
+
     }
 }

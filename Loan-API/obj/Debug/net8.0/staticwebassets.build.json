@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "A1c+2Pd35tGnp3OPYX6KM2TBpaW9uJ+xx4UzkFOkDXk=",
+  "Hash": "wmTnDgxSyjnfsJ1IHuyl5Xf+pKIK363X4gQaY/ifw8Y=",
   "Source": "Loan-API",
   "BasePath": "_content/Loan-API",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\0001\\CustommerSignature\\opsload2444.jpeg"
+    },
+    {
+      "Identity": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\0001\\RechargeStatement\\2.png",
+      "SourceId": "Loan-API",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\",
+      "BasePath": "_content/Loan-API",
+      "RelativePath": "0001/RechargeStatement/2.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\0001\\RechargeStatement\\2.png"
     }
   ]
 }

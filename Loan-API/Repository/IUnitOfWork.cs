@@ -21,6 +21,7 @@ namespace Loan_API.Repository
         IRechargePaymentMethodRepository RechargePaymentMethod { get; }
 
         IAccountRepository Account { get; }
+        IRechargeRepository Recharge { get; }
         Task<IDbContextTransaction> BeginTransactionAsync();
         Task<int> Save();
     }

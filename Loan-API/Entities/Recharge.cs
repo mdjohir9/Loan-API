@@ -3,15 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Loan_API.Entities
 {
-    public class Deposit
+    public class Recharge
     {
         [Required]
         [Key]
-        public int DepositID { get; set; }
-
+        public int RechargeID { get; set; }
         [Required]
         [StringLength(20)]
-        public string BankAccountNumber { get; set; } = null!; // this is a Owaner Bank Account Number Whwere Brower menualy Transfer Money
+        public string BankAccountNumber { get; set; } = null!; 
 
         [Required]
         [Column(TypeName = "decimal(18,2)")]
@@ -28,13 +27,17 @@ namespace Loan_API.Entities
         [StringLength(500)]
         public string? AdminRemarks { get; set; }
 
-        public DateTime? ProcessedDate { get; set; }
+        public string? Statement { get; set; }
+
+        public DateTime? ApproveAt { get; set; }
 
         [StringLength(50)]
-        public string? ProcessedBy { get; set; }
+        public int? ApproveBy { get; set; }
 
         [Required]
-        public int PaymentMethodID { get; set; }
+        public int PaymentMethodID { get; set; }//this is Owaner Part
+        [Required]
+        public int BankId { get; set; } // this is a Owaner Bank Account Number Whwere Brower menualy Transfer Money
 
 
         [Required]

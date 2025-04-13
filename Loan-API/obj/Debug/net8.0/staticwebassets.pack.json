@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\0001\\CustommerSignature\\opsload2444.jpeg"
     },
     {
+      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\0001\\RechargeStatement\\2.png",
+      "PackagePath": "staticwebassets\\0001\\RechargeStatement\\2.png"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Loan-API.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

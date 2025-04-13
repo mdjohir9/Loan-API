@@ -4,5 +4,6 @@ namespace Loan_API.Repository
 {
     public interface IRechargePaymentMethodRepository : IGenericRepository<RechargePaymentMethod>
     {
+
     }
 }
