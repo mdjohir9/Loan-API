@@ -21,6 +21,80 @@ namespace Loan_API.Controllers
             _cache = cache;
             _unitOfWork = unitOfWork;
         }
+        [HttpPut("approve/{id}")]
+        public async Task<IActionResult> ApproveRechargeRequest(int id)
+        {
+            using var transaction = await _unitOfWork.BeginTransactionAsync();
+            try
+            {
+                var recharge = await _unitOfWork.Recharge.GetByIdAsync(id);
+                if (recharge == null)
+                {
+                    return NotFound(new { StatusCode = 404, Message = $"Recharge request with ID {id} not found." });
+                }
+
+                if (recharge.IsApproved)
+                {
+                    return BadRequest(new { StatusCode = 400, Message = "Recharge request already approved." });
+                }
+
+                var customerId = recharge.CustommerID;
+
+                // Update recharge approval
+                recharge.IsApproved = true;
+                recharge.AdminRemarks = "Approved"; // optional
+                await _unitOfWork.Recharge.UpdateAsync(recharge);
+
+                // Update or insert into AccountBalance
+                var account = _unitOfWork.Account.GetAccountInfoCustomerId(recharge.CustommerID);
+
+                if (account != null)
+                {
+                    account.BalanceAmount += recharge.Amount;
+                    _unitOfWork.Account.UpdateAsync(account);
+                }
+                else
+                {
+                    return BadRequest(new { StatusCode = 400, Message = "Custommer Not Found" });
+
+                }
+
+                // Insert into Transaction table
+                var transactionRecord = new Transaction
+                {
+                    TransactionType = 3,
+                    Amount = recharge.Amount,
+                    TransactionDate = DateTime.UtcNow,
+                    CustomerId = customerId,
+                    PaytMethodID = recharge.PaymentMethodID,
+                   // BankID = recharge.BankId,
+                    Remarks = $"Recharge approved for request ID {recharge.RechargeID}"
+                };
+
+                await _unitOfWork.Transction.AddAsync(transactionRecord);
+
+                // Save changes
+                await _unitOfWork.Save();
+                await transaction.CommitAsync();
+
+                return Ok(new
+                {
+                    StatusCode = 200,
+                    Message = "Recharge approved, account updated, and transaction recorded."
+                });
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                return StatusCode(500, new
+                {
+                    StatusCode = 500,
+                    Message = "An error occurred while approving the recharge.",
+                    Error = ex.Message
+                });
+            }
+        }
+
 
         [HttpGet]
         [Route("recharge-requerts")]
@@ -103,5 +177,7 @@ namespace Loan_API.Controllers
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
+
+
     }
 }

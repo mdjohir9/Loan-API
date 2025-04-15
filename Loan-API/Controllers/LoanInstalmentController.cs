@@ -102,15 +102,15 @@ namespace Loan_API.Controllers
                 // Get Customer ID from Loan
                 var customerId = loan.CustomerID;
 
-                // Insert into Transaction table
+                //Insert into Transaction table
                 var transactionRecord = new Transaction
                 {
-                    TransactionType = "Loan_Repayment",
+                    TransactionType = 2,
                     Amount = instalment.AmountPaid,
                     TransactionDate = DateTime.UtcNow,
                     CustomerId = customerId,
-                    LoanID = loan.LoanID,
-                    PaytMethodID =instalment.PayMethodId??0,
+                    //LoanID = loan.LoanID,
+                    PaytMethodID = instalment.PayMethodId ?? 0,
                     Remarks = $"Installment ID {instalment.InstalmentID} paid"
                 };
 

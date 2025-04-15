@@ -9,7 +9,7 @@ namespace Loan_API.Entities
         public int TransctionID { get; set; }
 
         [Required]
-        public string TransactionType { get; set; } = null!; // e.g., Loan Disbursement, Repayment
+        public int TransactionType { get; set; }  // e.g., Loan Disbursement, Repayment
 
         [Required]
         [Column(TypeName = "decimal(18,2)")]
@@ -25,11 +25,6 @@ namespace Loan_API.Entities
         [ForeignKey(nameof(CustomerId))]
         public CustommerPersonnelInfo Customer { get; set; } = null!;
 
-        // Foreign key to Loan (if applicable)
-        public int? LoanID { get; set; }
-
-        [ForeignKey(nameof(LoanID))]
-        public Loan? Loan { get; set; }
  
         [Required]
         public int PaytMethodID { get; set; }
