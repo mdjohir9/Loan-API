@@ -22,7 +22,7 @@ namespace Loan_API.Controllers
             _unitOfWork = unitOfWork;
         }
         [HttpPut("approve/{id}")]
-        public async Task<IActionResult> ApproveRechargeRequest(int id)
+        public async Task<IActionResult> ApproveRechargeRequest(int id, bool IsApproved)
         {
             using var transaction = await _unitOfWork.BeginTransactionAsync();
             try
@@ -33,25 +33,23 @@ namespace Loan_API.Controllers
                     return NotFound(new { StatusCode = 404, Message = $"Recharge request with ID {id} not found." });
                 }
 
-                if (recharge.IsApproved)
+                if (recharge.IsApproved==true)
                 {
                     return BadRequest(new { StatusCode = 400, Message = "Recharge request already approved." });
                 }
 
                 var customerId = recharge.CustommerID;
 
-                // Update recharge approval
-                recharge.IsApproved = true;
-                recharge.AdminRemarks = "Approved"; // optional
+                recharge.IsApproved = IsApproved;
+                recharge.AdminRemarks = "Approved"; 
                 await _unitOfWork.Recharge.UpdateAsync(recharge);
 
-                // Update or insert into AccountBalance
                 var account = _unitOfWork.Account.GetAccountInfoCustomerId(recharge.CustommerID);
 
                 if (account != null)
                 {
                     account.BalanceAmount += recharge.Amount;
-                    _unitOfWork.Account.UpdateAsync(account);
+                   await  _unitOfWork.Account.UpdateAsync(account);
                 }
                 else
                 {
@@ -59,7 +57,6 @@ namespace Loan_API.Controllers
 
                 }
 
-                // Insert into Transaction table
                 var transactionRecord = new Transaction
                 {
                     TransactionType = 3,
@@ -67,13 +64,11 @@ namespace Loan_API.Controllers
                     TransactionDate = DateTime.UtcNow,
                     CustomerId = customerId,
                     PaytMethodID = recharge.PaymentMethodID,
-                   // BankID = recharge.BankId,
                     Remarks = $"Recharge approved for request ID {recharge.RechargeID}"
                 };
 
                 await _unitOfWork.Transction.AddAsync(transactionRecord);
 
-                // Save changes
                 await _unitOfWork.Save();
                 await transaction.CommitAsync();
 
@@ -152,7 +147,7 @@ namespace Loan_API.Controllers
                     BankAccountNumber = rechargeDto.BankAccountNumber,
                     Amount = rechargeDto.Amount,
                     RequestedDate = rechargeDto.RequestedDate,
-                    IsApproved = rechargeDto.IsApproved,
+                    IsApproved = null,
                     BankTransactCode = rechargeDto.BankTransactCode,
                     AdminRemarks = rechargeDto.AdminRemarks,
                     Statement = documentResult, // Save the path or reference to the uploaded document

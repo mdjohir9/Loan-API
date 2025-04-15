@@ -19,7 +19,7 @@ namespace Loan_API.Entities
         [Required]
         public DateTime RequestedDate { get; set; } = DateTime.UtcNow;
 
-        public bool IsApproved { get; set; } = false;
+        public bool? IsApproved { get; set; }
 
         [StringLength(100)]
         public string? BankTransactCode { get; set; } // Manual statement/transaction reference

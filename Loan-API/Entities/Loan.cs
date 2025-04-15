@@ -70,6 +70,5 @@ namespace Loan_API.Entities
 
         [ForeignKey(nameof(PlanID))]
         public LoanPlan? LoanPlan { get; set; }
-        public ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
     }
 }

@@ -4,6 +4,7 @@ using Loan_API.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -757,7 +758,7 @@ namespace Loan_API.Migrations
                     b.Property<int>("CustommerID")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsApproved")
+                    b.Property<bool?>("IsApproved")
                         .HasColumnType("bit");
 
                     b.Property<int>("PaymentMethodID")
@@ -843,9 +844,6 @@ namespace Loan_API.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LoanID")
-                        .HasColumnType("int");
-
                     b.Property<int>("PaytMethodID")
                         .HasColumnType("int");
 
@@ -861,8 +859,6 @@ namespace Loan_API.Migrations
                     b.HasKey("TransctionID");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("LoanID");
 
                     b.HasIndex("PaytMethodID");
 
@@ -1211,10 +1207,6 @@ namespace Loan_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Loan_API.Entities.Loan", null)
-                        .WithMany("Transactions")
-                        .HasForeignKey("LoanID");
-
                     b.HasOne("Loan_API.Entities.PaymentMethod", "PaymentMethod")
                         .WithMany()
                         .HasForeignKey("PaytMethodID")
@@ -1237,15 +1229,13 @@ namespace Loan_API.Migrations
                     b.Navigation("CustommerGuarantorDetails");
                 });
 
-            modelBuilder.Entity("Loan_API.Entities.Loan", b =>
-                {
-                    b.Navigation("Transactions");
-                });
-
             modelBuilder.Entity("Loan_API.Entities.RechargePaymentMethod", b =>
                 {
                     b.Navigation("RechargeAccounts");
                 });
+
+
+
 #pragma warning restore 612, 618
         }
     }

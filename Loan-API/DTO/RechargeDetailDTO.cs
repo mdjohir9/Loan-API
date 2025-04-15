@@ -6,7 +6,7 @@
         public string? BankAccountNumber { get; set; }
         public decimal Amount { get; set; }
         public DateTime RequestedDate { get; set; }
-        public bool IsApproved { get; set; }
+        public bool? IsApproved { get; set; }
         public string? BankTransactCode { get; set; }
         public string? AdminRemarks { get; set; }
         public DateTime? ApproveAt { get; set; }
