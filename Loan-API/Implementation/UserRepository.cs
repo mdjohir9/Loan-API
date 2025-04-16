@@ -123,6 +123,8 @@ namespace Loan_API.Implementation
                             user.UserId,
                             user.UserRoleID,
                             UserRoleName = userRole.UserRoleName,
+                            user.FirstName,
+                            user.LastName,
                             user.UserName,
                             user.UserImage,
                             user.UserPassword,
@@ -154,6 +156,8 @@ namespace Loan_API.Implementation
             {
                 UserId = user.UserId,
                 UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
                 UserImage = string.IsNullOrEmpty(user.UserImage) ? string.Empty : $"{baseUrl}/{user.UserImage}",
                 UserRoleID = user.UserRoleID,
                 UserRoleName = user.UserRoleName,
