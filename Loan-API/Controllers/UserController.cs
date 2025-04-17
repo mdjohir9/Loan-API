@@ -31,12 +31,12 @@ namespace Loan_API.Controllers
 
         [HttpGet]
         [Route("dynamicMenu")]
-        public async Task<IActionResult> GetDynamicMenue(int userId)
+        public async Task<IActionResult> GetDynamicMenue(int userId, int DataAccessLevel)
         {
             try
             {
 
-                var users = await _unitOfWork.User.GetDynamicMenue(userId);
+                var users = await _unitOfWork.User.GetDynamicMenue(userId, DataAccessLevel);
                 return Ok(new { StatusCode = 200, message = "Success", data = users });
 
             }

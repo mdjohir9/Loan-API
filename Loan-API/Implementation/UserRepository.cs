@@ -2,6 +2,7 @@
 using Loan_API.Entities;
 using Loan_API.Repository;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 namespace Loan_API.Implementation
 {
     public class UserRepository : GenericRepository<User>, IUserRepository
@@ -66,12 +67,13 @@ namespace Loan_API.Implementation
 
 
 
-
-        public async Task<IEnumerable<object>> GetDynamicMenue(int userId)
+        public async Task<IEnumerable<object>> GetDynamicMenue(int userId, int dataAccessLevel)
         {
-            var menu = new List<object>
+            var menu = new List<object>();
+
+            if (dataAccessLevel == 1)
             {
-                new
+                menu.Add(new
                 {
                     path = "/dashboard",
                     title = "Dashboard",
@@ -79,24 +81,149 @@ namespace Loan_API.Implementation
                     iconTheme = "outline",
                     icon = "appstore-add",
                     submenu = new List<object>()
-                },
-                new
+                });
+
+                // Wallet
+                menu.Add(new
                 {
                     path = "",
-                    title = "Employee",
+                    title = "Wallet",
+                    iconType = "nzIcon",
+                    iconTheme = "outline",
+                    icon = "wallet",
+                    submenu = new List<object>
+            {
+                new { path = "wallet/recharge", title = "Recharge", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
+                new { path = "wallet/recharge-requests", title = "Recharge-Requests", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
+            }
+                });
+
+                // Custommer
+                menu.Add(new
+                {
+                    path = "",
+                    title = "Custommer",
                     iconType = "nzIcon",
                     iconTheme = "outline",
                     icon = "user",
                     submenu = new List<object>
-                    {
-                        new { path = "/employee/add", title = "Employee-Add", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
-                        new { path = "/employee/list", title = "Employee-List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
-                        new { path = "/employee/profile", title = "Profile", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
-                        new { path = "/employee/separation-add", title = "Separation-Add", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
-                        new { path = "/employee/separation-list", title = "Separation-List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
-                    }
-                }
-            };
+            {
+                new { path = "custommer/add", title = "Add-Custommer", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
+            }
+                });
+
+                // Loan
+                menu.Add(new
+                {
+                    path = "",
+                    title = "Loan",
+                    iconType = "nzIcon",
+                    iconTheme = "outline",
+                    icon = "stock",
+                    submenu = new List<object>
+            {
+                new { path = "/loan/add", title = "New Loan Request", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
+                new { path = "/loan/instalment", title = "Instalments", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
+            }
+                });
+            }
+            if (dataAccessLevel == 3)
+            {
+                menu.Add(new
+                {
+                    path = "/dashboard",
+                    title = "Dashboard",
+                    iconType = "nzIcon",
+                    iconTheme = "outline",
+                    icon = "appstore-add",
+                    submenu = new List<object>()
+                });
+
+                menu.Add(new
+                {
+                    path = "",
+                    title = "Custommer",
+                    iconType = "nzIcon",
+                    iconTheme = "outline",
+                    icon = "user",
+                    submenu = new List<object>
+            {
+                new { path = "custommer/add", title = "Add-Custommer", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
+                new { path = "custommer/list", title = "Custommer List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
+            }
+                });
+
+                menu.Add(new
+                {
+                    path = "",
+                    title = "Wallet",
+                    iconType = "nzIcon",
+                    iconTheme = "outline",
+                    icon = "wallet",
+                    submenu = new List<object>
+            {
+                new { path = "wallet/recharge", title = "Recharge", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
+                new { path = "wallet/recharge-requests", title = "Recharge-Requests", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
+            }
+                });
+
+                menu.Add(new
+                {
+                    path = "",
+                    title = "Plans",
+                    iconType = "nzIcon",
+                    iconTheme = "outline",
+                    icon = "bar-chart",
+                    submenu = new List<object>
+            {
+                new { path = "/plans/loan-plans", title = "Add-Plan", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
+                new { path = "/plans/loan-plan-list", title = "Plan-List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
+            }
+                });
+
+                menu.Add(new
+                {
+                    path = "",
+                    title = "Loan",
+                    iconType = "nzIcon",
+                    iconTheme = "outline",
+                    icon = "stock",
+                    submenu = new List<object>
+            {
+                new { path = "/loan/add", title = "New Loan Request", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
+                new { path = "/loan/loan-list", title = "Loan Request List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
+                new { path = "/loan/instalment", title = "Instalments", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
+                new { path = "/loan/all-instalmets", title = "All Instalments", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
+            }
+                });
+
+                menu.Add(new
+                {
+                    path = "",
+                    title = "Settings",
+                    iconType = "nzIcon",
+                    iconTheme = "outline",
+                    icon = "setting",
+                    submenu = new List<object>
+            {
+                new { path = "settings/company", title = "Company", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
+            }
+                });
+
+                menu.Add(new
+                {
+                    path = "",
+                    title = "access-control",
+                    iconType = "nzIcon",
+                    iconTheme = "outline",
+                    icon = "lock",
+                    submenu = new List<object>
+            {
+                new { path = "access-control/users", title = "users", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
+                new { path = "access-control/user-roles", title = "Roles", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
+            }
+                });
+            }
 
             return await Task.FromResult(menu);
         }
@@ -105,7 +232,6 @@ namespace Loan_API.Implementation
 
 
 
- 
 
         public async Task<IEnumerable<UsersDTO>> GetAllUsersAsync(string companyId, bool IsAdministrator)
         {
