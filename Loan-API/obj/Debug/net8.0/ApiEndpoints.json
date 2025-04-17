@@ -17,6 +17,22 @@
   },
   {
     "ContainingType": "Loan_API.Controllers.CustommerController",
+    "Method": "PostFullCustomer",
+    "RelativePath": "api/Custommer/create-full",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerDto",
+        "Type": "Loan_API.DTO.CustommerSaveDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerController",
     "Method": "GetCustommerById",
     "RelativePath": "api/Custommer/custommer/{id}",
     "HttpMethod": "GET",

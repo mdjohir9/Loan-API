@@ -8,10 +8,6 @@
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? UserName { get; set; }
-        public string? Designation { get; set; }
-        public string? Department { get; set; }
-        public string? Group { get; set; }
-        public string? Shift { get; set; }
 
         public string? UserImage { get; set; }
         public string? UserPassword { get; set; }

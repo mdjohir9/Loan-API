@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.IdentityModel.Tokens;
+using System.ComponentModel.Design;
 
 namespace Loan_API.Controllers
 {
@@ -225,6 +227,71 @@ namespace Loan_API.Controllers
             }
         }
 
+        [HttpPost("create-full")]
+        public async Task<IActionResult> PostFullCustomer([FromBody] CustommerSaveDTO customerDto)
+        {
+            try
+            {
+                if (customerDto == null)
+                    return BadRequest("Customer information cannot be null.");
+
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                string companyId = "0001";
+                string? imageResult = null;
+                string? signatureResult = null;
+
+
+
+                if (customerDto.CustommerImage != null && customerDto.CustommerImage.Any())
+                {
+                    string DocumentType = "CustommerImage";
+                    imageResult = await _unitOfWork.Custommer.SaveDocumentsListsAsync(
+                        customerDto.CustommerImage,
+                    customerDto.CustCardNo,
+                        companyId,
+                        DocumentType
+                    );
+                }
+
+                // Process Signature Image if available
+                if (customerDto.CustommerSignature != null && customerDto.CustommerSignature.Any())
+                {
+                    string DocumentTypeSigImage = "CustommerSignature";
+
+                    signatureResult = await _unitOfWork.Custommer.SaveDocumentsListsAsync(
+                        customerDto.CustommerSignature,
+                    customerDto.CustCardNo,
+                        companyId,
+                        DocumentTypeSigImage
+                    );
+                }
+
+                // Save customer full details
+                await _unitOfWork.Custommer.AddCustommerAllDataAsync(customerDto);
+                await _unitOfWork.Save();
+
+                //int newCustomerId = customer.CustomerID; // Assuming CustomerID is an identity field
+
+                //// **Step 3: Update User with the New Customer ID**
+                //var user = new User { UserId = userId };
+                //await _unitOfWork.User.UpdateAsync(user, "ReferenceID", newCustomerId.ToString());
+                return Ok(new
+                {
+                    StatusCode = 200,
+                    Message = "Customer with full details created successfully."
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    StatusCode = 500,
+                    Message = $"An error occurred: {ex.Message}"
+                });
+            }
+        }
 
         [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateCustomer(int id, [FromBody] PersonnelInfoUpdateDTO customerDto)

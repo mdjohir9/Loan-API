@@ -16,6 +16,7 @@ namespace Loan_API.Repository
         Task<int> AddCustomerFinancialInfoAsync(CustommerFinancialInfoDTO financialInfoDto, int userId);
         Task<int> AddCustomerGuarantorAsync(CustommerGuarantorDetailsDTO GuarantorDto, int userId);
         CustommerPersonnelInfo GetPersonnelInfoByCustomerId(int customerId);
+        Task AddCustommerAllDataAsync(CustommerSaveDTO dto);
 
     }
 }

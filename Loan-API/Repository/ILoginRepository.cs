@@ -9,7 +9,7 @@ namespace Loan_API.Repository
         //string GetUserDepartment(string EmpId);
         //string GetUserDesignation(string EmpId);
         //IEnumerable<string> GetUserPermission(string userId);
-        //ProfileInfoDTO GetUserProfileInfo(string userId);
+        UserProfileDTO GetUserProfileInfo(int Id);
         CompanyStatusDTO GetUserCompany(int userId);
 
         string GenerateJwtToken(User user);

@@ -46,6 +46,8 @@ namespace Loan_API.Controllers
                 var users = _unitOfWork.Login.GetLoginInfo(loginDTO.UserName, loginDTO.UserPassword);
                 var _user = users.FirstOrDefault();
 
+                var userRole = _unitOfWork.Login.GetUserProfileInfo(_user.UserRoleID);
+                var _userRoles = users.FirstOrDefault();
                 if (_user == null)
                 {
                     return NotFound(new { StatusCode = 404, message = "User not found or invalid credentials." });
@@ -93,13 +95,15 @@ namespace Loan_API.Controllers
                         Name = (u.FirstName + " " + u.LastName),
                         FirstName = u.FirstName,
                         LastName = u.LastName,
-                        UserRoleID = u.UserRoleID,                   
+                        UserRoleID = u.UserRoleID,  
+                        RoleName = userRole.UserRoleName,
                         Email = u.Email,
                         IsGuestUser = u.IsGuestUser,
                         CustomerID = u.ReferenceID,
                         AdditionalPermissions = u.AdditionalPermissions,
                         RemovedPermissions = u.RemovedPermissions,
                         IsAdministrator = u.IsAdministrator,
+                        dataAccessLevel=userRole.DataAccessLevel.ToString(),
                     })
                     .FirstOrDefault();
 

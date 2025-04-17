@@ -369,6 +369,87 @@ namespace Loan_API.Implementation
             return customers;
         }
 
+        public async Task AddCustommerAllDataAsync(CustommerSaveDTO dto)
+        {
+            using var transaction = await _dbContext.Database.BeginTransactionAsync();
+
+            try
+            {
+                // 1. Insert Personal Info and Save to get generated CustomerID
+                var personalInfo = new CustommerPersonnelInfo
+                {
+                    CustCardNo = dto.CustCardNo,
+                    CompanyId = dto.CompanyId,
+                    FullName = dto.FullName,
+                    Gender = dto.Gender,
+                    DateOfBirth = dto.DateOfBirth,
+                    Nationality = dto.Nationality,
+                    MaritalStatus = dto.MaritalStatus,
+                    Occupation = dto.Occupation,
+                    NationalIDOrPassport = dto.NationalIDOrPassport,
+                    TaxIdentificationNumber = dto.TaxIdentificationNumber,
+                    DrivingLicenseNumber = dto.DrivingLicenseNumber
+                };
+
+                _dbContext.CustommerPersonnelInfo.Add(personalInfo);
+                await _dbContext.SaveChangesAsync();
+
+                int generatedCustomerID = personalInfo.CustomerID;
+
+                var contact = new CustommerContact
+                {
+                    CustomerID = generatedCustomerID,
+                    PhoneNumber = dto.PhoneNumber,
+                    AlternativePhoneNumber = dto.AlternativePhoneNumber,
+                    EmailAddress = dto.EmailAddress,
+                    PreStreet = dto.PreStreet,
+                    PerStreet = dto.PerStreet,
+                    PreZIP = dto.PreZIP,
+                    PerZIP = dto.PerZIP,
+                    PreCity = dto.PreCity,
+                    PerCity = dto.PerCity,
+                    PreState = dto.PreState,
+                    PerState = dto.PerState
+                };
+
+                var employment = new CustommerEmployment
+                {
+                    CustomerID = generatedCustomerID,
+                    EmploymentType = dto.EmploymentType,
+                    EmployerOrBusnName = dto.EmployerOrBusnName,
+                    JobTitleOrBusnType = dto.JobTitleOrBusnType,
+                    MonthlyIncOrBusnRev = dto.MonthlyIncOrBusnRev ?? 0m,
+                    YearsOfExpOrBusnAge = dto.YearsOfExpOrBusnAge ?? 0,
+                    WorkOrBusnAddress = dto.WorkOrBusnAddress,
+                    EmployerOrBusnContact = dto.EmployerOrBusnContact
+                };
+
+                var financial = new CustommerFinancialInfo
+                {
+                    CustomerID = generatedCustomerID,
+                    BankName = dto.BankName,
+                    AccountNumber = dto.AccountNumber,
+                    MonthlyIncomeSources = dto.MonthlyIncomeSources ?? 0m,
+                    MonthlyExpenses = dto.MonthlyExpenses ?? 0m,
+                    AssetsOwned = dto.AssetsOwned,
+                    Liabilities = dto.Liabilities
+                };
+     
+
+                _dbContext.CustommerContact.Add(contact);
+                _dbContext.CustommerEmployment.Add(employment);
+                _dbContext.CustommerFinancialInfo.Add(financial);
+
+                // Save all changes
+                await _dbContext.SaveChangesAsync();
+                await transaction.CommitAsync();
+            }
+            catch (Exception)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+        }
 
     }
 }
