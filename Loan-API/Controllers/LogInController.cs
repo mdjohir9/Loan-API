@@ -46,13 +46,13 @@ namespace Loan_API.Controllers
                 var users = _unitOfWork.Login.GetLoginInfo(loginDTO.UserName, loginDTO.UserPassword);
                 var _user = users.FirstOrDefault();
 
-                var userRole = _unitOfWork.Login.GetUserProfileInfo(_user.UserRoleID);
-                var _userRoles = users.FirstOrDefault();
                 if (_user == null)
                 {
                     return NotFound(new { StatusCode = 404, message = "User not found or invalid credentials." });
                 }
 
+                var userRole = _unitOfWork.Login.GetUserProfileInfo(_user.UserRoleID);
+                var _userRoles = users.FirstOrDefault();
                 var Company = _unitOfWork.Login.GetUserCompany(_user.UserId);
 
                 if (Company != null)

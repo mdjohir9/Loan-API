@@ -369,7 +369,7 @@ namespace Loan_API.Implementation
             return customers;
         }
 
-        public async Task AddCustommerAllDataAsync(CustommerSaveDTO dto)
+        public async Task<int> AddCustommerAllDataAsync(CustommerSaveDTO dto)
         {
             using var transaction = await _dbContext.Database.BeginTransactionAsync();
 
@@ -386,6 +386,7 @@ namespace Loan_API.Implementation
                     Nationality = dto.Nationality,
                     MaritalStatus = dto.MaritalStatus,
                     Occupation = dto.Occupation,
+                    EducationLevel = dto.EducationLevel,
                     NationalIDOrPassport = dto.NationalIDOrPassport,
                     TaxIdentificationNumber = dto.TaxIdentificationNumber,
                     DrivingLicenseNumber = dto.DrivingLicenseNumber
@@ -394,6 +395,7 @@ namespace Loan_API.Implementation
                 _dbContext.CustommerPersonnelInfo.Add(personalInfo);
                 await _dbContext.SaveChangesAsync();
 
+                // 🔁 Return this ID to the caller
                 int generatedCustomerID = personalInfo.CustomerID;
 
                 var contact = new CustommerContact
@@ -434,13 +436,99 @@ namespace Loan_API.Implementation
                     AssetsOwned = dto.AssetsOwned,
                     Liabilities = dto.Liabilities
                 };
-     
 
                 _dbContext.CustommerContact.Add(contact);
                 _dbContext.CustommerEmployment.Add(employment);
                 _dbContext.CustommerFinancialInfo.Add(financial);
 
-                // Save all changes
+                await _dbContext.SaveChangesAsync();
+                await transaction.CommitAsync();
+
+                return generatedCustomerID;
+            }
+            catch (Exception)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+        }
+
+
+        public async Task UpdateCustommerAllDataAsync(CustommerSaveDTO dto)
+        {
+            using var transaction = await _dbContext.Database.BeginTransactionAsync();
+
+            try
+            {
+                // Check if customer exists
+                var personalInfo = await _dbContext.CustommerPersonnelInfo
+                    .FirstOrDefaultAsync(x => x.CustomerID == dto.CustomerID);
+
+                if (personalInfo == null)
+                    throw new Exception("Customer not found.");
+
+                // Update Personal Info
+                personalInfo.CustCardNo = dto.CustCardNo;
+                personalInfo.CompanyId = dto.CompanyId;
+                personalInfo.FullName = dto.FullName;
+                personalInfo.Gender = dto.Gender;
+                personalInfo.DateOfBirth = dto.DateOfBirth;
+                personalInfo.Nationality = dto.Nationality;
+                personalInfo.MaritalStatus = dto.MaritalStatus;
+                personalInfo.Occupation = dto.Occupation;
+                personalInfo.EducationLevel = dto.EducationLevel;
+                personalInfo.NationalIDOrPassport = dto.NationalIDOrPassport;
+                personalInfo.TaxIdentificationNumber = dto.TaxIdentificationNumber;
+                personalInfo.DrivingLicenseNumber = dto.DrivingLicenseNumber;
+
+                // Contact Info
+                var contact = await _dbContext.CustommerContact
+                    .FirstOrDefaultAsync(x => x.CustomerID == dto.CustomerID);
+
+                if (contact != null)
+                {
+                    contact.PhoneNumber = dto.PhoneNumber;
+                    contact.AlternativePhoneNumber = dto.AlternativePhoneNumber;
+                    contact.EmailAddress = dto.EmailAddress;
+                    contact.PreStreet = dto.PreStreet;
+                    contact.PerStreet = dto.PerStreet;
+                    contact.PreZIP = dto.PreZIP;
+                    contact.PerZIP = dto.PerZIP;
+                    contact.PreCity = dto.PreCity;
+                    contact.PerCity = dto.PerCity;
+                    contact.PreState = dto.PreState;
+                    contact.PerState = dto.PerState;
+                }
+
+                // Employment Info
+                var employment = await _dbContext.CustommerEmployment
+                    .FirstOrDefaultAsync(x => x.CustomerID == dto.CustomerID);
+
+                if (employment != null)
+                {
+                    employment.EmploymentType = dto.EmploymentType;
+                    employment.EmployerOrBusnName = dto.EmployerOrBusnName;
+                    employment.JobTitleOrBusnType = dto.JobTitleOrBusnType;
+                    employment.MonthlyIncOrBusnRev = dto.MonthlyIncOrBusnRev ?? 0m;
+                    employment.YearsOfExpOrBusnAge = dto.YearsOfExpOrBusnAge ?? 0;
+                    employment.WorkOrBusnAddress = dto.WorkOrBusnAddress;
+                    employment.EmployerOrBusnContact = dto.EmployerOrBusnContact;
+                }
+
+                // Financial Info
+                var financial = await _dbContext.CustommerFinancialInfo
+                    .FirstOrDefaultAsync(x => x.CustomerID == dto.CustomerID);
+
+                if (financial != null)
+                {
+                    financial.BankName = dto.BankName;
+                    financial.AccountNumber = dto.AccountNumber;
+                    financial.MonthlyIncomeSources = dto.MonthlyIncomeSources ?? 0m;
+                    financial.MonthlyExpenses = dto.MonthlyExpenses ?? 0m;
+                    financial.AssetsOwned = dto.AssetsOwned;
+                    financial.Liabilities = dto.Liabilities;
+                }
+
                 await _dbContext.SaveChangesAsync();
                 await transaction.CommitAsync();
             }
@@ -450,6 +538,7 @@ namespace Loan_API.Implementation
                 throw;
             }
         }
+
 
     }
 }

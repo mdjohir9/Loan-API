@@ -242,45 +242,40 @@ namespace Loan_API.Controllers
                 string? imageResult = null;
                 string? signatureResult = null;
 
-
-
                 if (customerDto.CustommerImage != null && customerDto.CustommerImage.Any())
                 {
                     string DocumentType = "CustommerImage";
                     imageResult = await _unitOfWork.Custommer.SaveDocumentsListsAsync(
                         customerDto.CustommerImage,
-                    customerDto.CustCardNo,
+                        customerDto.CustCardNo,
                         companyId,
                         DocumentType
                     );
                 }
 
-                // Process Signature Image if available
                 if (customerDto.CustommerSignature != null && customerDto.CustommerSignature.Any())
                 {
                     string DocumentTypeSigImage = "CustommerSignature";
-
                     signatureResult = await _unitOfWork.Custommer.SaveDocumentsListsAsync(
                         customerDto.CustommerSignature,
-                    customerDto.CustCardNo,
+                        customerDto.CustCardNo,
                         companyId,
                         DocumentTypeSigImage
                     );
                 }
 
-                // Save customer full details
-                await _unitOfWork.Custommer.AddCustommerAllDataAsync(customerDto);
+                // 🔁 Now returns generated CustomerID
+                int newCustomerId = await _unitOfWork.Custommer.AddCustommerAllDataAsync(customerDto);
                 await _unitOfWork.Save();
 
-                //int newCustomerId = customer.CustomerID; // Assuming CustomerID is an identity field
-
-                //// **Step 3: Update User with the New Customer ID**
-                //var user = new User { UserId = userId };
-                //await _unitOfWork.User.UpdateAsync(user, "ReferenceID", newCustomerId.ToString());
+                var user = new User { UserId = customerDto.UserId };
+                await _unitOfWork.User.UpdateAsync(user, "ReferenceID", newCustomerId.ToString());
+                await _unitOfWork.Save();
                 return Ok(new
                 {
                     StatusCode = 200,
-                    Message = "Customer with full details created successfully."
+                    Message = "Customer with full details created successfully.",
+                    CustomerID = newCustomerId
                 });
             }
             catch (Exception ex)
@@ -292,6 +287,69 @@ namespace Loan_API.Controllers
                 });
             }
         }
+
+        [HttpPut("update-full")]
+        public async Task<IActionResult> UpdateFullCustomer([FromBody] CustommerSaveDTO customerDto)
+        {
+            try
+            {
+                if (customerDto == null)
+                    return BadRequest("Customer information cannot be null.");
+
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                if (customerDto.CustomerID <= 0)
+                    return BadRequest("Invalid Customer ID for update operation.");
+
+                string companyId = "0001";
+                string? imageResult = null;
+                string? signatureResult = null;
+
+                // Process customer image if provided
+                if (customerDto.CustommerImage != null && customerDto.CustommerImage.Any())
+                {
+                    string documentType = "CustommerImage";
+                    imageResult = await _unitOfWork.Custommer.SaveDocumentsListsAsync(
+                        customerDto.CustommerImage,
+                        customerDto.CustCardNo,
+                        companyId,
+                        documentType
+                    );
+                }
+
+                // Process signature image if provided
+                if (customerDto.CustommerSignature != null && customerDto.CustommerSignature.Any())
+                {
+                    string documentTypeSigImage = "CustommerSignature";
+                    signatureResult = await _unitOfWork.Custommer.SaveDocumentsListsAsync(
+                        customerDto.CustommerSignature,
+                        customerDto.CustCardNo,
+                        companyId,
+                        documentTypeSigImage
+                    );
+                }
+
+                // Update customer full details
+                await _unitOfWork.Custommer.UpdateCustommerAllDataAsync(customerDto);
+                await _unitOfWork.Save();
+
+                return Ok(new
+                {
+                    StatusCode = 200,
+                    Message = "Customer details updated successfully."
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    StatusCode = 500,
+                    Message = $"An error occurred: {ex.Message}"
+                });
+            }
+        }
+
 
         [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateCustomer(int id, [FromBody] PersonnelInfoUpdateDTO customerDto)

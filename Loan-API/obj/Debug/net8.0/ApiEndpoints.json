@@ -101,6 +101,22 @@
   },
   {
     "ContainingType": "Loan_API.Controllers.CustommerController",
+    "Method": "UpdateFullCustomer",
+    "RelativePath": "api/Custommer/update-full",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerDto",
+        "Type": "Loan_API.DTO.CustommerSaveDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerController",
     "Method": "UpdateCustomer",
     "RelativePath": "api/Custommer/update/{id}",
     "HttpMethod": "PUT",
