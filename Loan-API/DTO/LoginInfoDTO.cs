@@ -23,6 +23,7 @@
         public string? RoleName { get; set; }
         public string? dataAccessLevel { get; set; }
         public bool? IsAdministrator { get; set; }
+        public int? LoanId { get; set; }
 
     }
 }

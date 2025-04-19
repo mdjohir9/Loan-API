@@ -55,13 +55,20 @@ namespace Loan_API.Implementation
                 .Select(u => new UserProfileDTO
                 {
                     UserRoleName = u.UserRoleName,
-                   DataAccessLevel  = u.DataAccessLevel,
-                 
+                    DataAccessLevel = u.DataAccessLevel,
+
                 })
                 .FirstOrDefault();
 
             return user;
         }
+
+        public Loan GetLoanInformation(int customerId)
+        {
+            var loan = _dbContext.Loan.FirstOrDefault(l => l.CustomerID == customerId);
+            return loan;
+        }
+
 
 
         public string GenerateJwtToken(Loan_API.Entities.User user)

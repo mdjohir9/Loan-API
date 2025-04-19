@@ -25,5 +25,7 @@
         public Boolean? IsActive { get; set; }
         public string? CompanyId { get; set; }
 
+        public int? LoanId { get; set; }
+
     }
 }

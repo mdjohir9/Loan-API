@@ -54,7 +54,10 @@ namespace Loan_API.Controllers
                 var userRole = _unitOfWork.Login.GetUserProfileInfo(_user.UserRoleID);
                 var _userRoles = users.FirstOrDefault();
                 var Company = _unitOfWork.Login.GetUserCompany(_user.UserId);
-
+                var loan = !string.IsNullOrWhiteSpace(_user.ReferenceID)
+                    ? _unitOfWork.Login.GetLoanInformation(Convert.ToInt32(_user.ReferenceID))
+                    : null;
+         
                 if (Company != null)
                 {
                     switch (Company.Status)
@@ -104,6 +107,7 @@ namespace Loan_API.Controllers
                         RemovedPermissions = u.RemovedPermissions,
                         IsAdministrator = u.IsAdministrator,
                         dataAccessLevel=userRole.DataAccessLevel.ToString(),
+                        LoanId=loan?.LoanID,
                     })
                     .FirstOrDefault();
 

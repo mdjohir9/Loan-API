@@ -371,7 +371,6 @@ namespace Loan_API.Implementation
 
         public async Task<int> AddCustommerAllDataAsync(CustommerSaveDTO dto)
         {
-            using var transaction = await _dbContext.Database.BeginTransactionAsync();
 
             try
             {
@@ -442,13 +441,11 @@ namespace Loan_API.Implementation
                 _dbContext.CustommerFinancialInfo.Add(financial);
 
                 await _dbContext.SaveChangesAsync();
-                await transaction.CommitAsync();
 
                 return generatedCustomerID;
             }
             catch (Exception)
             {
-                await transaction.RollbackAsync();
                 throw;
             }
         }

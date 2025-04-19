@@ -230,14 +230,16 @@ namespace Loan_API.Controllers
         [HttpPost("create-full")]
         public async Task<IActionResult> PostFullCustomer([FromBody] CustommerSaveDTO customerDto)
         {
+            if (customerDto == null)
+                return BadRequest("Customer information cannot be null.");
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            using var transaction = await _unitOfWork.BeginTransactionAsync(); // Begin transaction
+
             try
             {
-                if (customerDto == null)
-                    return BadRequest("Customer information cannot be null.");
-
-                if (!ModelState.IsValid)
-                    return BadRequest(ModelState);
-
                 string companyId = "0001";
                 string? imageResult = null;
                 string? signatureResult = null;
@@ -264,13 +266,27 @@ namespace Loan_API.Controllers
                     );
                 }
 
-                // 🔁 Now returns generated CustomerID
                 int newCustomerId = await _unitOfWork.Custommer.AddCustommerAllDataAsync(customerDto);
+                await _unitOfWork.Save();
+
+                var account = new AccountBalance
+                {
+                    CustomerId = newCustomerId,
+                    AccountNo = await _unitOfWork.Account.GenerateUniqueAccountNumberAsync(),
+                    BalanceAmount = 0,
+                    IsActive = 1,
+                    CreatedBy = customerDto.UserId,
+                    CreatedAt = DateTime.Now
+                };
+                await _unitOfWork.Account.AddAsync(account);
                 await _unitOfWork.Save();
 
                 var user = new User { UserId = customerDto.UserId };
                 await _unitOfWork.User.UpdateAsync(user, "ReferenceID", newCustomerId.ToString());
                 await _unitOfWork.Save();
+
+                await transaction.CommitAsync(); // ✅ Commit only if all above succeeded
+
                 return Ok(new
                 {
                     StatusCode = 200,
@@ -280,6 +296,8 @@ namespace Loan_API.Controllers
             }
             catch (Exception ex)
             {
+                await transaction.RollbackAsync(); // 🔁 Roll back on failure
+
                 return StatusCode(500, new
                 {
                     StatusCode = 500,
@@ -287,6 +305,7 @@ namespace Loan_API.Controllers
                 });
             }
         }
+
 
         [HttpPut("update-full")]
         public async Task<IActionResult> UpdateFullCustomer([FromBody] CustommerSaveDTO customerDto)

@@ -11,6 +11,7 @@ namespace Loan_API.Repository
         //IEnumerable<string> GetUserPermission(string userId);
         UserProfileDTO GetUserProfileInfo(int Id);
         CompanyStatusDTO GetUserCompany(int userId);
+        Loan GetLoanInformation(int customerId);
 
         string GenerateJwtToken(User user);
     }
