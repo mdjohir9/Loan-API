@@ -27,12 +27,12 @@ namespace Loan_API.Controllers
         }
         [HttpGet]
         [Route("custommerSummary")]
-        public async Task<IActionResult> GetCustommerById()
+        public async Task<IActionResult> GetCustommerIdNameById(int? customerId)
         {
             try
             {
 
-                var result = await _unitOfWork.Custommer.GetAllCustommerSummaryAsync();
+                var result = await _unitOfWork.Custommer.GetAllCustommerSummaryAsync(customerId);
 
                 if (result == null)
                 {

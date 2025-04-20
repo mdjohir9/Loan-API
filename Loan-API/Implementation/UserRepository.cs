@@ -17,6 +17,30 @@ namespace Loan_API.Implementation
             _httpContextAccessor = httpContextAccessor;
         }
 
+        public async Task<IEnumerable<object>> GetUserIdAndNameAsync(string companyId, int? userId, int dataAccessLevel)
+        {
+            var query = _dbContext.Users.AsQueryable();
+
+            // Filter by companyId
+            query = query.Where(u => u.CompanyId == companyId);
+
+            // Apply data access level logic
+            if (dataAccessLevel == 1 && userId.HasValue)
+            {
+                query = query.Where(u => u.UserId == userId.Value);
+            }
+
+            var result = await query
+                .Select(u => new
+                {
+                    u.UserId,
+                    UserName = ComplexScriptingSystem.ComplexLetters.getEntangledLetters(u.UserName), // Assign a name
+                    
+                })
+                .ToListAsync();
+
+            return result;
+        }
 
         public async Task<IEnumerable<string>> GetUserRolePermissionById(int id)
         {

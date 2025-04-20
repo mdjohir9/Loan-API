@@ -356,9 +356,28 @@ namespace Loan_API.Implementation
                              .FirstOrDefault(c => c.CustomerID == customerId);
         }
 
-        public async Task<IEnumerable<CustommerIdAndNameDTO>> GetAllCustommerSummaryAsync()
+        //public async Task<IEnumerable<CustommerIdAndNameDTO>> GetAllCustommerSummaryAsync(int? customerId)
+        //{
+        //    var customers = await _dbContext.CustommerPersonnelInfo
+        //        .Select(c => new CustommerIdAndNameDTO
+        //        {
+        //            CustomerID = c.CustomerID,
+        //            FullName = c.FullName
+        //        })
+        //        .ToListAsync();
+
+        //    return customers;
+        //}
+        public async Task<IEnumerable<CustommerIdAndNameDTO>> GetAllCustommerSummaryAsync(int? customerId)
         {
-            var customers = await _dbContext.CustommerPersonnelInfo
+            var query = _dbContext.CustommerPersonnelInfo.AsQueryable();
+
+            if (customerId.HasValue)
+            {
+                query = query.Where(c => c.CustomerID == customerId.Value);
+            }
+
+            var customers = await query
                 .Select(c => new CustommerIdAndNameDTO
                 {
                     CustomerID = c.CustomerID,

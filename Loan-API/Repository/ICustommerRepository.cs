@@ -9,7 +9,7 @@ namespace Loan_API.Repository
         Task<int> AddCustomerAsync(CustommerPersonnelInfoDTO customerDto, int userId);
         Task<IEnumerable<CustommerDetailesDTO>> GetAllWithDetailsAsync(int? CustommerId);
         Task<IEnumerable<CustommerDetailesDTO>> GetAllWithDetailsAsync();
-        Task<IEnumerable<CustommerIdAndNameDTO>> GetAllCustommerSummaryAsync();
+        Task<IEnumerable<CustommerIdAndNameDTO>> GetAllCustommerSummaryAsync(int? CustommerId);
 
         Task<int> AddCustomerContactAsync(CustommerContactDTO ContactDo, int userId);
         Task<int> AddCustomerEmploymentAsync(CustommerEmploymentDTO employmentDto, int userId);

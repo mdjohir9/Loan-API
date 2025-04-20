@@ -75,12 +75,18 @@
   },
   {
     "ContainingType": "Loan_API.Controllers.CustommerController",
-    "Method": "GetCustommerById",
+    "Method": "GetCustommerIdNameById",
     "RelativePath": "api/Custommer/custommerSummary",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -653,6 +659,32 @@
       },
       {
         "Name": "DataAccessLevel",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.UserController",
+    "Method": "GetUserIdAndName",
+    "RelativePath": "api/User/UserNameAndId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "companyId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "dataAccessLevel",
         "Type": "System.Int32",
         "IsRequired": false
       }

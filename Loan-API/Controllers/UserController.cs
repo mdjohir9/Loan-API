@@ -46,10 +46,27 @@ namespace Loan_API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("UserNameAndId")]
+        public async Task<IActionResult> GetUserIdAndName(string companyId, int? userId, int dataAccessLevel)
+        {
+            try
+            {
+                var users = await _unitOfWork.User.GetUserIdAndNameAsync(companyId, userId, dataAccessLevel);
 
+                if (users == null || !users.Any())
+                {
+                    return NotFound(new { StatusCode = 404, message = "Users not found!" });
+                }
 
+                return Ok(new { StatusCode = 200, message = "Success", data = users });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
+            }
+        }
 
-  
 
 
         [HttpGet]

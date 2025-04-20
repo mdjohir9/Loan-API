@@ -10,5 +10,8 @@ namespace Loan_API.Repository
         Task<IEnumerable<object>> GetDynamicMenue(int userId , int DataAccessLevel);
         Task<bool> CheckUserNameIsExist(string userName);  // Changed to accept userName
         Task<bool> CheckUserNameIsExistById(string userName, int userId);  // Changed to accept userName
+
+        Task<IEnumerable<object>> GetUserIdAndNameAsync(string companyId, int? userId, int dataAccessLevel);
+
     }
 }
