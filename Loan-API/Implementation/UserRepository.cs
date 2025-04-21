@@ -22,7 +22,7 @@ namespace Loan_API.Implementation
             var query = _dbContext.Users.AsQueryable();
 
             // Filter by companyId
-            query = query.Where(u => u.CompanyId == companyId);
+            query = query.Where(u => u.CompanyId == companyId && (u.Deleted==null || u.Deleted==false));
 
             // Apply data access level logic
             if (dataAccessLevel == 1 && userId.HasValue)

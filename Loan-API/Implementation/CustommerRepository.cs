@@ -148,14 +148,16 @@ namespace Loan_API.Implementation
                         from ce in employmentGroup.DefaultIfEmpty()
                         join cfi in _dbContext.CustommerFinancialInfo on cpi.CustomerID equals cfi.CustomerID into financialGroup
                         from cfi in financialGroup.DefaultIfEmpty()
-                        
+                        join usr in _dbContext.Users on cpi.CustomerID.ToString() equals usr.ReferenceID into userGroup
+                        from usr in userGroup.DefaultIfEmpty()
                         where customerId == null || cpi.CustomerID == customerId // Apply filter early
                         select new
                         {
                             cpi,
                             cc,
                             ce,
-                            cfi
+                            cfi,
+                            usr,
                             
                         };
 
@@ -164,6 +166,7 @@ namespace Loan_API.Implementation
             return result.Select(ti => new CustommerDetailesDTO
             {
                 CustomerID=ti.cpi.CustomerID,
+                Userid = ti.usr.UserId,
                 CustCardNo = ti.cpi.CustCardNo,
                 CompanyId = ti.cpi.CompanyId,
                 CustommerImage = $"{baseUrl}/0001/CustommerImage/{ti.cpi.CustommerImage}",
@@ -177,6 +180,7 @@ namespace Loan_API.Implementation
                 NationalIDOrPassport = ti.cpi.NationalIDOrPassport,
                 TaxIdentificationNumber = ti.cpi.TaxIdentificationNumber,
                 DrivingLicenseNumber = ti.cpi.DrivingLicenseNumber,
+                EducationLevel=ti.cpi.EducationLevel,
 
                 // Contact Information
                 ContactId = ti.cc.ID,

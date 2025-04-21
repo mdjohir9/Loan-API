@@ -311,7 +311,7 @@ namespace Loan_API.Controllers
         public async Task<IActionResult> UpdateFullCustomer([FromBody] CustommerSaveDTO customerDto)
         {
             try
-            {
+             {
                 if (customerDto == null)
                     return BadRequest("Customer information cannot be null.");
 

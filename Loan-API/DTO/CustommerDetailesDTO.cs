@@ -5,6 +5,7 @@ namespace Loan_API.DTO
     public class CustommerDetailesDTO
     {
         public int CustomerID { get; set; }
+        public int? Userid { get; set; }
         public string? CustCardNo { get; set; }
         public string? CustommerImage { get; set; }
         public string? CustommerSignature { get; set; }
@@ -18,6 +19,7 @@ namespace Loan_API.DTO
         public string? NationalIDOrPassport { get; set; }
         public string? TaxIdentificationNumber { get; set; }
         public string? DrivingLicenseNumber { get; set; }
+        public int? EducationLevel { get; set; }
 
         // Contact Information
         public int ? ContactId { get; set; }
