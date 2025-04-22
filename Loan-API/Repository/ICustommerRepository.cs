@@ -18,7 +18,7 @@ namespace Loan_API.Repository
         CustommerPersonnelInfo GetPersonnelInfoByCustomerId(int customerId);
         Task<int> AddCustommerAllDataAsync(CustommerSaveDTO dto);
 
-        Task UpdateCustommerAllDataAsync(CustommerSaveDTO dto);
+        Task UpdateCustommerAllDataAsync(CustommerSaveDTO dto, string CustomerImage);
 
 
     }

@@ -3,44 +3,60 @@
   "WorkspaceRootPath": "E:\\My-personnel-project\\Loan-API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\controllers\\custommercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\controllers\\custommercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\implementation\\custommerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\implementation\\custommerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\dto\\custommerdetailesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\dto\\custommerdetailesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\repository\\icustommerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\repository\\icustommerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\entities\\custommerpersonnelinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\entities\\custommerpersonnelinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\entities\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\entities\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\controllers\\custommercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\controllers\\custommercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\implementation\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\implementation\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\implementation\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\implementation\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\entities\\custommerpersonnelinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\entities\\custommerpersonnelinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\dto\\custommersavedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\dto\\custommersavedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\entities\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\entities\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\repository\\icustommerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\repository\\icustommerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\controllers\\loanapplicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\controllers\\loanapplicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\controllers\\loaninstalmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\controllers\\loaninstalmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\entities\\custommercontact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\entities\\custommercontact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\implementation\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\implementation\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\dto\\custommerdetailesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\dto\\custommerdetailesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\implementation\\userrolerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -67,10 +83,6 @@
       "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\dto\\logininfodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\controllers\\loanapplicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\controllers\\loanapplicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\controllers\\rechargecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\controllers\\rechargecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -85,14 +97,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\implementation\\loanapplicationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\implementation\\loanapplicationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\controllers\\loaninstalmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\controllers\\loaninstalmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\dto\\custommersavedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|solutionrelative:loan-api\\dto\\custommersavedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{591AC8AC-F4AD-435E-B6D9-AA98D9D4AEFA}|Loan-API\\Loan-API.csproj|e:\\my-personnel-project\\loan-api\\loan-api\\controllers\\custommerfinancialcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -166,7 +170,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "Loan.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Entities\\Loan.cs",
               "RelativeDocumentMoniker": "Loan-API\\Entities\\Loan.cs",
@@ -180,58 +184,136 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CustommerController.cs",
-              "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\CustommerController.cs",
-              "RelativeDocumentMoniker": "Loan-API\\Controllers\\CustommerController.cs",
-              "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\CustommerController.cs",
-              "RelativeToolTip": "Loan-API\\Controllers\\CustommerController.cs",
-              "ViewState": "AgIAADEBAAAAAAAAAAAwwDkBAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T19:42:35.495Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CustommerDetailesDTO.cs",
-              "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\DTO\\CustommerDetailesDTO.cs",
-              "RelativeDocumentMoniker": "Loan-API\\DTO\\CustommerDetailesDTO.cs",
-              "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\DTO\\CustommerDetailesDTO.cs",
-              "RelativeToolTip": "Loan-API\\DTO\\CustommerDetailesDTO.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAYwBUAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T20:20:52.824Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "CustommerRepository.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Implementation\\CustommerRepository.cs",
               "RelativeDocumentMoniker": "Loan-API\\Implementation\\CustommerRepository.cs",
               "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Implementation\\CustommerRepository.cs",
               "RelativeToolTip": "Loan-API\\Implementation\\CustommerRepository.cs",
-              "ViewState": "AgIAAKEAAAAAAAAAAAAYwLYAAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAO4BAAAAAAAAAAAuwP4BAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-17T17:09:25.049Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CustommerController.cs",
+              "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\CustommerController.cs",
+              "RelativeDocumentMoniker": "Loan-API\\Controllers\\CustommerController.cs",
+              "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\CustommerController.cs",
+              "RelativeToolTip": "Loan-API\\Controllers\\CustommerController.cs",
+              "ViewState": "AgIAACABAAAAAAAAAAAuwDsBAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T19:42:35.495Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "LoanApplicationController.cs",
+              "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\LoanApplicationController.cs",
+              "RelativeDocumentMoniker": "Loan-API\\Controllers\\LoanApplicationController.cs",
+              "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\LoanApplicationController.cs",
+              "RelativeToolTip": "Loan-API\\Controllers\\LoanApplicationController.cs",
+              "ViewState": "AgIAAO8AAAAAAAAAAAAwwPIAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T18:42:51.032Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GenericRepository.cs",
+              "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Implementation\\GenericRepository.cs",
+              "RelativeDocumentMoniker": "Loan-API\\Implementation\\GenericRepository.cs",
+              "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Implementation\\GenericRepository.cs",
+              "RelativeToolTip": "Loan-API\\Implementation\\GenericRepository.cs",
+              "ViewState": "AgIAADEBAAAAAAAAAAAAAGQBAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T16:50:31.018Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CustommerSaveDTO.cs",
+              "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\DTO\\CustommerSaveDTO.cs",
+              "RelativeDocumentMoniker": "Loan-API\\DTO\\CustommerSaveDTO.cs",
+              "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\DTO\\CustommerSaveDTO.cs",
+              "RelativeToolTip": "Loan-API\\DTO\\CustommerSaveDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAkAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T20:23:30.952Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "CustommerPersonnelInfo.cs",
+              "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Entities\\CustommerPersonnelInfo.cs",
+              "RelativeDocumentMoniker": "Loan-API\\Entities\\CustommerPersonnelInfo.cs",
+              "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Entities\\CustommerPersonnelInfo.cs",
+              "RelativeToolTip": "Loan-API\\Entities\\CustommerPersonnelInfo.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAAAsAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T20:26:56.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Entities\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Loan-API\\Entities\\ApplicationDbContext.cs",
+              "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Entities\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Loan-API\\Entities\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T18:48:23.539Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "ICustommerRepository.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Repository\\ICustommerRepository.cs",
               "RelativeDocumentMoniker": "Loan-API\\Repository\\ICustommerRepository.cs",
               "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Repository\\ICustommerRepository.cs",
               "RelativeToolTip": "Loan-API\\Repository\\ICustommerRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAA3wBMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-17T20:29:56.802Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
+              "Title": "LoanInstalmentController.cs",
+              "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\LoanInstalmentController.cs",
+              "RelativeDocumentMoniker": "Loan-API\\Controllers\\LoanInstalmentController.cs",
+              "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\LoanInstalmentController.cs",
+              "RelativeToolTip": "Loan-API\\Controllers\\LoanInstalmentController.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAGkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T18:42:26.817Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CustommerContact.cs",
+              "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Entities\\CustommerContact.cs",
+              "RelativeDocumentMoniker": "Loan-API\\Entities\\CustommerContact.cs",
+              "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Entities\\CustommerContact.cs",
+              "RelativeToolTip": "Loan-API\\Entities\\CustommerContact.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:19:14.959Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "LogInController.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\LogInController.cs",
               "RelativeDocumentMoniker": "Loan-API\\Controllers\\LogInController.cs",
@@ -239,77 +321,48 @@
               "RelativeToolTip": "Loan-API\\Controllers\\LogInController.cs",
               "ViewState": "AgIAADAAAAAAAAAAAAAAwD4AAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T18:42:52.281Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-15T18:42:52.281Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CustommerPersonnelInfo.cs",
-              "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Entities\\CustommerPersonnelInfo.cs",
-              "RelativeDocumentMoniker": "Loan-API\\Entities\\CustommerPersonnelInfo.cs",
-              "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Entities\\CustommerPersonnelInfo.cs",
-              "RelativeToolTip": "Loan-API\\Entities\\CustommerPersonnelInfo.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAswCEAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T20:26:56.815Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Entities\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "Loan-API\\Entities\\ApplicationDbContext.cs",
-              "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Entities\\ApplicationDbContext.cs",
-              "RelativeToolTip": "Loan-API\\Entities\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAewBEAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T18:48:23.539Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "GenericRepository.cs",
-              "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Implementation\\GenericRepository.cs",
-              "RelativeDocumentMoniker": "Loan-API\\Implementation\\GenericRepository.cs",
-              "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Implementation\\GenericRepository.cs",
-              "RelativeToolTip": "Loan-API\\Implementation\\GenericRepository.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAMwCgAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T16:50:31.018Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Implementation\\UserRepository.cs",
-              "RelativeDocumentMoniker": "Loan-API\\Implementation\\UserRepository.cs",
-              "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Implementation\\UserRepository.cs",
-              "RelativeToolTip": "Loan-API\\Implementation\\UserRepository.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAArwCkAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T18:13:06.666Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "UserController.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Loan-API\\Controllers\\UserController.cs",
               "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\UserController.cs",
               "RelativeToolTip": "Loan-API\\Controllers\\UserController.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAMwDYAAABCAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAAqwEwAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-16T14:51:20.712Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Implementation\\UserRepository.cs",
+              "RelativeDocumentMoniker": "Loan-API\\Implementation\\UserRepository.cs",
+              "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Implementation\\UserRepository.cs",
+              "RelativeToolTip": "Loan-API\\Implementation\\UserRepository.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAuwD0AAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T18:13:06.666Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CustommerDetailesDTO.cs",
+              "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\DTO\\CustommerDetailesDTO.cs",
+              "RelativeDocumentMoniker": "Loan-API\\DTO\\CustommerDetailesDTO.cs",
+              "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\DTO\\CustommerDetailesDTO.cs",
+              "RelativeToolTip": "Loan-API\\DTO\\CustommerDetailesDTO.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA1wBUAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T20:20:52.824Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "UserRoleRepository.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Implementation\\UserRoleRepository.cs",
               "RelativeDocumentMoniker": "Loan-API\\Implementation\\UserRoleRepository.cs",
@@ -321,7 +374,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "IUserRepository.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Repository\\IUserRepository.cs",
               "RelativeDocumentMoniker": "Loan-API\\Repository\\IUserRepository.cs",
@@ -333,7 +386,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 22,
               "Title": "UserProfileDTO.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\DTO\\UserProfileDTO.cs",
               "RelativeDocumentMoniker": "Loan-API\\DTO\\UserProfileDTO.cs",
@@ -345,7 +398,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "LoginRepository.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Implementation\\LoginRepository.cs",
               "RelativeDocumentMoniker": "Loan-API\\Implementation\\LoginRepository.cs",
@@ -357,20 +410,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "LoanApplicationController.cs",
-              "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\LoanApplicationController.cs",
-              "RelativeDocumentMoniker": "Loan-API\\Controllers\\LoanApplicationController.cs",
-              "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\LoanApplicationController.cs",
-              "RelativeToolTip": "Loan-API\\Controllers\\LoanApplicationController.cs",
-              "ViewState": "AgIAAMkAAAAAAAAAAAAowPIAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T18:42:51.032Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 21,
               "Title": "RechargeAccountController.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\RechargeAccountController.cs",
               "RelativeDocumentMoniker": "Loan-API\\Controllers\\RechargeAccountController.cs",
@@ -382,7 +422,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "RechargeController.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\RechargeController.cs",
               "RelativeDocumentMoniker": "Loan-API\\Controllers\\RechargeController.cs",
@@ -395,7 +435,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
               "Title": "ILoginRepository.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Repository\\ILoginRepository.cs",
               "RelativeDocumentMoniker": "Loan-API\\Repository\\ILoginRepository.cs",
@@ -407,7 +447,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 17,
               "Title": "User.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Entities\\User.cs",
               "RelativeDocumentMoniker": "Loan-API\\Entities\\User.cs",
@@ -419,7 +459,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "LoginInfoDTO.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\DTO\\LoginInfoDTO.cs",
               "RelativeDocumentMoniker": "Loan-API\\DTO\\LoginInfoDTO.cs",
@@ -431,7 +471,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 23,
               "Title": "LoanApplicationRepository.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Implementation\\LoanApplicationRepository.cs",
               "RelativeDocumentMoniker": "Loan-API\\Implementation\\LoanApplicationRepository.cs",
@@ -443,31 +483,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "LoanInstalmentController.cs",
-              "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\LoanInstalmentController.cs",
-              "RelativeDocumentMoniker": "Loan-API\\Controllers\\LoanInstalmentController.cs",
-              "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\LoanInstalmentController.cs",
-              "RelativeToolTip": "Loan-API\\Controllers\\LoanInstalmentController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAxwGkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T18:42:26.817Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "CustommerSaveDTO.cs",
-              "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\DTO\\CustommerSaveDTO.cs",
-              "RelativeDocumentMoniker": "Loan-API\\DTO\\CustommerSaveDTO.cs",
-              "ToolTip": "E:\\My-personnel-project\\Loan-API\\Loan-API\\DTO\\CustommerSaveDTO.cs",
-              "RelativeToolTip": "Loan-API\\DTO\\CustommerSaveDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAkAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T20:23:30.952Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "CustommerFinancialController.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\CustommerFinancialController.cs",
               "RelativeDocumentMoniker": "Loan-API\\Controllers\\CustommerFinancialController.cs",
@@ -479,7 +495,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "HrdCompanyInfo.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Entities\\HrdCompanyInfo.cs",
               "RelativeDocumentMoniker": "Loan-API\\Entities\\HrdCompanyInfo.cs",
@@ -491,7 +507,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "CustommerPersonnelInfoDTO.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\DTO\\CustommerPersonnelInfoDTO.cs",
               "RelativeDocumentMoniker": "Loan-API\\DTO\\CustommerPersonnelInfoDTO.cs",
@@ -503,7 +519,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "CustommerGuarantorDetails.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Entities\\CustommerGuarantorDetails.cs",
               "RelativeDocumentMoniker": "Loan-API\\Entities\\CustommerGuarantorDetails.cs",
@@ -515,7 +531,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "PersonnelInfoUpdateDTO.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\DTO\\PersonnelInfoUpdateDTO.cs",
               "RelativeDocumentMoniker": "Loan-API\\DTO\\PersonnelInfoUpdateDTO.cs",
@@ -527,7 +543,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "CustommerContactDTO.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\DTO\\CustommerContactDTO.cs",
               "RelativeDocumentMoniker": "Loan-API\\DTO\\CustommerContactDTO.cs",
@@ -539,7 +555,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "appsettings.json",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\appsettings.json",
               "RelativeDocumentMoniker": "Loan-API\\appsettings.json",
@@ -551,7 +567,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "CustommerContactController.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\CustommerContactController.cs",
               "RelativeDocumentMoniker": "Loan-API\\Controllers\\CustommerContactController.cs",
@@ -564,7 +580,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "Transaction.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Entities\\Transaction.cs",
               "RelativeDocumentMoniker": "Loan-API\\Entities\\Transaction.cs",
@@ -576,7 +592,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "IloanRepository.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Repository\\IloanRepository.cs",
               "RelativeDocumentMoniker": "Loan-API\\Repository\\IloanRepository.cs",
@@ -588,7 +604,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "UserRolesController.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Controllers\\UserRolesController.cs",
               "RelativeDocumentMoniker": "Loan-API\\Controllers\\UserRolesController.cs",
@@ -600,7 +616,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 37,
               "Title": "ITransctionRepository.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Repository\\ITransctionRepository.cs",
               "RelativeDocumentMoniker": "Loan-API\\Repository\\ITransctionRepository.cs",
@@ -612,7 +628,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "ApplicationDbContextModelSnapshot.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Migrations\\ApplicationDbContextModelSnapshot.cs",
               "RelativeDocumentMoniker": "Loan-API\\Migrations\\ApplicationDbContextModelSnapshot.cs",
@@ -624,7 +640,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 38,
               "Title": "20250415045441_transction_data_type_change.cs",
               "DocumentMoniker": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Migrations\\20250415045441_transction_data_type_change.cs",
               "RelativeDocumentMoniker": "Loan-API\\Migrations\\20250415045441_transction_data_type_change.cs",

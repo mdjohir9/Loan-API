@@ -244,7 +244,7 @@ namespace Loan_API.Implementation
             if (softDeleteEnabled)
             {
 
-                var propertyInfo = entitys.GetType().GetProperty("Deleted");
+                var propertyInfo = entitys.GetType().GetProperty("IsDeleted");
                 if (propertyInfo != null)
                 {
                     propertyInfo.SetValue(entitys, true);

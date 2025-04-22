@@ -1,24 +1,28 @@
 {
   "Files": [
     {
-      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\0001\\CustommerImage\\opsload2444.jpeg",
-      "PackagePath": "staticwebassets\\0001\\CustommerImage\\opsload2444.jpeg"
+      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerImage\\opsload2444.jpeg",
+      "PackagePath": "staticwebassets\\1111\\CustommerImage\\opsload2444.jpeg"
     },
     {
-      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\0001\\CustommerSignature\\opsload2444.jpeg",
-      "PackagePath": "staticwebassets\\0001\\CustommerSignature\\opsload2444.jpeg"
+      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerImage\\ot2222.jpeg",
+      "PackagePath": "staticwebassets\\1111\\CustommerImage\\ot2222.jpeg"
     },
     {
-      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\0001\\RechargeStatement\\2.png",
-      "PackagePath": "staticwebassets\\0001\\RechargeStatement\\2.png"
+      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerSignature\\opsload2444.jpeg",
+      "PackagePath": "staticwebassets\\1111\\CustommerSignature\\opsload2444.jpeg"
     },
     {
-      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\0001\\RechargeStatement\\DFGHY456789.png",
-      "PackagePath": "staticwebassets\\0001\\RechargeStatement\\DFGHY456789.png"
+      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\RechargeStatement\\2.png",
+      "PackagePath": "staticwebassets\\1111\\RechargeStatement\\2.png"
     },
     {
-      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\0001\\RechargeStatement\\fghjk567.png",
-      "PackagePath": "staticwebassets\\0001\\RechargeStatement\\fghjk567.png"
+      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\RechargeStatement\\DFGHY456789.png",
+      "PackagePath": "staticwebassets\\1111\\RechargeStatement\\DFGHY456789.png"
+    },
+    {
+      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\RechargeStatement\\fghjk567.png",
+      "PackagePath": "staticwebassets\\1111\\RechargeStatement\\fghjk567.png"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Loan-API.Microsoft.AspNetCore.StaticWebAssets.props",

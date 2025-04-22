@@ -17,14 +17,46 @@ namespace Loan_API.Implementation
             _httpContextAccessor = httpContextAccessor;
         }
 
+        //public async Task<IEnumerable<object>> GetUserIdAndNameAsync(string companyId, int? userId, int dataAccessLevel)
+        //{
+        //    var query = _dbContext.Users.AsQueryable();
+
+        //    // Filter by companyId
+        //    query = query.Where(u => u.CompanyId == companyId && (u.Deleted==null || u.Deleted==false));
+
+        //    // Apply data access level logic
+        //    if (dataAccessLevel == 1 && userId.HasValue)
+        //    {
+        //        query = query.Where(u => u.UserId == userId.Value);
+        //    }
+
+        //    var result = await query
+        //        .Select(u => new
+        //        {
+        //            u.UserId,
+        //            UserName = ComplexScriptingSystem.ComplexLetters.getEntangledLetters(u.UserName), // Assign a name
+
+        //        })
+        //        .ToListAsync();
+
+        //    return result;
+        //}
+
         public async Task<IEnumerable<object>> GetUserIdAndNameAsync(string companyId, int? userId, int dataAccessLevel)
         {
-            var query = _dbContext.Users.AsQueryable();
+            var query = from user in _dbContext.Users
+                        join role in _dbContext.UserRole on user.UserRoleID equals role.UserRoleId
+                        where user.CompanyId == companyId
+                              && (user.Deleted == null || user.Deleted == false)
+                              && role.DataAccessLevel == 1 // Only include users with DataAccessLevel = 1
+                        select new
+                        {
+                            user.UserId,
+                            user.UserName,
+                            role.DataAccessLevel
+                        };
 
-            // Filter by companyId
-            query = query.Where(u => u.CompanyId == companyId && (u.Deleted==null || u.Deleted==false));
-
-            // Apply data access level logic
+            // Apply data access level logic: if caller's access level is 1, restrict to their own userId
             if (dataAccessLevel == 1 && userId.HasValue)
             {
                 query = query.Where(u => u.UserId == userId.Value);
@@ -34,13 +66,13 @@ namespace Loan_API.Implementation
                 .Select(u => new
                 {
                     u.UserId,
-                    UserName = ComplexScriptingSystem.ComplexLetters.getEntangledLetters(u.UserName), // Assign a name
-                    
+                    UserName = ComplexScriptingSystem.ComplexLetters.getEntangledLetters(u.UserName)
                 })
                 .ToListAsync();
 
             return result;
         }
+
 
         public async Task<IEnumerable<string>> GetUserRolePermissionById(int id)
         {

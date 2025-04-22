@@ -2,6 +2,7 @@
 
 namespace Loan_API.Entities
 {
+    [SoftDelete]
     public class CustommerPersonnelInfo
     {
         [Key]

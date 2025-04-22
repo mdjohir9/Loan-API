@@ -4,6 +4,7 @@ using Loan_API.Repository;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.Design;
 
 namespace Loan_API.Implementation
 {
@@ -78,13 +79,14 @@ namespace Loan_API.Implementation
                           from cfi in financialGroup.DefaultIfEmpty()
                           join cgd in _dbContext.CustommerGuarantorDetails on cpi.CustomerID equals cgd.CustomerID into guarantorGroup
                           from cgd in guarantorGroup.DefaultIfEmpty()
+                          where (cpi.IsDeleted == false || cpi.IsDeleted == null)
                           select new CustommerDetailesDTO
                           {
                               CustomerID=cpi.CustomerID,
                               CustCardNo = cpi.CustCardNo,
                               CompanyId = cpi.CompanyId,
-                              CustommerImage = $"{baseUrl}/0001/CustommerImage/{cpi.CustommerImage}",
-                              CustommerSignature = $"{baseUrl}/0001/CustommerSignature/{cpi.CustommerSignature}",
+                              CustommerImage = $"{baseUrl}/1111/CustommerImage/{cpi.CustommerImage}",
+                              CustommerSignature = $"{baseUrl}/1111/CustommerSignature/{cpi.CustommerSignature}",
                               FullName = cpi.FullName,
                               Gender = cpi.Gender,
                               DateOfBirth = cpi.DateOfBirth,
@@ -150,7 +152,7 @@ namespace Loan_API.Implementation
                         from cfi in financialGroup.DefaultIfEmpty()
                         join usr in _dbContext.Users on cpi.CustomerID.ToString() equals usr.ReferenceID into userGroup
                         from usr in userGroup.DefaultIfEmpty()
-                        where customerId == null || cpi.CustomerID == customerId // Apply filter early
+                        where customerId == null || cpi.CustomerID == customerId 
                         select new
                         {
                             cpi,
@@ -169,8 +171,8 @@ namespace Loan_API.Implementation
                 Userid = ti.usr.UserId,
                 CustCardNo = ti.cpi.CustCardNo,
                 CompanyId = ti.cpi.CompanyId,
-                CustommerImage = $"{baseUrl}/0001/CustommerImage/{ti.cpi.CustommerImage}",
-                CustommerSignature = $"{baseUrl}/0001/CustommerSignature/{ti.cpi.CustommerSignature}",
+                CustommerImage = $"{baseUrl}/1111/CustommerImage/{ti.cpi.CustommerImage}",
+                CustommerSignature = $"{baseUrl}/1111/CustommerSignature/{ti.cpi.CustommerSignature}",
                 FullName = ti.cpi.FullName,
                 Gender = ti.cpi.Gender,
                 DateOfBirth = ti.cpi.DateOfBirth,
@@ -391,17 +393,48 @@ namespace Loan_API.Implementation
 
             return customers;
         }
+        private async Task<string> GenerateUniqueCustCardNoAsync()
+        {
+            var lastCustomer = await _dbContext.CustommerPersonnelInfo
+                .OrderByDescending(c => c.CustCardNo)
+                .FirstOrDefaultAsync();
+
+            int nextNumber = 1001; // Default starting number
+
+            if (lastCustomer != null && !string.IsNullOrEmpty(lastCustomer.CustCardNo))
+            {
+                string lastCardNo = lastCustomer.CustCardNo.Replace("UPS", "");
+                if (int.TryParse(lastCardNo, out int lastNumber))
+                {
+                    nextNumber = lastNumber + 1;
+                }
+            }
+            
+            return $"UPS{nextNumber}";
+        }
+        public async Task<string> SaveCustomerImageAsync(List<string> imageBase64List, string custCardNo, string companyId, string documentType)
+        {
+            if (imageBase64List == null || !imageBase64List.Any())
+                return null;
+
+            return await SaveDocumentsListsAsync(imageBase64List, custCardNo, companyId, documentType);
+        }
 
         public async Task<int> AddCustommerAllDataAsync(CustommerSaveDTO dto)
         {
 
             try
             {
+                var custCardNo = await GenerateUniqueCustCardNoAsync();
+                string customerImage = await SaveCustomerImageAsync(dto.CustommerImage, custCardNo, "1111", "CustommerImage");
+
+
                 // 1. Insert Personal Info and Save to get generated CustomerID
                 var personalInfo = new CustommerPersonnelInfo
                 {
-                    CustCardNo = dto.CustCardNo,
-                    CompanyId = dto.CompanyId,
+                    CustommerImage= customerImage,
+                    CustCardNo = custCardNo,
+                    CompanyId = 1111,
                     FullName = dto.FullName,
                     Gender = dto.Gender,
                     DateOfBirth = dto.DateOfBirth,
@@ -474,7 +507,7 @@ namespace Loan_API.Implementation
         }
 
 
-        public async Task UpdateCustommerAllDataAsync(CustommerSaveDTO dto)
+        public async Task UpdateCustommerAllDataAsync(CustommerSaveDTO dto, string CustomerImage)
         {
             using var transaction = await _dbContext.Database.BeginTransactionAsync();
 
@@ -483,13 +516,14 @@ namespace Loan_API.Implementation
                 // Check if customer exists
                 var personalInfo = await _dbContext.CustommerPersonnelInfo
                     .FirstOrDefaultAsync(x => x.CustomerID == dto.CustomerID);
+                string customerImage = await SaveCustomerImageAsync(dto.CustommerImage, personalInfo.CustCardNo, "1111", "CustommerImage");
+
 
                 if (personalInfo == null)
                     throw new Exception("Customer not found.");
 
                 // Update Personal Info
-                personalInfo.CustCardNo = dto.CustCardNo;
-                personalInfo.CompanyId = dto.CompanyId;
+                personalInfo.CustommerImage = customerImage;
                 personalInfo.FullName = dto.FullName;
                 personalInfo.Gender = dto.Gender;
                 personalInfo.DateOfBirth = dto.DateOfBirth;

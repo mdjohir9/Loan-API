@@ -159,7 +159,7 @@ namespace Loan_API.Controllers
 
                 string result = null;
                 string resultSignature = null;
-                string CompanyId = "0001";
+                string CompanyId = "1111";
 
                 // Process Employee Image if available
                 if (customerDto.CustommerImage != null && customerDto.CustommerImage.Any())
@@ -240,20 +240,21 @@ namespace Loan_API.Controllers
 
             try
             {
-                string companyId = "0001";
+                string companyId = "1111";
                 string? imageResult = null;
                 string? signatureResult = null;
 
-                if (customerDto.CustommerImage != null && customerDto.CustommerImage.Any())
-                {
-                    string DocumentType = "CustommerImage";
-                    imageResult = await _unitOfWork.Custommer.SaveDocumentsListsAsync(
-                        customerDto.CustommerImage,
-                        customerDto.CustCardNo,
-                        companyId,
-                        DocumentType
-                    );
-                }
+                //if (customerDto.CustommerImage != null && customerDto.CustommerImage.Any())
+                //{
+                //    string DocumentType = "CustommerImage";
+                //    imageResult = await _unitOfWork.Custommer.SaveDocumentsListsAsync(
+                //        customerDto.CustommerImage,
+                //        customerDto.CustCardNo,
+                //        companyId,
+                //        DocumentType
+                //    );
+
+                //}
 
                 if (customerDto.CustommerSignature != null && customerDto.CustommerSignature.Any())
                 {
@@ -283,9 +284,10 @@ namespace Loan_API.Controllers
 
                 var user = new User { UserId = customerDto.UserId };
                 await _unitOfWork.User.UpdateAsync(user, "ReferenceID", newCustomerId.ToString());
+
                 await _unitOfWork.Save();
 
-                await transaction.CommitAsync(); // ✅ Commit only if all above succeeded
+                await transaction.CommitAsync(); 
 
                 return Ok(new
                 {
@@ -296,7 +298,7 @@ namespace Loan_API.Controllers
             }
             catch (Exception ex)
             {
-                await transaction.RollbackAsync(); // 🔁 Roll back on failure
+                await transaction.RollbackAsync(); 
 
                 return StatusCode(500, new
                 {
@@ -321,21 +323,21 @@ namespace Loan_API.Controllers
                 if (customerDto.CustomerID <= 0)
                     return BadRequest("Invalid Customer ID for update operation.");
 
-                string companyId = "0001";
+                string companyId = "1111";
                 string? imageResult = null;
                 string? signatureResult = null;
 
                 // Process customer image if provided
-                if (customerDto.CustommerImage != null && customerDto.CustommerImage.Any())
-                {
-                    string documentType = "CustommerImage";
-                    imageResult = await _unitOfWork.Custommer.SaveDocumentsListsAsync(
-                        customerDto.CustommerImage,
-                        customerDto.CustCardNo,
-                        companyId,
-                        documentType
-                    );
-                }
+                //if (customerDto.CustommerImage != null && customerDto.CustommerImage.Any())
+                //{
+                //    string documentType = "CustommerImage";
+                //    imageResult = await _unitOfWork.Custommer.SaveDocumentsListsAsync(
+                //        customerDto.CustommerImage,
+                //        customerDto.CustCardNo,
+                //        companyId,
+                //        documentType
+                //    );
+                //}
 
                 // Process signature image if provided
                 if (customerDto.CustommerSignature != null && customerDto.CustommerSignature.Any())
@@ -350,7 +352,7 @@ namespace Loan_API.Controllers
                 }
 
                 // Update customer full details
-                await _unitOfWork.Custommer.UpdateCustommerAllDataAsync(customerDto);
+                await _unitOfWork.Custommer.UpdateCustommerAllDataAsync(customerDto, imageResult);
                 await _unitOfWork.Save();
 
                 return Ok(new
