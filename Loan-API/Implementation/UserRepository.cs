@@ -248,9 +248,9 @@ namespace Loan_API.Implementation
                     submenu = new List<object>
             {
                 new { path = "/loan/add", title = "New Loan Request", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
-                new { path = "/loan/loan-list", title = "Loan Request List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
-                new { path = "/loan/instalment", title = "Instalments", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
-                new { path = "/loan/all-instalmets", title = "All Instalments", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
+                new { path = "/loan/loan-request-list", title = "Loan Request List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
+                new { path = "/loan/all-instalmets", title = "All Instalments", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
+                new { path = "/loan/loan-list", title = "Loan List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
             }
                 });
 

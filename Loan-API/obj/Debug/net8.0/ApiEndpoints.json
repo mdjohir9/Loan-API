@@ -350,6 +350,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Loan_API.Controllers.LoanController",
+    "Method": "GetAllLoans",
+    "RelativePath": "api/Loan/loans",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Loan_API.Controllers.LoanApplicationController",
     "Method": "GetLoanApplicationById",
     "RelativePath": "api/LoanApplication/application/{id}",

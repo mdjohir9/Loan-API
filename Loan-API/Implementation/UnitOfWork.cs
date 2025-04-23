@@ -31,7 +31,7 @@ namespace Loan_API.Implementation
             UserRole = new UserRoleRepository(_dbContext);
             Login = new LoginRepository(_dbContext, _configuration);
             LoanApplication = new LoanApplicationRepository(_dbContext, _httpContextAccessor);
-            Loan = new LoanRepository(_dbContext);
+            Loan = new LoanRepository(_dbContext, _httpContextAccessor);
             LoanInstalment = new LoanInstalmentRepository(_dbContext ,_httpContextAccessor);
             LoanPlan = new LoanPlanRepository(_dbContext);
             Transction = new TransctionRepository(_dbContext);
