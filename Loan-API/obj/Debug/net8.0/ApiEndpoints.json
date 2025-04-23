@@ -603,6 +603,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Loan_API.Controllers.RechargeController",
+    "Method": "GetAllRechagres",
+    "RelativePath": "api/Recharge/requerts-ByeCustomerId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Loan_API.Controllers.RechargeAccountController",
     "Method": "GetPaymentTypeById",
     "RelativePath": "api/RechargeAccount/PaymentType",

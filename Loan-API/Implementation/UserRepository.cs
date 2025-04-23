@@ -162,7 +162,7 @@ namespace Loan_API.Implementation
                     submenu = new List<object>
             {
                 new { path = "wallet/recharge", title = "Recharge", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
-                new { path = "wallet/recharge-requests", title = "Recharge-Requests", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
+                new { path = "wallet/all-recharge", title = "All Recharge", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
             }
                 });
 
@@ -220,7 +220,7 @@ namespace Loan_API.Implementation
                     submenu = new List<object>
             {
                 new { path = "wallet/recharge", title = "Recharge", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
-                new { path = "wallet/recharge-requests", title = "Recharge-Requests", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
+                new { path = "wallet/recharge-requests", title = "All Recharge", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
             }
                 });
 

@@ -112,6 +112,27 @@ namespace Loan_API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("requerts-ByeCustomerId")]
+        public async Task<IActionResult> GetAllRechagres(int customerId)
+        {
+            try
+            {
+                var result = await _unitOfWork.Recharge.GetlRechargeDetailsByeIdAsync(customerId);
+
+                if (result == null)
+                {
+                    return NotFound(new { StatusCode = 404, message = "Recharge Account not found!" });
+                }
+
+                return Ok(new { StatusCode = 200, message = "Success", data = result });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
+            }
+        }
+
         [HttpPost("create")]
         public async Task<IActionResult> PostRechargeRequest([FromBody] RechargeRequestDTO rechargeDto)
         {

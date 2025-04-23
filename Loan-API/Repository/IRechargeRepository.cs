@@ -6,6 +6,7 @@ namespace Loan_API.Repository
     public interface IRechargeRepository : IGenericRepository<Recharge>
     {
         Task<List<RechargeDetailDTO>> GetAllRechargeDetailsAsync();
+        Task<List<RechargeDetailDTO>> GetlRechargeDetailsByeIdAsync(int CustomerId);
 
     }
 }
