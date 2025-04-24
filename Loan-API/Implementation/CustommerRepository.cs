@@ -80,6 +80,7 @@ namespace Loan_API.Implementation
                           join cgd in _dbContext.CustommerGuarantorDetails on cpi.CustomerID equals cgd.CustomerID into guarantorGroup
                           from cgd in guarantorGroup.DefaultIfEmpty()
                           where (cpi.IsDeleted == false || cpi.IsDeleted == null)
+                          orderby cpi.CustomerID descending
                           select new CustommerDetailesDTO
                           {
                               CustomerID=cpi.CustomerID,
@@ -380,7 +381,12 @@ namespace Loan_API.Implementation
 
             if (customerId.HasValue)
             {
-                query = query.Where(c => c.CustomerID == customerId.Value);
+                query = query.Where(c => c.CustomerID == customerId.Value && ( c.IsDeleted==null || c.IsDeleted==false));
+            }
+            else
+            {
+                query = query.Where(c => (c.IsDeleted == null || c.IsDeleted == false));
+
             }
 
             var customers = await query

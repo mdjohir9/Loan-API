@@ -31,5 +31,9 @@ namespace Loan_API.Entities
         public decimal AmountPaid { get; set; } // Amount deducted from account
 
 
+
+        [Required]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal LateCharge { get; set; }
     }
 }

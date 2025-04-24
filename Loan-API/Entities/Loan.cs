@@ -19,8 +19,8 @@ namespace Loan_API.Entities
         [Column(TypeName = "decimal(18,2)")]
         public decimal? DepositAmount { get; set; }
 
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal? LateCharge { get; set; }
+        //[Column(TypeName = "decimal(18,2)")]
+        //public decimal? LateCharge { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal PaidAmount { get; set; } 

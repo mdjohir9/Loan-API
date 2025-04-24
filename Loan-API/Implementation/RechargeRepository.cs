@@ -23,6 +23,7 @@ namespace Loan_API.Implementation
             from rca in rcaGroup.DefaultIfEmpty()
                         join rpm in _dbContext.RechargePaymentMethod on rc.PaymentMethodID equals rpm.Id into rpmGroup
                         from rpm in rpmGroup.DefaultIfEmpty()
+                        orderby rc.RechargeID descending
                         select new RechargeDetailDTO
                         {
                             RechargeID = rc.RechargeID,

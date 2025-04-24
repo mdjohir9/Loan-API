@@ -44,6 +44,7 @@ namespace Loan_API.Implementation
                             PaymentDate = li.PaymentDate,
                             Status = li.Status,
                             AmountPaid = li.AmountPaid,
+                            LateCharge=li.LateCharge,
                             PayMethodName = pm != null ? pm.Name : null,
                             LoanNumber = l.LoanNumber,
                             LoanAmount = l.LoanAmount,

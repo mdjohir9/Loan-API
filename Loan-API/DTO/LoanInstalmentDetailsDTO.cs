@@ -21,5 +21,6 @@
         public int? PlanID { get; set; }
         public string? PlanName { get; set; }
         public decimal ? TotalPayableAmount { get; set; }
+        public decimal ? LateCharge { get; set; }
     }
 }

@@ -153,7 +153,6 @@ namespace Loan_API.Controllers
                     CustomerID = approveDto.CustomerID,
                     PayMethodId = approveDto.PayMethodID,
                     DisbursementDate = DateTime.UtcNow,
-                    LateCharge =result.LateCharge,
                     DepositAmount = result.DepositAmount,
                     PlanID=approveDto.PlanID,
 
@@ -176,7 +175,9 @@ namespace Loan_API.Controllers
                         PaymentDate = DateOnly.FromDateTime(loanStartDate.AddMonths(i)), 
                         Status = 0, 
                         PayMethodId = approveDto.PayMethodID,
-                        AmountPaid = result.MonthlyInstallment 
+                        AmountPaid = result.MonthlyInstallment,
+                        LateCharge = result.LateCharge,
+
                     };
                     instalments.Add(instalment);
                 }

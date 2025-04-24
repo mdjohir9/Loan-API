@@ -29,7 +29,7 @@ namespace Loan_API.Implementation
 
                                 join lp in _dbContext.LoanPlan on la.PlanID equals lp.PlanID into lpJoin
                                 from lp in lpJoin.DefaultIfEmpty()
-
+                                orderby la.LoanID descending
                                 select new LoanDetailesDTO
                                 {
                                     LoanId = la.LoanID,
