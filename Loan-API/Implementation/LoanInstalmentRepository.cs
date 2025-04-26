@@ -35,7 +35,7 @@ namespace Loan_API.Implementation
                         select new LoanInstalmentDetailsDTO
                         {
                             FullName = cpi.FullName,
-                            CustommerImage = $"{baseUrl}/0001/CustommerImage/{cpi.CustommerImage}",
+                            CustommerImage = $"{baseUrl}/1111/CustommerImage/{cpi.CustommerImage}",
                             CustCardNo = cpi.CustCardNo,
                             InstalmentID = li.InstalmentID,
                             LoanID = li.LoanID,
@@ -74,7 +74,7 @@ namespace Loan_API.Implementation
                         select new LoanInstalmentDetailsDTO
                         {
                             FullName = cpi.FullName,
-                            CustommerImage = $"{baseUrl}/0001/CustommerImage/{cpi.CustommerImage}",
+                            CustommerImage = $"{baseUrl}/1111/CustommerImage/{cpi.CustommerImage}",
                             CustCardNo = cpi.CustCardNo,
                             InstalmentID = li.InstalmentID,
                             LoanID = li.LoanID,
@@ -88,6 +88,7 @@ namespace Loan_API.Implementation
                             LoanAmount = l.LoanAmount,
                             DueAmount = l.DueAmount,
                             PaidAmount = l.PaidAmount,
+                            LateCharge=li.LateCharge,
                             LoanStartDate = l.LoanStartDate,
                             LoanEndDate = l.LoanEndDate,
                             TotalPayableAmount = l.TotalPayableAmount

@@ -9,6 +9,13 @@ namespace Loan_API.Entities
         public int WithdrawaID { get; set; }
 
         [Required]
+        public int PaymentMethodID { get; set; }
+
+
+        [Required]
+        public string? BankName { get; set; }
+
+        [Required]
         [StringLength(20)]
         public string AccountNumber { get; set; } = null!;
 
@@ -16,16 +23,12 @@ namespace Loan_API.Entities
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
-        [Required]
-        public int PaymentMethodID { get; set; }
 
-        [ForeignKey(nameof(PaymentMethodID))]
-        public PaymentMethod PaymentMethod { get; set; } = null!;
 
         [Required]
         public DateTime RequestedDate { get; set; } = DateTime.UtcNow;
 
-        public bool IsApproved { get; set; } = false;
+        public bool? IsApproved { get; set; }
 
         [StringLength(100)]
         public string? TransactionCode { get; set; } 
@@ -33,9 +36,19 @@ namespace Loan_API.Entities
         [StringLength(500)]
         public string? AdminRemarks { get; set; }
 
-        public DateTime? ProcessedDate { get; set; }
+        public DateTime? ApproveAt { get; set; }
 
         [StringLength(50)]
-        public string? ProcessedBy { get; set; }
+        public int? ApproveBy { get; set; }   
+        public DateTime? RejectAt { get; set; }
+
+        [StringLength(50)]
+        public int? RejectBy { get; set; }
+
+        [Required]
+        public int CustommerID { get; set; }
+
+        [ForeignKey(nameof(CustommerID))]
+        public CustommerPersonnelInfo CustommerPersonnelInfo { get; set; } = null!;
     }
 }

@@ -22,6 +22,7 @@ namespace Loan_API.Repository
 
         IAccountRepository Account { get; }
         IRechargeRepository Recharge { get; }
+        IWithdrawRepository Withdraw { get; }
         Task<IDbContextTransaction> BeginTransactionAsync();
         Task<int> Save();
     }

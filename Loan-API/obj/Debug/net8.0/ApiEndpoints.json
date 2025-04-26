@@ -954,5 +954,73 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.WithdrawController",
+    "Method": "ApproveWithdrawRequest",
+    "RelativePath": "api/Withdraw/approve/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "isApproved",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.WithdrawController",
+    "Method": "PostWithdrawRequest",
+    "RelativePath": "api/Withdraw/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "withdrawDto",
+        "Type": "Loan_API.DTO.WithdrawRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.WithdrawController",
+    "Method": "GetAllWithdraws",
+    "RelativePath": "api/Withdraw/withdraw-requests",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.WithdrawController",
+    "Method": "GetAllWithdrawsByCustomerId",
+    "RelativePath": "api/Withdraw/withdraw-requests-by-customerId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

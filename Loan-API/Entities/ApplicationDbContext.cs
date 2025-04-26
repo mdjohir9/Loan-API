@@ -26,6 +26,8 @@ namespace Loan_API.Entities
         public DbSet<AccountBalance> AccountBalance { get; set; }
         public DbSet<TransactionType> TransactionType { get; set; }
         public DbSet <Recharge> Recharge { get; set; }
+        public DbSet<Withdraw> Withdraw { get; set; }
+
         public DbSet <RechargePaymentMethod> RechargePaymentMethod { get; set; }
         public DbSet <RechargeAccount> RechargeAccount { get; set; }
 

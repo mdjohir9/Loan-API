@@ -40,6 +40,7 @@ namespace Loan_API.Implementation
             RechargeAccount = new RechargeAccountRepository(_dbContext);
             RechargePaymentMethod= new RechargePaymentMethodRepository(_dbContext);
             Recharge = new RechargeRepository(_dbContext);
+            Withdraw = new WithdrawRepository(_dbContext, _httpContextAccessor);
         }
 
         public ICustommerRepository Custommer { get; private set; }
@@ -60,6 +61,8 @@ namespace Loan_API.Implementation
         public IRechargePaymentMethodRepository RechargePaymentMethod { get; private set; }
         public IRechargeAccountRepository RechargeAccount { get; private set; }
         public IRechargeRepository Recharge { get; private set; }
+
+        public IWithdrawRepository Withdraw { get; private set; }
         public async Task<IDbContextTransaction> BeginTransactionAsync()
         {
             return await _dbContext.Database.BeginTransactionAsync();

@@ -4,6 +4,7 @@ using Loan_API.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Loan_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250426072946_withdraw_table_add")]
+    partial class withdraw_table_add
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1078,32 +1081,21 @@ namespace Loan_API.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime?>("ApproveAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ApproveBy")
-                        .HasMaxLength(50)
-                        .HasColumnType("int");
-
-                    b.Property<string>("BankName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("CustommerID")
                         .HasColumnType("int");
 
-                    b.Property<bool?>("IsApproved")
+                    b.Property<bool>("IsApproved")
                         .HasColumnType("bit");
 
                     b.Property<int>("PaymentMethodID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("RejectAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("RejectBy")
+                    b.Property<string>("ProcessedBy")
                         .HasMaxLength(50)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("ProcessedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("RequestedDate")
                         .HasColumnType("datetime2");
