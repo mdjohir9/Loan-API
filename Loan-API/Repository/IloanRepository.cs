@@ -6,6 +6,7 @@ namespace Loan_API.Repository
     public interface IloanRepository : IGenericRepository<Loan>
     {
         Task<List<LoanDetailesDTO>> GetAllLoanDetailsAsync();
+        Task<LoanDetailesDTO> GetLoanDetailsByIdAsync(int loanId);
 
     }
 }

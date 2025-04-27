@@ -22,10 +22,32 @@ namespace Loan_API.Controllers
             _cache = cache;
             _unitOfWork = unitOfWork;
         }
+
+        [HttpGet]
+        [Route("withdraw/{id}")]
+        public async Task<IActionResult> GetWithdrawById(int id)
+        {
+            try
+            {
+                var result = await _unitOfWork.Withdraw.GetByIdAsync(id);
+
+                if (result == null)
+                {
+                    return NotFound(new { StatusCode = 404, message = "Withdraw requests not found!" });
+                }
+
+                return Ok(new { StatusCode = 200, message = "Success", data = result });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
+            }
+        }
         [HttpGet]
         [Route("withdraw-requests")]
         public async Task<IActionResult> GetAllWithdraws()
         {
+   
             try
             {
                 var result = await _unitOfWork.Withdraw.GetAllWithdrawDetailsAsync();
@@ -122,7 +144,7 @@ namespace Loan_API.Controllers
 
 
         [HttpPut("approve/{id}")]
-        public async Task<IActionResult> ApproveWithdrawRequest(int id,int userId, bool isApproved)
+        public async Task<IActionResult> ApproveWithdrawRequest(int id,int userId,string transctionId)
         {
             using var transaction = await _unitOfWork.BeginTransactionAsync();
             try
@@ -140,10 +162,12 @@ namespace Loan_API.Controllers
 
                 var customerId = withdraw.CustommerID;
 
-                withdraw.IsApproved = isApproved;
+                withdraw.IsApproved = true;
                 withdraw.ApproveAt = DateTime.UtcNow;
                 withdraw.ApproveBy = userId;
-                withdraw.AdminRemarks = "Approved"; // You can make this dynamic if needed
+                withdraw.AdminRemarks = "Approved"; 
+                withdraw.TransactionCode = transctionId;
+
                 await _unitOfWork.Withdraw.UpdateAsync(withdraw);
 
                 var account = _unitOfWork.Account.GetAccountInfoCustomerId(customerId);
@@ -194,6 +218,35 @@ namespace Loan_API.Controllers
                     Error = ex.Message
                 });
             }
+        }
+
+        [HttpPut("reject/{id}")]
+        public async Task<IActionResult> RejectWithdrawRequest(int id, int userId, string remarks)
+        {
+            var withdraw = await _unitOfWork.Withdraw.GetByIdAsync(id);
+            if (withdraw == null)
+            {
+                return NotFound(new { StatusCode = 404, Message = $"Withdraw request with ID {id} not found." });
+            }
+
+            if (withdraw.IsApproved == true)
+            {
+                return BadRequest(new { StatusCode = 400, Message = "Withdraw request already approved." });
+            }
+
+            withdraw.IsApproved = false;
+            withdraw.RejectAt = DateTime.UtcNow;
+            withdraw.RejectBy = userId;
+            withdraw.AdminRemarks = string.IsNullOrEmpty(remarks) ? "Rejected" : remarks;
+
+            await _unitOfWork.Withdraw.UpdateAsync(withdraw);
+            await _unitOfWork.Save();
+
+            return Ok(new
+            {
+                StatusCode = 200,
+                Message = "Withdraw request rejected successfully."
+            });
         }
 
 

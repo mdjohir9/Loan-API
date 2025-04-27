@@ -351,6 +351,22 @@
   },
   {
     "ContainingType": "Loan_API.Controllers.LoanController",
+    "Method": "GetLoanById",
+    "RelativePath": "api/Loan/loan/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanController",
     "Method": "GetAllLoans",
     "RelativePath": "api/Loan/loans",
     "HttpMethod": "GET",
@@ -974,8 +990,8 @@
         "IsRequired": false
       },
       {
-        "Name": "isApproved",
-        "Type": "System.Boolean",
+        "Name": "transctionId",
+        "Type": "System.String",
         "IsRequired": false
       }
     ],
@@ -993,6 +1009,32 @@
         "Name": "withdrawDto",
         "Type": "Loan_API.DTO.WithdrawRequestDTO",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.WithdrawController",
+    "Method": "RejectWithdrawRequest",
+    "RelativePath": "api/Withdraw/reject/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "remarks",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -1019,6 +1061,22 @@
         "Name": "customerId",
         "Type": "System.Int32",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.WithdrawController",
+    "Method": "GetWithdrawById",
+    "RelativePath": "api/Withdraw/withdraw/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

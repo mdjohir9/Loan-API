@@ -41,5 +41,27 @@ namespace Loan_API.Controllers
                 return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
             }
         }
+
+        [HttpGet]
+        [Route("loan/{id}")]
+        public async Task<IActionResult> GetLoanById(int id)
+        {
+            try
+            {
+                var result = await _unitOfWork.Loan.GetLoanDetailsByIdAsync(id);
+
+                if (result == null)
+                {
+                    return NotFound(new { StatusCode = 404, message = "Loan not found!" });
+                }
+
+                return Ok(new { StatusCode = 200, message = "Success", data = result });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
+            }
+        }
+
     }
 }
