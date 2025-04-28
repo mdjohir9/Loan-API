@@ -52,7 +52,7 @@ namespace Loan_API.Implementation
         }
 
 
-        public async Task<LoanDetailesDTO> GetLoanDetailsByIdAsync(int loanId)
+        public async Task<LoanStatementDTO> GetLoanDetailsByIdAsync(int loanId)
         {
             var request = _httpContextAccessor.HttpContext.Request;
             var baseUrl = $"{request.Scheme}://{request.Host}{request.PathBase}";
@@ -65,7 +65,7 @@ namespace Loan_API.Implementation
                                 join lp in _dbContext.LoanPlan on la.PlanID equals lp.PlanID into lpJoin
                                 from lp in lpJoin.DefaultIfEmpty()
                                 where la.LoanID == loanId
-                                select new LoanDetailesDTO
+                                select new LoanStatementDTO
                                 {
                                     LoanId = la.LoanID,
                                     CustomerID = la.CustomerID,
@@ -79,7 +79,14 @@ namespace Loan_API.Implementation
                                     DisbursementDate = la.DisbursementDate,
                                     Status = la.LoanStatus,
                                     PaymentMethodName = pm != null ? pm.Name : null,
-                                    PlanName = lp != null ? lp.PlanName : null
+                                    PlanName = lp != null ? lp.PlanName : null,
+                                    CompanyLogo = $"{baseUrl}/1111/CompanyDocuments/logo.png",
+                                    CompanyName = "Upstart Loan",
+                                    BankLogo = $"{baseUrl}/1111/CompanyDocuments/bankLogo.jpg",
+                                    AuthorizeSignature = $"{baseUrl}/1111/CompanyDocuments/authorizeSignature.png",
+                                    Approvelogo = $"{baseUrl}/1111/CompanyDocuments/approvelogo.jpg",
+                                   
+
                                 }).FirstOrDefaultAsync();
 
             return result;

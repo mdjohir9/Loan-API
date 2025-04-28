@@ -1,6 +1,8 @@
-﻿namespace Loan_API.DTO
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace Loan_API.DTO
 {
-    public class LoanDetailesDTO
+    public class LoanStatementDTO
     {
         public int LoanId { get; set; }
         public int CustomerID { get; set; }
@@ -16,7 +18,11 @@
         public byte? Status { get; set; }
         public string? PaymentMethodName { get; set; }
         public string? PlanName { get; set; }
-
-
+        public string? CompanyLogo { get; set; }
+        public string? CompanyName { get; set; }
+        public string? BankLogo { get; set; }
+        public string? AuthorizeSignature { get; set; }
+        public string? Approvelogo { get; set; }
+        
     }
 }

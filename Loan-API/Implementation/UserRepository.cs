@@ -164,6 +164,7 @@ namespace Loan_API.Implementation
                 new { path = "wallet/recharge", title = "Recharge", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
                 new { path = "wallet/all-recharge", title = "All Recharge", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
                 new { path = "wallet/withdraw", title = "Withdraw", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
+                new { path = "wallet/withdraw-bye-customer", title = "Withdraw List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
             }
                 });
 
