@@ -39,7 +39,7 @@ namespace Loan_API.Implementation
             Account= new AccountRepository(_dbContext);
             RechargeAccount = new RechargeAccountRepository(_dbContext);
             RechargePaymentMethod= new RechargePaymentMethodRepository(_dbContext);
-            Recharge = new RechargeRepository(_dbContext);
+            Recharge = new RechargeRepository(_dbContext, _httpContextAccessor);
             Withdraw = new WithdrawRepository(_dbContext, _httpContextAccessor);
         }
 

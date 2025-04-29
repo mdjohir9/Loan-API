@@ -8,14 +8,20 @@ namespace Loan_API.Implementation
     public class RechargeRepository : GenericRepository<Recharge>, IRechargeRepository
     {
         private readonly ApplicationDbContext _dbContext;
-        public RechargeRepository(ApplicationDbContext dbContext) : base(dbContext)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public RechargeRepository(ApplicationDbContext dbContext, IHttpContextAccessor httpContextAccessor) : base(dbContext)
         {
             _dbContext = dbContext;
+            _httpContextAccessor = httpContextAccessor;
+
         }
 
 
         public async Task<List<RechargeDetailDTO>> GetAllRechargeDetailsAsync()
         {
+            var request = _httpContextAccessor.HttpContext.Request;
+            var baseUrl = $"{request.Scheme}://{request.Host}{request.PathBase}";
+
             var query = from rc in _dbContext.Recharge
                         join cei in _dbContext.CustommerPersonnelInfo on rc.CustommerID equals cei.CustomerID into ceiGroup
             from cei in ceiGroup.DefaultIfEmpty()
@@ -37,7 +43,7 @@ namespace Loan_API.Implementation
                             ApproveBy = rc.ApproveBy,
                             CustommerID = rc.CustommerID,
                             FullName = cei.FullName,
-                            CustommerImage = cei.CustommerImage,
+                            CustommerImage = $"{baseUrl}/1111/CustommerImage/{cei.CustommerImage}",
                             CustCardNo = cei.CustCardNo,
                             BankOrWalletName = rca.BankOrWalletName,
                             AccountName = rca.AccountName,
@@ -50,6 +56,9 @@ namespace Loan_API.Implementation
 
         public async Task<List<RechargeDetailDTO>> GetlRechargeDetailsByeIdAsync(int customerId)
         {
+            var request = _httpContextAccessor.HttpContext.Request;
+            var baseUrl = $"{request.Scheme}://{request.Host}{request.PathBase}";
+
             var query = from rc in _dbContext.Recharge
                         join cei in _dbContext.CustommerPersonnelInfo on rc.CustommerID equals cei.CustomerID into ceiGroup
                         from cei in ceiGroup.DefaultIfEmpty()
@@ -71,7 +80,7 @@ namespace Loan_API.Implementation
                             ApproveBy = rc.ApproveBy,
                             CustommerID = rc.CustommerID,
                             FullName = cei.FullName,
-                            CustommerImage = cei.CustommerImage,
+                            CustommerImage = $"{baseUrl}/1111/CustommerImage/{cei.CustommerImage}",
                             CustCardNo = cei.CustCardNo,
                             BankOrWalletName = rca.BankOrWalletName,
                             AccountName = rca.AccountName,

@@ -36,7 +36,7 @@ namespace Loan_API.Implementation
                                     CustomerID = la.CustomerID,
                                     CustCardNo = cpi != null ? cpi.CustCardNo : null,
                                     FullName = cpi != null ? cpi.FullName : null,
-                                    CustommerImage = $"{baseUrl}/0001/CustommerImage/{cpi.CustommerImage}",
+                                    CustommerImage = $"{baseUrl}/1111/CustommerImage/{cpi.CustommerImage}",
                                     Gender = cpi != null ? cpi.Gender : null,
                                     LoanAmount = la.LoanAmount,
                                     RepaymentPeriod = la.RepaymentPeriod,

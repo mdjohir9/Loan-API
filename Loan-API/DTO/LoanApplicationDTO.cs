@@ -38,7 +38,7 @@ namespace Loan_API.DTO
 
         public int CustomerID { get; set; }
         [Required]
-        public int? PayMethodID { get; set; }
+        public int PayMethodID { get; set; }
 
 
     }
