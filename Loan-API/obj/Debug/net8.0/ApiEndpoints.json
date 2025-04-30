@@ -367,6 +367,22 @@
   },
   {
     "ContainingType": "Loan_API.Controllers.LoanController",
+    "Method": "GetLoanBalanceByCustomerId",
+    "RelativePath": "api/Loan/loan/balance/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanController",
     "Method": "GetAllLoans",
     "RelativePath": "api/Loan/loans",
     "HttpMethod": "GET",

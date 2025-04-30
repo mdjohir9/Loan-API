@@ -63,5 +63,27 @@ namespace Loan_API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("balance/{customerId}")]
+        public async Task<IActionResult> GetLoanBalanceByCustomerId(int customerId)
+        {
+            try
+            {
+                var result = await _unitOfWork.Loan.GetLoanBalanceByCustomerIdAsync(customerId);
+
+                if (result == null)
+                {
+                    return NotFound(new { StatusCode = 404, message = "Loan balance not found!" });
+                }
+
+                return Ok(new { StatusCode = 200, message = "Success", data = result });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
+            }
+        }
+
+
     }
 }

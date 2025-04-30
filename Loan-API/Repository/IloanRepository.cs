@@ -7,6 +7,7 @@ namespace Loan_API.Repository
     {
         Task<List<LoanDetailesDTO>> GetAllLoanDetailsAsync();
         Task<LoanStatementDTO> GetLoanDetailsByIdAsync(int loanId);
+        Task<LoanBalanceDto> GetLoanBalanceByCustomerIdAsync(int customerId);
 
     }
 }
