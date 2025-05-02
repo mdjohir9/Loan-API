@@ -450,7 +450,8 @@ namespace Loan_API.Implementation
                     EducationLevel = dto.EducationLevel,
                     NationalIDOrPassport = dto.NationalIDOrPassport,
                     TaxIdentificationNumber = dto.TaxIdentificationNumber,
-                    DrivingLicenseNumber = dto.DrivingLicenseNumber
+                    DrivingLicenseNumber = dto.DrivingLicenseNumber,
+                   
                 };
 
                 _dbContext.CustommerPersonnelInfo.Add(personalInfo);

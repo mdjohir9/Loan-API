@@ -34,7 +34,7 @@ namespace Loan_API.Implementation
             Loan = new LoanRepository(_dbContext, _httpContextAccessor);
             LoanInstalment = new LoanInstalmentRepository(_dbContext ,_httpContextAccessor);
             LoanPlan = new LoanPlanRepository(_dbContext);
-            Transction = new TransctionRepository(_dbContext);
+            Transction = new TransctionRepository(_dbContext, _httpContextAccessor);
 
             Account= new AccountRepository(_dbContext);
             RechargeAccount = new RechargeAccountRepository(_dbContext);
