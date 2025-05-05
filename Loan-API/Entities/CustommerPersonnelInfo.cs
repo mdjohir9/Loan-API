@@ -32,7 +32,7 @@ namespace Loan_API.Entities
         public string? Nationality { get; set; }
         public string? MaritalStatus { get; set; } // Single, Married, Divorced
 
-        public int? EducationLevel { get; set; } // High School, Bachelor, Master, PhD
+        public string? EducationLevel { get; set; } // High School, Bachelor, Master, PhD
 
         [MaxLength(100)]
         public string? Occupation { get; set; }

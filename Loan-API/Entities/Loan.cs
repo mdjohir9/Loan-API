@@ -46,7 +46,7 @@ namespace Loan_API.Entities
         public DateTime? LoanEndDate { get; set; } 
 
         [Required]
-        public byte LoanStatus { get; set; }
+        public byte LoanStatus { get; set; }//1=loan active ; 2=paid ; 3= Waived ;
 
         public string? Purpose { get; set; } 
 

@@ -15,7 +15,7 @@ namespace Loan_API.DTO
         public string? Nationality { get; set; }
         public string? MaritalStatus { get; set; }
         public string? Occupation { get; set; }
-        public int? EducationLevel { get; set; }
+        public string? EducationLevel { get; set; }
         public string? NationalIDOrPassport { get; set; }
         public string? TaxIdentificationNumber { get; set; }
         public string? DrivingLicenseNumber { get; set; }

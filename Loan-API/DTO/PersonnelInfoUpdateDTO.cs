@@ -22,7 +22,7 @@ namespace Loan_API.DTO
         public string? Nationality { get; set; }
         [Required]
         public string? MaritalStatus { get; set; }
-        public int? EducationLevel { get; set; }
+        public string? EducationLevel { get; set; }
         [MaxLength(100)]
         public string? Occupation { get; set; }
         [MaxLength(50)]

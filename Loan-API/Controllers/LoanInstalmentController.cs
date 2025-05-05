@@ -173,7 +173,11 @@ namespace Loan_API.Controllers
 
                 // Update loan balances
                 loan.DueAmount -= instalment.AmountPaid;
-                if (loan.DueAmount < 0) loan.DueAmount = 0;
+                if (loan.DueAmount <= 0) 
+                { 
+                    loan.DueAmount = 0;
+                    loan.LoanStatus = 2;
+                }
                 loan.PaidAmount += instalment.AmountPaid;
                 await _unitOfWork.Loan.UpdateAsync(loan);
 

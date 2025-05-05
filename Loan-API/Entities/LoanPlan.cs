@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Loan_API.Entities
 {
+    [SoftDelete]
     public class LoanPlan
     {
         [Key]

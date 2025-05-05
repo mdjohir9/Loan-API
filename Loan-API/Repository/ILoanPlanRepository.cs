@@ -4,5 +4,7 @@ namespace Loan_API.Repository
 {
     public interface ILoanPlanRepository : IGenericRepository<LoanPlan>
     {
+        Task<IEnumerable<LoanPlan>> GetAllActiveAsync();
+
     }
 }

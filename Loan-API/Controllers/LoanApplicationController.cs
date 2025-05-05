@@ -80,7 +80,7 @@ namespace Loan_API.Controllers
             // Get the interest rate and calculate the monthly rate
             decimal interestRate = loanPlan.InterestRate;
             var result = await _unitOfWork.LoanApplication.CalculateEMIAsync(
-                LoanAmount, interestRate, RepaymentPeriod
+                LoanAmount, interestRate, RepaymentPeriod,loanPlan.ProcessingFee, loanPlan.LatePaymentPenalty
             );
 
             return Ok(new { StatusCode = 200, message = "Success", data = result });
@@ -232,7 +232,7 @@ namespace Loan_API.Controllers
 
                 // Calculate EMI
                 var result = await _unitOfWork.LoanApplication.CalculateEMIAsync(
-                    approveDto.LoanAmount, interestRate, approveDto.RepaymentPeriod);
+                    approveDto.LoanAmount, interestRate, approveDto.RepaymentPeriod, loanPlan.ProcessingFee,loanPlan.LatePaymentPenalty);
 
                 int repaymentPeriod = approveDto.RepaymentPeriod;
 
@@ -471,7 +471,7 @@ namespace Loan_API.Controllers
                 decimal interestRate = loanPlan.InterestRate;
 
                 var result = await _unitOfWork.LoanApplication.CalculateEMIAsync(
-                    loanDto.LoanAmount, interestRate, loanDto.RepaymentPeriod);
+                    loanDto.LoanAmount, interestRate, loanDto.RepaymentPeriod, loanPlan.ProcessingFee, loanPlan.LatePaymentPenalty);
 
                 if (account.BalanceAmount < result.DepositAmount)
                 {
@@ -569,7 +569,7 @@ namespace Loan_API.Controllers
                 decimal interestRate = loanPlan.InterestRate;
 
                 var result = await _unitOfWork.LoanApplication.CalculateEMIAsync(
-           loanDto.LoanAmount, interestRate, loanDto.RepaymentPeriod);
+           loanDto.LoanAmount, interestRate, loanDto.RepaymentPeriod, loanPlan.ProcessingFee, loanPlan.LatePaymentPenalty);
 
                 // Update properties
                 existingLoan.CustomerID = loanDto.CustomerID;

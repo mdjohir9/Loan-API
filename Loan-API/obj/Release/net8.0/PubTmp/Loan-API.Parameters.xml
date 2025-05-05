@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="upstartloan42-001-site1" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^E:\\My-personnel-project\\Loan-API\\Loan-API\\obj\\Release\\net8\.0\\PubTmp\\Out\\$" />
+  </parameter>
+  <parameter name="Loan_API.Entities.ApplicationDbContext" description="" value="Server=SQL1003.site4now.net;Database=db_ab879f_upstartloan42;User Id=db_ab879f_upstartloan42_admin;Password=upstartloan42;TrustServerCertificate=True;" tags="dbfullsql">
+    <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^E:\\My-personnel-project\\Loan-API\\Loan-API\\obj\\Release\\net8\.0\\PubTmp\\EFSQLScripts\\Loan_API\.Entities\.ApplicationDbContext\.sql$" />
+  </parameter>
+</parameters>

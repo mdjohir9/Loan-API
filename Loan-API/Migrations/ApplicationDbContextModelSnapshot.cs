@@ -290,8 +290,8 @@ namespace Loan_API.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("EducationLevel")
-                        .HasColumnType("int");
+                    b.Property<string>("EducationLevel")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
                         .IsRequired()
@@ -830,6 +830,28 @@ namespace Loan_API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RechargePaymentMethod");
+                });
+
+            modelBuilder.Entity("Loan_API.Entities.TblCountry", b =>
+                {
+                    b.Property<int>("CountryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CountryID"));
+
+                    b.Property<string>("CountryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ThreeCharCountryCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwoCharCountryCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CountryID");
+
+                    b.ToTable("TblCountry");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.Transaction", b =>

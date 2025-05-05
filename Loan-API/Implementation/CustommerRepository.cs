@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.Design;
+using System.Diagnostics.Metrics;
 
 namespace Loan_API.Implementation
 {
@@ -600,6 +601,21 @@ namespace Loan_API.Implementation
             }
         }
 
+
+        public async Task<List<TblCountry>> GetAllCounterAsync()
+        {
+            return await _dbContext.TblCountry
+                .Select(c => new TblCountry
+                {
+                    CountryID = c.CountryID,
+                    CountryName = c.CountryName,
+                    TwoCharCountryCode = c.TwoCharCountryCode,
+                    ThreeCharCountryCode=c.ThreeCharCountryCode,
+
+                })
+                .OrderBy(c => c.CountryName)
+                .ToListAsync();
+        }
 
     }
 }

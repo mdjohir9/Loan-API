@@ -172,6 +172,46 @@ namespace Loan_API.Implementation
             });
         }
 
+
+        public async Task<EMIResultDTO> CalculateEMIAsync(decimal loanAmount, decimal annualInterestRate, int tenureMonths, decimal depositPercentage, decimal lateChargePers)
+        {
+            return await Task.Run(() =>
+            {
+                decimal monthlyInterestRate = annualInterestRate / 100 / 12;
+                decimal emi, totalInterest, totalPayable;
+
+                if (monthlyInterestRate > 0)
+                {
+                    emi = (loanAmount * monthlyInterestRate *
+                          (decimal)Math.Pow((double)(1 + monthlyInterestRate), tenureMonths)) /
+                         ((decimal)Math.Pow((double)(1 + monthlyInterestRate), tenureMonths) - 1);
+
+                    totalPayable = emi * tenureMonths;
+                    totalInterest = totalPayable - loanAmount;
+                }
+                else
+                {
+                    emi = loanAmount / tenureMonths;
+                    totalInterest = 0;
+                    totalPayable = loanAmount;
+                }
+
+                // Additional Calculations
+                decimal depositAmount = loanAmount * (depositPercentage / 100);
+                decimal lateCharge = emi * (lateChargePers / 100);
+
+
+                return new EMIResultDTO
+                {
+                    MonthlyInstallment = Math.Round(emi, 2),
+                    TotalInterest = Math.Round(totalInterest, 2),
+                    TotalPayable = Math.Round(totalPayable, 2),
+                    DepositAmount = Math.Round(depositAmount, 2),
+                    LateCharge = Math.Round(lateCharge, 2)
+                };
+            });
+        }
+
         //public async Task<EMIResultDTO> CalculateEMIAsync(decimal loanAmount, decimal annualInterestRate, int tenureMonths)
         //{
         //    return await Task.Run(() =>

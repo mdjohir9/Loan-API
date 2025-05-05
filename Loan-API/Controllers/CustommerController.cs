@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel.Design;
+using System.Diagnostics.Metrics;
 
 namespace Loan_API.Controllers
 {
@@ -140,92 +141,92 @@ namespace Loan_API.Controllers
 
 
 
-        [HttpPost("create")]
-        public async Task<IActionResult> PostCustomer([FromBody] CustommerPersonnelInfoDTO customerDto)
-        {
-            try
-            {
-                if (customerDto == null)
-                {
-                    return BadRequest("Customer personnel information cannot be null.");
-                }
+        //[HttpPost("create")]
+        //public async Task<IActionResult> PostCustomer([FromBody] CustommerPersonnelInfoDTO customerDto)
+        //{
+        //    try
+        //    {
+        //        if (customerDto == null)
+        //        {
+        //            return BadRequest("Customer personnel information cannot be null.");
+        //        }
 
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
+        //        if (!ModelState.IsValid)
+        //        {
+        //            return BadRequest(ModelState);
+        //        }
 
-                int userId = customerDto.UserId ?? 0; // Convert nullable int to non-nullable
+        //        int userId = customerDto.UserId ?? 0; // Convert nullable int to non-nullable
 
-                string result = null;
-                string resultSignature = null;
-                string CompanyId = "1111";
+        //        string result = null;
+        //        string resultSignature = null;
+        //        string CompanyId = "1111";
 
-                // Process Employee Image if available
-                if (customerDto.CustommerImage != null && customerDto.CustommerImage.Any())
-                {
-                    string DocumentType = "CustommerImage";
-                    result = await _unitOfWork.Custommer.SaveDocumentsListsAsync(
-                        customerDto.CustommerImage,
-                        customerDto.CustCardNo,
-                        CompanyId,
-                        DocumentType
-                    );
-                }
+        //        // Process Employee Image if available
+        //        if (customerDto.CustommerImage != null && customerDto.CustommerImage.Any())
+        //        {
+        //            string DocumentType = "CustommerImage";
+        //            result = await _unitOfWork.Custommer.SaveDocumentsListsAsync(
+        //                customerDto.CustommerImage,
+        //                customerDto.CustCardNo,
+        //                CompanyId,
+        //                DocumentType
+        //            );
+        //        }
 
-                // Process Signature Image if available
-                if (customerDto.CustommerSignature != null && customerDto.CustommerSignature.Any())
-                {
-                    string DocumentTypeSigImage = "CustommerSignature";
-                    resultSignature = await _unitOfWork.Custommer.SaveDocumentsListsAsync(
-                        customerDto.CustommerSignature,
-                        customerDto.CustCardNo,
-                        CompanyId,
-                        DocumentTypeSigImage
-                    );
-                }
+        //        // Process Signature Image if available
+        //        if (customerDto.CustommerSignature != null && customerDto.CustommerSignature.Any())
+        //        {
+        //            string DocumentTypeSigImage = "CustommerSignature";
+        //            resultSignature = await _unitOfWork.Custommer.SaveDocumentsListsAsync(
+        //                customerDto.CustommerSignature,
+        //                customerDto.CustCardNo,
+        //                CompanyId,
+        //                DocumentTypeSigImage
+        //            );
+        //        }
 
-                var customer = new CustommerPersonnelInfo
-                {
-                    CustCardNo = customerDto.CustCardNo,
-                    CustommerImage = result,
-                    CustommerSignature = resultSignature,
-                    CompanyId = customerDto.CompanyId,
-                    FullName = customerDto.FullName,
-                    Gender = customerDto.Gender,
-                    DateOfBirth = customerDto.DateOfBirth,
-                    Nationality = customerDto.Nationality,
-                    MaritalStatus = customerDto.MaritalStatus,
-                    Occupation = customerDto.Occupation,
-                    DrivingLicenseNumber = customerDto.DrivingLicenseNumber,
-                    NationalIDOrPassport = customerDto.NationalIDOrPassport,
-                    TaxIdentificationNumber = customerDto.TaxIdentificationNumber,
-                    EducationLevel=customerDto.EducationLevel,
-                    CreatedAt = DateTime.Now,
-                    CreatedBy = userId, 
-                    IsActive = false
-                };
+        //        var customer = new CustommerPersonnelInfo
+        //        {
+        //            CustCardNo = customerDto.CustCardNo,
+        //            CustommerImage = result,
+        //            CustommerSignature = resultSignature,
+        //            CompanyId = customerDto.CompanyId,
+        //            FullName = customerDto.FullName,
+        //            Gender = customerDto.Gender,
+        //            DateOfBirth = customerDto.DateOfBirth,
+        //            Nationality = customerDto.Nationality,
+        //            MaritalStatus = customerDto.MaritalStatus,
+        //            Occupation = customerDto.Occupation,
+        //            DrivingLicenseNumber = customerDto.DrivingLicenseNumber,
+        //            NationalIDOrPassport = customerDto.NationalIDOrPassport,
+        //            TaxIdentificationNumber = customerDto.TaxIdentificationNumber,
+        //            EducationLevel=customerDto.EducationLevel,
+        //            CreatedAt = DateTime.Now,
+        //            CreatedBy = userId, 
+        //            IsActive = false
+        //        };
 
-                await _unitOfWork.Custommer.AddAsync(customer);
-                await _unitOfWork.Save(); 
+        //        await _unitOfWork.Custommer.AddAsync(customer);
+        //        await _unitOfWork.Save(); 
 
 
-                int newCustomerId = customer.CustomerID; // Assuming CustomerID is an identity field
+        //        int newCustomerId = customer.CustomerID; // Assuming CustomerID is an identity field
 
-                // **Step 3: Update User with the New Customer ID**
-                var user = new User { UserId = userId };
-                await _unitOfWork.User.UpdateAsync(user, "ReferenceID", newCustomerId.ToString()); // Ensure ReferenceID is string
+        //        // **Step 3: Update User with the New Customer ID**
+        //        var user = new User { UserId = userId };
+        //        await _unitOfWork.User.UpdateAsync(user, "ReferenceID", newCustomerId.ToString()); // Ensure ReferenceID is string
 
-                // **Step 4: Save Changes** 
-                await _unitOfWork.Save();
+        //        // **Step 4: Save Changes** 
+        //        await _unitOfWork.Save();
 
-                return Ok(new { StatusCode = 200, message = "Customer personnel information created successfully." });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"An error occurred: {ex.Message}");
-            }
-        }
+        //        return Ok(new { StatusCode = 200, message = "Customer personnel information created successfully." });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, $"An error occurred: {ex.Message}");
+        //    }
+        //}
 
         [HttpPost("create-full")]
         public async Task<IActionResult> PostFullCustomer([FromBody] CustommerSaveDTO customerDto)
@@ -372,50 +373,50 @@ namespace Loan_API.Controllers
         }
 
 
-        [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateCustomer(int id, [FromBody] PersonnelInfoUpdateDTO customerDto)
-        {
-            try
-            {
-                if (customerDto == null)
-                {
-                    return BadRequest("Customer personnel information cannot be null.");
-                }
+        //[HttpPut("update/{id}")]
+        //public async Task<IActionResult> UpdateCustomer(int id, [FromBody] PersonnelInfoUpdateDTO customerDto)
+        //{
+        //    try
+        //    {
+        //        if (customerDto == null)
+        //        {
+        //            return BadRequest("Customer personnel information cannot be null.");
+        //        }
 
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
+        //        if (!ModelState.IsValid)
+        //        {
+        //            return BadRequest(ModelState);
+        //        }
             
-                var existingCustomer = await _unitOfWork.Custommer.GetByIdAsync(id);
+        //        var existingCustomer = await _unitOfWork.Custommer.GetByIdAsync(id);
 
-                if (existingCustomer == null)
-                {
-                    return NotFound("Customer personnel information not found.");
-                }
+        //        if (existingCustomer == null)
+        //        {
+        //            return NotFound("Customer personnel information not found.");
+        //        }
 
-                existingCustomer.FullName = customerDto.FullName;
-                existingCustomer.Gender = customerDto.Gender;
-                existingCustomer.DateOfBirth = customerDto.DateOfBirth;
-                existingCustomer.Nationality = customerDto.Nationality;
-                existingCustomer.MaritalStatus = customerDto.MaritalStatus;
-                existingCustomer.Occupation = customerDto.Occupation;
-                existingCustomer.NationalIDOrPassport = customerDto.NationalIDOrPassport;
-                existingCustomer.DrivingLicenseNumber = customerDto.DrivingLicenseNumber;
-                existingCustomer.TaxIdentificationNumber = customerDto.TaxIdentificationNumber;
-                existingCustomer.EducationLevel = customerDto.EducationLevel;
-                existingCustomer.UpdatedAt = DateTime.Now;
-                existingCustomer.UpdatedBy = customerDto.UserId; 
+        //        existingCustomer.FullName = customerDto.FullName;
+        //        existingCustomer.Gender = customerDto.Gender;
+        //        existingCustomer.DateOfBirth = customerDto.DateOfBirth;
+        //        existingCustomer.Nationality = customerDto.Nationality;
+        //        existingCustomer.MaritalStatus = customerDto.MaritalStatus;
+        //        existingCustomer.Occupation = customerDto.Occupation;
+        //        existingCustomer.NationalIDOrPassport = customerDto.NationalIDOrPassport;
+        //        existingCustomer.DrivingLicenseNumber = customerDto.DrivingLicenseNumber;
+        //        existingCustomer.TaxIdentificationNumber = customerDto.TaxIdentificationNumber;
+        //        existingCustomer.EducationLevel = customerDto.EducationLevel;
+        //        existingCustomer.UpdatedAt = DateTime.Now;
+        //        existingCustomer.UpdatedBy = customerDto.UserId; 
 
-                await _unitOfWork.Custommer.UpdateAsync(existingCustomer);
-                await _unitOfWork.Save();
-                return Ok(new { StatusCode = 200, message = "Customer personnel information updated successfully." });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"An error occurred: {ex.Message}");
-            }
-        }
+        //        await _unitOfWork.Custommer.UpdateAsync(existingCustomer);
+        //        await _unitOfWork.Save();
+        //        return Ok(new { StatusCode = 200, message = "Customer personnel information updated successfully." });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, $"An error occurred: {ex.Message}");
+        //    }
+        //}
 
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteCustomer(int id)
@@ -437,6 +438,37 @@ namespace Loan_API.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+        }
+
+        [HttpGet]
+        [Route("countries")]
+        public async Task<IActionResult> GetCountries()
+        {
+            try
+            {
+                string cacheKey = "countries";
+
+                if (!_cache.TryGetValue(cacheKey, out List<TblCountry> cachedCountries))
+                {
+                    var result = await _unitOfWork.Custommer.GetAllCounterAsync();
+
+                    _cache.Set(cacheKey, result, TimeSpan.FromMinutes(5));
+
+                    return Ok(new { StatusCode = 200, message = "Success", data = result });
+                }
+                else
+                {
+                    return Ok(new { StatusCode = 200, message = "Success (from cache)", data = cachedCountries });
+                }
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound(new { StatusCode = 404, message = "Countries not found!" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
             }
         }
 

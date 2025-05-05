@@ -30,6 +30,7 @@ namespace Loan_API.Entities
 
         public DbSet <RechargePaymentMethod> RechargePaymentMethod { get; set; }
         public DbSet <RechargeAccount> RechargeAccount { get; set; }
+        public DbSet <TblCountry> TblCountry { get; set; }
 
 
 

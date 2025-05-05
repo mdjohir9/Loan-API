@@ -162,7 +162,7 @@ namespace Loan_API.Implementation
                     submenu = new List<object>
             {
                 new { path = "wallet/recharge", title = "Recharge", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
-                new { path = "wallet/all-recharge", title = "All Recharge", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
+                new { path = "wallet/all-recharge", title = "Recharge List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
                 new { path = "wallet/withdraw", title = "Withdraw", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
                 new { path = "wallet/withdraw-bye-customer", title = "Withdraw List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
             }
@@ -222,9 +222,9 @@ namespace Loan_API.Implementation
                     submenu = new List<object>
             {
                 new { path = "wallet/recharge", title = "Recharge", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
-                new { path = "wallet/recharge-requests", title = "All Recharge", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
+                new { path = "wallet/recharge-requests", title = "Recharge List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
                 new { path = "wallet/withdraw", title = "Withdraw", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
-                new { path = "wallet/all-withdraw", title = "All Withdraw", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
+                new { path = "wallet/all-withdraw", title = "Withdraw List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
 
             }
                 });
@@ -239,7 +239,7 @@ namespace Loan_API.Implementation
                     submenu = new List<object>
             {
                 new { path = "/plans/loan-plans", title = "Add-Plan", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
-                new { path = "/plans/loan-plan-list", title = "Plan-List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
+                new { path = "/plans/loan-plan-list", title = "Plan List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
             }
                 });
 
@@ -254,7 +254,7 @@ namespace Loan_API.Implementation
             {
                 new { path = "/loan/add", title = "Loan Application", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
                 new { path = "/loan/loan-request-list", title = "Loan Application List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
-                new { path = "/loan/all-instalmets", title = "All Instalments", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
+                new { path = "/loan/all-instalmets", title = "Upcoming Instalments", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
                 new { path = "/loan/loan-list", title = "Loan List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
             }
                 });

@@ -1,5 +1,6 @@
 ﻿using Loan_API.DTO;
 using Loan_API.Entities;
+using System.Diagnostics.Metrics;
 using System.Linq.Expressions;
 
 namespace Loan_API.Repository
@@ -17,6 +18,7 @@ namespace Loan_API.Repository
         Task<int> AddCustomerGuarantorAsync(CustommerGuarantorDetailsDTO GuarantorDto, int userId);
         CustommerPersonnelInfo GetPersonnelInfoByCustomerId(int customerId);
         Task<int> AddCustommerAllDataAsync(CustommerSaveDTO dto);
+        Task<List<TblCountry>> GetAllCounterAsync();
 
         Task UpdateCustommerAllDataAsync(CustommerSaveDTO dto, string CustomerImage);
 

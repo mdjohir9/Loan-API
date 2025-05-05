@@ -1,5 +1,6 @@
 ﻿using Loan_API.Entities;
 using Loan_API.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace Loan_API.Implementation
 {
@@ -12,5 +13,12 @@ namespace Loan_API.Implementation
             _dbContext = dbContext;
             //_httpContextAccessor = httpContextAccessor;
         }
+        public async Task<IEnumerable<LoanPlan>> GetAllActiveAsync()
+        {
+            return await _dbContext.LoanPlan
+                .Where(x => x.Deleted == null || x.Deleted == false)
+                .ToListAsync();
+        }
+
     }
 }

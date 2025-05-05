@@ -1,18 +1,12 @@
 [
   {
     "ContainingType": "Loan_API.Controllers.CustommerController",
-    "Method": "PostCustomer",
-    "RelativePath": "api/Custommer/create",
-    "HttpMethod": "POST",
+    "Method": "GetCountries",
+    "RelativePath": "api/Custommer/countries",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "customerDto",
-        "Type": "Loan_API.DTO.CustommerPersonnelInfoDTO",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -116,27 +110,6 @@
       {
         "Name": "customerDto",
         "Type": "Loan_API.DTO.CustommerSaveDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Loan_API.Controllers.CustommerController",
-    "Method": "UpdateCustomer",
-    "RelativePath": "api/Custommer/update/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "customerDto",
-        "Type": "Loan_API.DTO.PersonnelInfoUpdateDTO",
         "IsRequired": true
       }
     ],
@@ -592,6 +565,90 @@
         "Name": "lateCharge",
         "Type": "System.Decimal",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanPlanController",
+    "Method": "CreateLoanPlan",
+    "RelativePath": "api/LoanPlan/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loanPlanDto",
+        "Type": "Loan_API.Entities.LoanPlanCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanPlanController",
+    "Method": "DeleteLoanPlan",
+    "RelativePath": "api/LoanPlan/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanPlanController",
+    "Method": "GetLoanPlanById",
+    "RelativePath": "api/LoanPlan/plan/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanPlanController",
+    "Method": "GetAllLoanPlan",
+    "RelativePath": "api/LoanPlan/plans",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanPlanController",
+    "Method": "UpdateLoanPlan",
+    "RelativePath": "api/LoanPlan/update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "loanPlanDto",
+        "Type": "Loan_API.Entities.LoanPlanCreateDTO",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

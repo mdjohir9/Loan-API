@@ -19,7 +19,7 @@ namespace Loan_API.DTO
         public string? NationalIDOrPassport { get; set; }
         public string? TaxIdentificationNumber { get; set; }
         public string? DrivingLicenseNumber { get; set; }
-        public int? EducationLevel { get; set; }
+        public string? EducationLevel { get; set; }
 
         // Contact Information
         public int ? ContactId { get; set; }

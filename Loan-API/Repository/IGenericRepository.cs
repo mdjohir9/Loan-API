@@ -23,7 +23,7 @@ namespace Loan_API.Repository
         Task SoftDeleteAsync(int id, int deletedBy);
         Task DeleteAsync(int id);
         Task<string> SaveDocumentsListsAsync(List<string> documentsBase64, string id, string companyId, string documentType);
-        Task<EMIResultDTO> CalculateEMIAsync(decimal loanAmount, decimal annualInterestRate, int tenureMonths);
+        Task<EMIResultDTO> CalculateEMIAsync(decimal loanAmount, decimal annualInterestRate, int tenureMonths, decimal depositPercentage, decimal lateChargePers);
 
     }
 }
