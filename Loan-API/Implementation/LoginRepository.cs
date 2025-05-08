@@ -96,5 +96,12 @@ namespace Loan_API.Implementation
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+        public UserRole GetUserRoleByDataAccessLevel(int dataAccessLevel)
+        {
+            return _dbContext.UserRole
+                           .FirstOrDefault(x => x.DataAccessLevel == dataAccessLevel);
+        }
+
     }
 }

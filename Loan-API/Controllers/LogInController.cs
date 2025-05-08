@@ -165,6 +165,15 @@ namespace Loan_API.Controllers
                 {
                     return BadRequest(ModelState);
                 }
+                var userRole = _unitOfWork.Login.GetUserRoleByDataAccessLevel(1);
+
+                if (userRole == null || userRole.UserRoleId == 0) 
+                {
+                    return BadRequest(new { StatusCode = 400, message = "Please set up UserRole" });
+                }
+
+                var userRoleId = userRole.UserRoleId;
+
 
                 // Proceed to create a new User
                 var user = new User
@@ -174,7 +183,7 @@ namespace Loan_API.Controllers
                     UserName = ComplexScriptingSystem.ComplexLetters.getTangledLetters(usersDTO.EamilOrPhone),
                     UserPassword = ComplexScriptingSystem.ComplexLetters.getTangledLetters(usersDTO.ConfirmPassword),
                     Email = usersDTO.EamilOrPhone,
-                    UserRoleID = 1,
+                    UserRoleID = userRoleId,
                     IsGuestUser = true,
                     IsApprovingAuthority = false,
                     ReferenceID = null,
@@ -183,8 +192,7 @@ namespace Loan_API.Controllers
                     DataAccessPermission = null,
                     IsActive = true,
                     CreatedAt = DateTime.Now,
-                    CreatedBy = userId,  // Ensure you have a way to set the userId
-                    CompanyId = "0001"
+                    CompanyId = "1111"
                 };
 
                 // Add the new user and save changes

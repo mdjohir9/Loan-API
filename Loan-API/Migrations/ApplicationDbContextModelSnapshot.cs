@@ -17,6 +17,7 @@ namespace Loan_API.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("dbo")
                 .HasAnnotation("ProductVersion", "9.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -70,7 +71,7 @@ namespace Loan_API.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("AccountBalance");
+                    b.ToTable("AccountBalance", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.CustommerContact", b =>
@@ -125,7 +126,7 @@ namespace Loan_API.Migrations
                         .IsUnique()
                         .HasFilter("[CustomerID] IS NOT NULL");
 
-                    b.ToTable("CustommerContact");
+                    b.ToTable("CustommerContact", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.CustommerEmployment", b =>
@@ -168,7 +169,7 @@ namespace Loan_API.Migrations
                         .IsUnique()
                         .HasFilter("[CustomerID] IS NOT NULL");
 
-                    b.ToTable("CustommerEmployment");
+                    b.ToTable("CustommerEmployment", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.CustommerFinancialInfo", b =>
@@ -206,7 +207,7 @@ namespace Loan_API.Migrations
                         .IsUnique()
                         .HasFilter("[CustomerID] IS NOT NULL");
 
-                    b.ToTable("CustommerFinancialInfo");
+                    b.ToTable("CustommerFinancialInfo", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.CustommerGuarantorDetails", b =>
@@ -247,7 +248,7 @@ namespace Loan_API.Migrations
                         .IsUnique()
                         .HasFilter("[CustomerID] IS NOT NULL");
 
-                    b.ToTable("CustommerGuarantorDetails");
+                    b.ToTable("CustommerGuarantorDetails", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.CustommerPersonnelInfo", b =>
@@ -335,7 +336,7 @@ namespace Loan_API.Migrations
 
                     b.HasKey("CustomerID");
 
-                    b.ToTable("CustommerPersonnelInfo");
+                    b.ToTable("CustommerPersonnelInfo", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.HrdCompanyInfo", b =>
@@ -430,7 +431,7 @@ namespace Loan_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("HrdCompanyInfo");
+                    b.ToTable("HrdCompanyInfo", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.Loan", b =>
@@ -501,7 +502,7 @@ namespace Loan_API.Migrations
 
                     b.HasIndex("PlanID");
 
-                    b.ToTable("Loan");
+                    b.ToTable("Loan", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.LoanApplication", b =>
@@ -588,7 +589,7 @@ namespace Loan_API.Migrations
 
                     b.HasIndex("PlanID");
 
-                    b.ToTable("LoanApplication");
+                    b.ToTable("LoanApplication", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.LoanInstalment", b =>
@@ -631,7 +632,7 @@ namespace Loan_API.Migrations
 
                     b.HasIndex("PayMethodId");
 
-                    b.ToTable("LoanInstalment");
+                    b.ToTable("LoanInstalment", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.LoanPlan", b =>
@@ -697,7 +698,7 @@ namespace Loan_API.Migrations
 
                     b.HasKey("PlanID");
 
-                    b.ToTable("LoanPlan");
+                    b.ToTable("LoanPlan", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.PaymentMethod", b =>
@@ -720,7 +721,7 @@ namespace Loan_API.Migrations
 
                     b.HasKey("PayMethodID");
 
-                    b.ToTable("PaymentMethod");
+                    b.ToTable("PaymentMethod", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.Recharge", b =>
@@ -776,7 +777,7 @@ namespace Loan_API.Migrations
 
                     b.HasIndex("CustommerID");
 
-                    b.ToTable("Recharge");
+                    b.ToTable("Recharge", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.RechargeAccount", b =>
@@ -809,7 +810,7 @@ namespace Loan_API.Migrations
 
                     b.HasIndex("RecPaymentMethodId");
 
-                    b.ToTable("RechargeAccount");
+                    b.ToTable("RechargeAccount", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.RechargePaymentMethod", b =>
@@ -829,7 +830,7 @@ namespace Loan_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RechargePaymentMethod");
+                    b.ToTable("RechargePaymentMethod", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.TblCountry", b =>
@@ -851,7 +852,7 @@ namespace Loan_API.Migrations
 
                     b.HasKey("CountryID");
 
-                    b.ToTable("TblCountry");
+                    b.ToTable("TblCountry", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.Transaction", b =>
@@ -886,7 +887,7 @@ namespace Loan_API.Migrations
 
                     b.HasIndex("PaytMethodID");
 
-                    b.ToTable("Transaction");
+                    b.ToTable("Transaction", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.TransactionType", b =>
@@ -936,7 +937,7 @@ namespace Loan_API.Migrations
 
                     b.HasKey("TransactionTypeID");
 
-                    b.ToTable("TransactionType");
+                    b.ToTable("TransactionType", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.User", b =>
@@ -1018,14 +1019,14 @@ namespace Loan_API.Migrations
                     b.Property<string>("UserPassword")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<int>("UserRoleID")
                         .HasColumnType("int");
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.UserRole", b =>
@@ -1080,7 +1081,7 @@ namespace Loan_API.Migrations
 
                     b.HasKey("UserRoleId");
 
-                    b.ToTable("UserRole");
+                    b.ToTable("UserRole", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.Withdraw", b =>
@@ -1141,7 +1142,7 @@ namespace Loan_API.Migrations
 
                     b.HasIndex("CustommerID");
 
-                    b.ToTable("Withdraw");
+                    b.ToTable("Withdraw", "dbo");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.AccountBalance", b =>

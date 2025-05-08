@@ -232,16 +232,16 @@ namespace Loan_API.Controllers
                     UserPassword = ComplexScriptingSystem.ComplexLetters.getTangledLetters(usersDTO.UserPassword),
                     Email = usersDTO.UserName,
                     UserRoleID = usersDTO.UserRoleID,
-                    IsGuestUser = usersDTO.IsGuestUser,
-                    IsApprovingAuthority = usersDTO.IsApprovingAuthority,
-                    ReferenceID = usersDTO.ReferenceID,
-                    AdditionalPermissions = usersDTO.AdditionalPermissions,
-                    RemovedPermissions = usersDTO.RemovedPermissions,
-                    DataAccessPermission = usersDTO.DataAccessPermission,
+                    IsGuestUser = false,
+                    IsApprovingAuthority = null,
+                    ReferenceID = null,
+                    AdditionalPermissions =null,
+                    RemovedPermissions = null,
+                    DataAccessPermission = null,
                     IsActive = usersDTO.IsActive,
                     CreatedAt = DateTime.Now,
                     CreatedBy = userId,  // Ensure you have a way to set the userId
-                    CompanyId = usersDTO.CompanyId
+                    CompanyId = "1111"
                 };
 
                 // Add the new user and save changes
@@ -368,7 +368,7 @@ namespace Loan_API.Controllers
                 existingUser.IsActive = usersDTO.IsActive;
                 existingUser.UpdatedAt = DateTime.Now;
                 existingUser.UpdatedBy = id;
-                existingUser.CompanyId = usersDTO.CompanyId;
+                existingUser.CompanyId = "1111";
 
                 await _unitOfWork.User.UpdateAsync(existingUser);
                 await _unitOfWork.Save();

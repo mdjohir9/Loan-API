@@ -28,7 +28,7 @@ namespace Loan_API.Entities
         public string? UserImage { get; set; }
 
 
-        [Column(TypeName = "nvarchar(100)")]
+        [Column(TypeName = "nvarchar(150)")]
         [Required(ErrorMessage = "User Password Name is required")]
         [StringLength(100, MinimumLength = 6, ErrorMessage = "Password must be at least 6 characters.")]
         public string? UserPassword { get; set; }

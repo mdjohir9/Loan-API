@@ -440,7 +440,6 @@ namespace Loan_API.Controllers
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
-
         [HttpGet]
         [Route("countries")]
         public async Task<IActionResult> GetCountries()
@@ -471,6 +470,7 @@ namespace Loan_API.Controllers
                 return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
             }
         }
+
 
 
     }

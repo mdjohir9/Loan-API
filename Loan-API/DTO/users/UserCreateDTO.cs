@@ -19,13 +19,13 @@ namespace Loan_API.DTO.users
         public string? UserPassword { get; set; }
         [Required(ErrorMessage = "UserRoleID is required")]
         public int UserRoleID { get; set; }
-        public Boolean? IsGuestUser { get; set; }
+        //public Boolean? IsGuestUser { get; set; }
         public bool? IsApprovingAuthority { get; set; }
         public string? ReferenceID { get; set; }//CustommerID
-        public string? AdditionalPermissions { get; set; }
-        public string? RemovedPermissions { get; set; }
+        //public string? AdditionalPermissions { get; set; }
+        //public string? RemovedPermissions { get; set; }
         public int? DataAccessLevel { get; set; }
-        public string? DataAccessPermission { get; set; }
+        //public string? DataAccessPermission { get; set; }
         public Boolean? IsActive { get; set; }
         public string? CompanyId { get; set; }
     }

@@ -32,6 +32,12 @@ namespace Loan_API.Entities
         public DbSet <RechargeAccount> RechargeAccount { get; set; }
         public DbSet <TblCountry> TblCountry { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.HasDefaultSchema("dbo");
+
+            base.OnModelCreating(modelBuilder);
+        }
 
 
     }

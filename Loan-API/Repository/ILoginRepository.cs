@@ -12,6 +12,7 @@ namespace Loan_API.Repository
         UserProfileDTO GetUserProfileInfo(int Id);
         CompanyStatusDTO GetUserCompany(int userId);
         Loan GetLoanInformation(int customerId);
+        UserRole GetUserRoleByDataAccessLevel(int dataAccessLevel);
 
         string GenerateJwtToken(User user);
     }

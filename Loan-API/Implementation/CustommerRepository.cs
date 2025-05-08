@@ -80,6 +80,8 @@ namespace Loan_API.Implementation
                           from cfi in financialGroup.DefaultIfEmpty()
                           join cgd in _dbContext.CustommerGuarantorDetails on cpi.CustomerID equals cgd.CustomerID into guarantorGroup
                           from cgd in guarantorGroup.DefaultIfEmpty()
+                          join count in _dbContext.TblCountry on cpi.Nationality equals count.CountryID.ToString() into countryGroup
+                          from count in countryGroup.DefaultIfEmpty()
                           where (cpi.IsDeleted == false || cpi.IsDeleted == null)
                           orderby cpi.CustomerID descending
                           select new CustommerDetailesDTO
@@ -92,7 +94,7 @@ namespace Loan_API.Implementation
                               FullName = cpi.FullName,
                               Gender = cpi.Gender,
                               DateOfBirth = cpi.DateOfBirth,
-                              Nationality = cpi.Nationality,
+                              Nationality = count.CountryName,
                               MaritalStatus = cpi.MaritalStatus,
                               Occupation = cpi.Occupation,
                               NationalIDOrPassport = cpi.NationalIDOrPassport,
@@ -154,6 +156,8 @@ namespace Loan_API.Implementation
                         from cfi in financialGroup.DefaultIfEmpty()
                         join usr in _dbContext.Users on cpi.CustomerID.ToString() equals usr.ReferenceID into userGroup
                         from usr in userGroup.DefaultIfEmpty()
+                        join count in _dbContext.TblCountry on cpi.Nationality equals count.CountryID.ToString() into countryGroup
+                        from count in countryGroup.DefaultIfEmpty()
                         where customerId == null || cpi.CustomerID == customerId 
                         select new
                         {
@@ -162,7 +166,7 @@ namespace Loan_API.Implementation
                             ce,
                             cfi,
                             usr,
-                            
+                            count,
                         };
 
             var result = await query.ToListAsync(); // Fetch data from database first
@@ -178,7 +182,8 @@ namespace Loan_API.Implementation
                 FullName = ti.cpi.FullName,
                 Gender = ti.cpi.Gender,
                 DateOfBirth = ti.cpi.DateOfBirth,
-                Nationality = ti.cpi.Nationality,
+                NationlityId = ti.cpi.Nationality,
+                Nationality = ti.count.CountryName,
                 MaritalStatus = ti.cpi.MaritalStatus,
                 Occupation = ti.cpi.Occupation,
                 NationalIDOrPassport = ti.cpi.NationalIDOrPassport,
@@ -604,18 +609,17 @@ namespace Loan_API.Implementation
 
         public async Task<List<TblCountry>> GetAllCounterAsync()
         {
-            return await _dbContext.TblCountry
-                .Select(c => new TblCountry
-                {
-                    CountryID = c.CountryID,
-                    CountryName = c.CountryName,
-                    TwoCharCountryCode = c.TwoCharCountryCode,
-                    ThreeCharCountryCode=c.ThreeCharCountryCode,
 
-                })
-                .OrderBy(c => c.CountryName)
-                .ToListAsync();
+            var query = _dbContext.TblCountry
+                .OrderBy(c => c.CountryName);
+                
+            var sql=query.ToQueryString();
+            return query.ToList();
+
+
         }
+         
+
 
     }
 }

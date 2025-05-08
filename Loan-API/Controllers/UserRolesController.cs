@@ -153,7 +153,7 @@ namespace Loan_API.Controllers
                 var userRoles = new UserRole
                 {
                     UserRoleName = userRolesDTO.UserRole,
-                    CompanyId = userRolesDTO.CompanyId,
+                    CompanyId = "1111",
                     Permissions = userRolesDTO.Permissions,
                     DataAccessLevel = userRolesDTO.DataAccessLevel,
                     Ordering = userRolesDTO.Ordering,
@@ -200,7 +200,7 @@ namespace Loan_API.Controllers
                 }
 
                 existingUserRole.UserRoleName = userRolesDto.UserRole;
-                existingUserRole.CompanyId = userRolesDto.CompanyId;
+                existingUserRole.CompanyId = "1111";
                 existingUserRole.Permissions = userRolesDto.Permissions;
                 existingUserRole.DataAccessLevel = userRolesDto.DataAccessLevel;
                 existingUserRole.Ordering = userRolesDto.Ordering;
