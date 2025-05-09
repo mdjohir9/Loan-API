@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "LjHXNhvlOrb6+L5kWV+bzds5emEwRk0vI0cxQO93/+A=",
+  "Hash": "j6VzoxEPAaiRpIhAW9LWMSJ9chNx3Y6OPon9fDXVcP0=",
   "Source": "Loan-API",
   "BasePath": "_content/Loan-API",
   "Mode": "Default",
@@ -131,25 +131,6 @@
       "OriginalItemSpec": "wwwroot\\1111\\CustommerImage\\ot2222.jpeg"
     },
     {
-      "Identity": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerImage\\UPS1001.jpeg",
-      "SourceId": "Loan-API",
-      "SourceType": "Discovered",
-      "ContentRoot": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\",
-      "BasePath": "_content/Loan-API",
-      "RelativePath": "1111/CustommerImage/UPS1001.jpeg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\1111\\CustommerImage\\UPS1001.jpeg"
-    },
-    {
       "Identity": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerImage\\UPS1002.jpeg",
       "SourceId": "Loan-API",
       "SourceType": "Discovered",
@@ -167,6 +148,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\1111\\CustommerImage\\UPS1002.jpeg"
+    },
+    {
+      "Identity": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerImage\\UPS1003.jpeg",
+      "SourceId": "Loan-API",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\",
+      "BasePath": "_content/Loan-API",
+      "RelativePath": "1111/CustommerImage/UPS1003.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\1111\\CustommerImage\\UPS1003.jpeg"
     },
     {
       "Identity": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerSignature\\opsload2444.jpeg",

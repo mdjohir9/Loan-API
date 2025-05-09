@@ -8,6 +8,7 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace Loan_API.Controllers
 {
+    [ApiExplorerSettings(IgnoreApi = true)]
     [Route("api/[controller]")]
     [ApiController]
     public class CustommerEmploymentController : ControllerBase

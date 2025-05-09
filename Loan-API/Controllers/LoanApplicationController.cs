@@ -1,8 +1,10 @@
 ﻿using Loan_API.DTO;
 using Loan_API.Entities;
+using Loan_API.Implementation;
 using Loan_API.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace Loan_API.Controllers
@@ -42,6 +44,26 @@ namespace Loan_API.Controllers
                 return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
             }
         }
+        [HttpGet("applications/{customerId}")]
+        public async Task<IActionResult> GetLoanApplicationsByCustomerId(int customerId)
+        {
+            try
+            {
+                var result = await _unitOfWork.LoanApplication.GetLoanApplicationsByCustomerIdAsync(customerId);
+
+                if (result == null || !result.Any())
+                {
+                    return NotFound(new { StatusCode = 404, message = "No loan applications found for the customer!" });
+                }
+
+                return Ok(new { StatusCode = 200, message = "Success", data = result });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
+            }
+        }
+
         [HttpGet("applications")]
         public async Task<IActionResult> GetAllLoanApplications()
         {
@@ -85,6 +107,30 @@ namespace Loan_API.Controllers
 
             return Ok(new { StatusCode = 200, message = "Success", data = result });
         }
+
+        [HttpGet("loan-limits/{planId}")]
+        public async Task<IActionResult> GetLoanLimitsByPlanId(int planId)
+        {
+            try
+            {
+                var result = await _unitOfWork.LoanApplication.GetLoanLimitsByPlanIdAsync(planId);
+
+                if (result == null)
+                {
+                    return NotFound(new { StatusCode = 404, message = "Loan plan not found" });
+                }
+
+                return Ok(new { StatusCode = 200, message = "Success", data = result });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { StatusCode = 500, message = "Error occurred", error = ex.Message });
+            }
+        }
+
+
+
+
 
         //[HttpPut("approve/{id}")]
         //public async Task<IActionResult> ApproveLoanApplication(int id, [FromBody] LoanApplicationDTO approveDto)
