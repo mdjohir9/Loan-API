@@ -212,7 +212,7 @@
   {
     "ContainingType": "Loan_API.Controllers.LoanApplicationController",
     "Method": "GetLoanApplicationsByCustomerId",
-    "RelativePath": "api/LoanApplication/applications/by-customer/{customerId}",
+    "RelativePath": "api/LoanApplication/applications/{customerId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

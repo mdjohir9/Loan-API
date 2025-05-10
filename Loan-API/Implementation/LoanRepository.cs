@@ -95,17 +95,20 @@ namespace Loan_API.Implementation
         public async Task<LoanBalanceDto> GetLoanBalanceByCustomerIdAsync(int customerId)
         {
             return await (from ab in _dbContext.AccountBalance
-                          join ln in _dbContext.Loan on ab.CustomerId equals ln.CustomerID into gj
+                          join ln in _dbContext.Loan
+                              .Where(l => l.LoanStatus == 1) // Filter only active loans
+                              on ab.CustomerId equals ln.CustomerID into gj
                           from ln in gj.DefaultIfEmpty()
                           where ab.CustomerId == customerId
                           select new LoanBalanceDto
                           {
                               BalanceAmount = ab.BalanceAmount,
-                              LoanAmount = ln.LoanAmount,
-                              DueAmount = ln.DueAmount,
-                              MonthlyInstallment = ln.MonthlyInstallment??0
+                              LoanAmount = ln != null ? ln.LoanAmount : 0,
+                              DueAmount = ln != null ? ln.DueAmount : 0,
+                              MonthlyInstallment = ln != null ? ln.MonthlyInstallment ?? 0 : 0
                           }).FirstOrDefaultAsync();
         }
+
 
     }
 }
