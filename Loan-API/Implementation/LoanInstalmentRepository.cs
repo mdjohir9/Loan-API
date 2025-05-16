@@ -31,7 +31,7 @@ namespace Loan_API.Implementation
                         join lp in _dbContext.LoanPlan on l.PlanID equals lp.PlanID
                         join pm in _dbContext.PaymentMethod on li.PayMethodId equals pm.PayMethodID into pmGroup
             from pm in pmGroup.DefaultIfEmpty()
-                        where l.LoanID == id
+                        where l.LoanID == id orderby li.Status ascending
                         select new LoanInstalmentDetailsDTO
                         {
                             FullName = cpi.FullName,

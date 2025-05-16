@@ -29,8 +29,6 @@ namespace Loan_API.Entities
         [Required]
         public int PaytMethodID { get; set; }
 
-        [ForeignKey(nameof(PaytMethodID))]
-        public PaymentMethod PaymentMethod { get; set; } = null!;
 
         public string? Remarks { get; set; } 
     }

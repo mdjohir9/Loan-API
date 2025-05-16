@@ -6,7 +6,7 @@ namespace Loan_API.DTO
 {
     public class RechargeRequestDTO
     {
-        public string BankAccountNumber { get; set; } = null!;
+        public string? BankAccountNumber { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(18,2)")]
@@ -33,6 +33,8 @@ namespace Loan_API.DTO
 
         [Required]
         public int CustommerID { get; set; }
+        public int? UserId { get; set; }
+        
 
 
     }

@@ -65,7 +65,7 @@ namespace Loan_API.Implementation
 
         public Loan GetLoanInformation(int customerId)
         {
-            var loan = _dbContext.Loan.FirstOrDefault(l => l.CustomerID == customerId);
+            var loan = _dbContext.Loan.FirstOrDefault(l => l.CustomerID == customerId && l.LoanStatus==1);
             return loan;
         }
 

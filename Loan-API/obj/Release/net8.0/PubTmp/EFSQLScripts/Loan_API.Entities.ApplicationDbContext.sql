@@ -677,6 +677,79 @@ BEGIN
     VALUES (N'20250508111810_initial_db', N'9.0.3');
 END;
 
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516081225_recharge-bank-Account-null'
+)
+BEGIN
+    DECLARE @var sysname;
+    SELECT @var = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[dbo].[Recharge]') AND [c].[name] = N'BankAccountNumber');
+    IF @var IS NOT NULL EXEC(N'ALTER TABLE [dbo].[Recharge] DROP CONSTRAINT [' + @var + '];');
+    ALTER TABLE [dbo].[Recharge] ALTER COLUMN [BankAccountNumber] nvarchar(max) NULL;
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516081225_recharge-bank-Account-null'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250516081225_recharge-bank-Account-null', N'9.0.3');
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516083940_transction_table_add_to_recharge_model_as_foregin_key'
+)
+BEGIN
+    ALTER TABLE [dbo].[Transaction] DROP CONSTRAINT [FK_Transaction_PaymentMethod_PaytMethodID];
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516083940_transction_table_add_to_recharge_model_as_foregin_key'
+)
+BEGIN
+    ALTER TABLE [dbo].[Transaction] ADD CONSTRAINT [FK_Transaction_RechargeAccount_PaytMethodID] FOREIGN KEY ([PaytMethodID]) REFERENCES [dbo].[RechargeAccount] ([Id]) ON DELETE CASCADE;
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516083940_transction_table_add_to_recharge_model_as_foregin_key'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250516083940_transction_table_add_to_recharge_model_as_foregin_key', N'9.0.3');
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516090738_Transcttion_payment_method_id_forern_key_remove_on_recharge_account'
+)
+BEGIN
+    ALTER TABLE [dbo].[Transaction] DROP CONSTRAINT [FK_Transaction_RechargeAccount_PaytMethodID];
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516090738_Transcttion_payment_method_id_forern_key_remove_on_recharge_account'
+)
+BEGIN
+    DROP INDEX [IX_Transaction_PaytMethodID] ON [dbo].[Transaction];
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516090738_Transcttion_payment_method_id_forern_key_remove_on_recharge_account'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250516090738_Transcttion_payment_method_id_forern_key_remove_on_recharge_account', N'9.0.3');
+END;
+
 COMMIT;
 GO
 

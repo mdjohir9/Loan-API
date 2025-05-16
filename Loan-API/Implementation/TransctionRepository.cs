@@ -25,11 +25,12 @@ namespace Loan_API.Implementation
                                 from cpi in cpiJoin.DefaultIfEmpty()
                                 join typ in _dbContext.TransactionType on txs.TransactionType equals typ.TransactionTypeID into typJoin
                                 from typ in typJoin.DefaultIfEmpty()
-                                join pm in _dbContext.PaymentMethod on txs.PaytMethodID equals pm.PayMethodID into pmJoin
+                                join pm in _dbContext.RechargeAccount on txs.PaytMethodID equals pm.Id into pmJoin
                                 from pm in pmJoin.DefaultIfEmpty()
                                 where txs.CustomerId == customerId
                                       && txs.TransactionDate.Date >= fromDate.Date
                                       && txs.TransactionDate.Date <= toDate.Date
+                                orderby txs.TransctionID descending
                                 select new TransctionDetailesDTO
                                 {
                                     CustomerId = txs.CustomerId,
@@ -40,7 +41,7 @@ namespace Loan_API.Implementation
                                     TransactionType = typ.Name,
                                     Amount = txs.Amount,
                                     TransactionDate = txs.TransactionDate,
-                                    PaymentMethod = pm.Name,
+                                    PaymentMethod = pm.BankOrWalletName,
                                     Remarks = txs.Remarks
                                 }).ToListAsync();
 

@@ -40,11 +40,20 @@ namespace Loan_API.Entities
 
         [StringLength(50)]
         public int? ApproveBy { get; set; }   
+
+
         public DateTime? RejectAt { get; set; }
 
         [StringLength(50)]
         public int? RejectBy { get; set; }
 
+
+        public int? ApplyedBy { get; set; }
+        public DateTime? ApplyedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public int? UpdatedBy { get; set; }
+        public int? DeletedBy { get; set; }
+        public DateTime? DeletedAt { get; set; }
         [Required]
         public int CustommerID { get; set; }
 

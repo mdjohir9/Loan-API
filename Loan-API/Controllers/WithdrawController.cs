@@ -142,6 +142,105 @@ namespace Loan_API.Controllers
             }
         }
 
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateWithdrawRequest(int id, [FromBody] WithdrawRequestDTO withdrawDto)
+        {
+            try
+            {
+                if (withdrawDto == null)
+                {
+                    return BadRequest("Withdraw request data cannot be null.");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                // 👉 Step 1: Retrieve existing withdrawal request
+                var existingWithdraw = await _unitOfWork.Withdraw.GetByIdAsync(id);
+                if (existingWithdraw == null)
+                {
+                    return NotFound(new { StatusCode = 404, message = "Withdraw request not found." });
+                }
+
+                // 👉 Step 2: Prevent editing if already approved
+                if (existingWithdraw.IsApproved == true)
+                {
+                    return BadRequest(new { StatusCode = 400, message = "Approved withdraw requests cannot be edited." });
+                }
+
+                // 👉 Step 3: Recheck balance against the new withdrawal amount
+                var account = _unitOfWork.Account.GetAccountInfoCustomerId(withdrawDto.CustommerID);
+                if (account == null)
+                {
+                    return NotFound(new { StatusCode = 404, message = "Customer account not found." });
+                }
+
+                if (account.BalanceAmount < withdrawDto.Amount)
+                {
+                    return BadRequest(new { StatusCode = 400, message = "Insufficient balance for updated withdrawal amount." });
+                }
+
+                // 👉 Step 4: Update the withdrawal request
+                existingWithdraw.PaymentMethodID = withdrawDto.PaymentMethodID;
+                existingWithdraw.BankName = withdrawDto.BankName;
+                existingWithdraw.AccountNumber = withdrawDto.AccountNumber;
+                existingWithdraw.Amount = withdrawDto.Amount;
+                existingWithdraw.RequestedDate = DateTime.Now;
+                existingWithdraw.CustommerID = withdrawDto.CustommerID;
+
+                _unitOfWork.Withdraw.UpdateAsync(existingWithdraw);
+                await _unitOfWork.Save();
+
+                return Ok(new
+                {
+                    StatusCode = 200,
+                    message = "Withdraw request updated successfully.",
+                    WithdrawRequestId = existingWithdraw.WithdrawaID
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
+            }
+        }
+
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteWithdrawRequest(int id)
+        {
+            try
+            {
+                // 👉 Step 1: Retrieve the existing withdrawal request
+                var existingWithdraw = await _unitOfWork.Withdraw.GetByIdAsync(id);
+                if (existingWithdraw == null)
+                {
+                    return NotFound(new { StatusCode = 404, message = "Withdraw request not found." });
+                }
+
+                // 👉 Step 2: Prevent deletion if already approved
+                if (existingWithdraw.IsApproved == true)
+                {
+                    return BadRequest(new { StatusCode = 400, message = "Approved withdraw requests cannot be deleted." });
+                }
+
+                // 👉 Step 3: Delete and save changes
+                _unitOfWork.Withdraw.DeleteAsync(id);
+                await _unitOfWork.Save();
+
+                return Ok(new
+                {
+                    StatusCode = 200,
+                    message = "Withdraw request deleted successfully."
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
+            }
+        }
+
+
 
         [HttpPut("approve/{id}")]
         public async Task<IActionResult> ApproveWithdrawRequest(int id,int userId,string transctionId)

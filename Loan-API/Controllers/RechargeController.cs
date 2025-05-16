@@ -21,8 +21,10 @@ namespace Loan_API.Controllers
             _cache = cache;
             _unitOfWork = unitOfWork;
         }
+
+
         [HttpPut("approve/{id}")]
-        public async Task<IActionResult> ApproveRechargeRequest(int id, bool IsApproved)
+        public async Task<IActionResult> ApproveRechargeRequest(int id, bool IsApproved, int userId)
         {
             using var transaction = await _unitOfWork.BeginTransactionAsync();
             try
@@ -39,7 +41,8 @@ namespace Loan_API.Controllers
                 }
 
                 var customerId = recharge.CustommerID;
-
+                recharge.ApproveAt = DateTime.UtcNow;
+                recharge.ApproveBy = userId;
                 recharge.IsApproved = IsApproved;
                 recharge.AdminRemarks = "Approved"; 
                 await _unitOfWork.Recharge.UpdateAsync(recharge);
@@ -63,7 +66,7 @@ namespace Loan_API.Controllers
                     Amount = recharge.Amount,
                     TransactionDate = DateTime.UtcNow,
                     CustomerId = customerId,
-                    PaytMethodID = recharge.PaymentMethodID,
+                    PaytMethodID = recharge.BankId,
                     Remarks = $"Recharge approved for request ID {recharge.RechargeID}"
                 };
 
@@ -133,6 +136,31 @@ namespace Loan_API.Controllers
             }
         }
 
+        [HttpGet("recharge/{id}")]
+        public async Task<IActionResult> GetRechargeRequestById(int id)
+        {
+            try
+            {
+                var recharge = await _unitOfWork.Recharge.GetByIdAsync(id);
+                if (recharge == null)
+                {
+                    return NotFound(new { StatusCode = 404, message = "Recharge request not found." });
+                }
+
+                return Ok(new
+                {
+                    StatusCode = 200,
+                    message = "Recharge request retrieved successfully.",
+                    data = recharge
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
+            }
+        }
+
+
         [HttpPost("create")]
         public async Task<IActionResult> PostRechargeRequest([FromBody] RechargeRequestDTO rechargeDto)
         {
@@ -149,7 +177,7 @@ namespace Loan_API.Controllers
                 }
 
                 string documentResult = null;
-                string CompanyId = "0001"; // static company ID, change if needed
+                string CompanyId = "1111"; // static company ID, change if needed
 
                 // Process Statement Document if available
                 if (rechargeDto.Statement != null && rechargeDto.Statement.Any())
@@ -174,7 +202,10 @@ namespace Loan_API.Controllers
                     Statement = documentResult, // Save the path or reference to the uploaded document
                     PaymentMethodID = rechargeDto.PaymentMethodID,
                     BankId = rechargeDto.BankId,
-                    CustommerID = rechargeDto.CustommerID
+                    CustommerID = rechargeDto.CustommerID,
+                    ApplyedAt=DateTime.Now,
+                    ApplyedBy = rechargeDto.UserId,
+
                 };
 
                 // Save recharge request to the database
@@ -186,6 +217,109 @@ namespace Loan_API.Controllers
                     StatusCode = 200,
                     message = "Recharge request submitted successfully.",
                     RechargeRequestId = rechargeRequest.RechargeID // assuming there's an identity key
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+        }
+
+
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateRechargeRequest(int id, [FromBody] RechargeRequestDTO rechargeDto)
+        {
+            try
+            {
+                if (rechargeDto == null)
+                {
+                    return BadRequest("Recharge request data cannot be null.");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var existingRecharge = await _unitOfWork.Recharge.GetByIdAsync(id);
+                if (existingRecharge == null)
+                {
+                    return NotFound("Recharge request not found.");
+                }
+
+                if (existingRecharge.IsApproved == true)
+                {
+                    return BadRequest("Approved recharge requests cannot be edited.");
+                }
+
+                string documentResult = existingRecharge.Statement; // retain existing statement by default
+                string companyId = "1111"; // static company ID
+
+                // Process new statement documents if provided
+                if (rechargeDto.Statement != null && rechargeDto.Statement.Any())
+                {
+                    string documentType = "RechargeStatement";
+                    documentResult = await _unitOfWork.Custommer.SaveDocumentsListsAsync(
+                        rechargeDto.Statement,
+                        rechargeDto.BankTransactCode.ToString(),
+                        companyId,
+                        documentType
+                    );
+                }
+
+                // Update recharge request
+                existingRecharge.BankAccountNumber = rechargeDto.BankAccountNumber;
+                existingRecharge.Amount = rechargeDto.Amount;
+                existingRecharge.RequestedDate = rechargeDto.RequestedDate;
+                existingRecharge.BankTransactCode = rechargeDto.BankTransactCode;
+                existingRecharge.AdminRemarks = rechargeDto.AdminRemarks;
+                existingRecharge.Statement = documentResult;
+                existingRecharge.PaymentMethodID = rechargeDto.PaymentMethodID;
+                existingRecharge.BankId = rechargeDto.BankId;
+                existingRecharge.CustommerID = rechargeDto.CustommerID;
+                existingRecharge.UpdatedAt= DateTime.Now;
+                existingRecharge.UpdatedBy = rechargeDto.UserId;
+
+                _unitOfWork.Recharge.UpdateAsync(existingRecharge);
+                await _unitOfWork.Save();
+
+                return Ok(new
+                {
+                    StatusCode = 200,
+                    message = "Recharge request updated successfully.",
+                    RechargeRequestId = existingRecharge.RechargeID
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+        }
+
+
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteRechargeRequest(int id)
+        {
+            try
+            {
+                var existingRecharge = await _unitOfWork.Recharge.GetByIdAsync(id);
+                if (existingRecharge == null)
+                {
+                    return NotFound("Recharge request not found.");
+                }
+
+                if (existingRecharge.IsApproved == true)
+                {
+                    return BadRequest("Approved recharge requests cannot be deleted.");
+                }
+
+                _unitOfWork.Recharge.DeleteAsync(id);
+                await _unitOfWork.Save();
+
+                return Ok(new
+                {
+                    StatusCode = 200,
+                    message = "Recharge request deleted successfully."
                 });
             }
             catch (Exception ex)

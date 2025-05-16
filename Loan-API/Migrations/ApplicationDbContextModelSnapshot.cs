@@ -739,6 +739,12 @@ namespace Loan_API.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<DateTime?>("ApplyedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ApplyedBy")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("ApproveAt")
                         .HasColumnType("datetime2");
 
@@ -747,9 +753,7 @@ namespace Loan_API.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("BankAccountNumber")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("BankId")
                         .HasColumnType("int");
@@ -761,10 +765,23 @@ namespace Loan_API.Migrations
                     b.Property<int>("CustommerID")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DeletedBy")
+                        .HasColumnType("int");
+
                     b.Property<bool?>("IsApproved")
                         .HasColumnType("bit");
 
                     b.Property<int>("PaymentMethodID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("RejectAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("RejectBy")
+                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     b.Property<DateTime>("RequestedDate")
@@ -772,6 +789,12 @@ namespace Loan_API.Migrations
 
                     b.Property<string>("Statement")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
 
                     b.HasKey("RechargeID");
 
@@ -884,8 +907,6 @@ namespace Loan_API.Migrations
                     b.HasKey("TransctionID");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("PaytMethodID");
 
                     b.ToTable("Transaction", "dbo");
                 });
@@ -1104,6 +1125,12 @@ namespace Loan_API.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<DateTime?>("ApplyedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ApplyedBy")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("ApproveAt")
                         .HasColumnType("datetime2");
 
@@ -1116,6 +1143,12 @@ namespace Loan_API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CustommerID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
 
                     b.Property<bool?>("IsApproved")
@@ -1137,6 +1170,12 @@ namespace Loan_API.Migrations
                     b.Property<string>("TransactionCode")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
 
                     b.HasKey("WithdrawaID");
 
@@ -1293,15 +1332,7 @@ namespace Loan_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Loan_API.Entities.PaymentMethod", "PaymentMethod")
-                        .WithMany()
-                        .HasForeignKey("PaytMethodID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Customer");
-
-                    b.Navigation("PaymentMethod");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.Withdraw", b =>

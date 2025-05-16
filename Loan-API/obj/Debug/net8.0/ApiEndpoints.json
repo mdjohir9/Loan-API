@@ -616,6 +616,11 @@
         "Name": "IsApproved",
         "Type": "System.Boolean",
         "IsRequired": false
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -631,6 +636,22 @@
       {
         "Name": "rechargeDto",
         "Type": "Loan_API.DTO.RechargeRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeController",
+    "Method": "DeleteRechargeRequest",
+    "RelativePath": "api/Recharge/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -658,6 +679,27 @@
         "Name": "customerId",
         "Type": "System.Int32",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeController",
+    "Method": "UpdateRechargeRequest",
+    "RelativePath": "api/Recharge/update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "rechargeDto",
+        "Type": "Loan_API.DTO.RechargeRequestDTO",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -1122,6 +1164,22 @@
   },
   {
     "ContainingType": "Loan_API.Controllers.WithdrawController",
+    "Method": "DeleteWithdrawRequest",
+    "RelativePath": "api/Withdraw/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.WithdrawController",
     "Method": "RejectWithdrawRequest",
     "RelativePath": "api/Withdraw/reject/{id}",
     "HttpMethod": "PUT",
@@ -1142,6 +1200,27 @@
         "Name": "remarks",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.WithdrawController",
+    "Method": "UpdateWithdrawRequest",
+    "RelativePath": "api/Withdraw/update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "withdrawDto",
+        "Type": "Loan_API.DTO.WithdrawRequestDTO",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
