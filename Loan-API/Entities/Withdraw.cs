@@ -13,7 +13,7 @@ namespace Loan_API.Entities
 
 
         [Required]
-        public string? BankName { get; set; }
+        public int? BankId { get; set; }
 
         [Required]
         [StringLength(20)]

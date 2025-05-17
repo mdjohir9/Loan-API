@@ -119,7 +119,7 @@ namespace Loan_API.Controllers
                 var withdrawRequest = new Withdraw
                 {
                     PaymentMethodID = withdrawDto.PaymentMethodID,
-                    BankName = withdrawDto.BankName,
+                    BankId = withdrawDto.BankId,
                     AccountNumber = withdrawDto.AccountNumber,
                     Amount = withdrawDto.Amount,
                     RequestedDate = DateTime.Now,
@@ -184,7 +184,7 @@ namespace Loan_API.Controllers
 
                 // 👉 Step 4: Update the withdrawal request
                 existingWithdraw.PaymentMethodID = withdrawDto.PaymentMethodID;
-                existingWithdraw.BankName = withdrawDto.BankName;
+                existingWithdraw.BankId = withdrawDto.BankId;
                 existingWithdraw.AccountNumber = withdrawDto.AccountNumber;
                 existingWithdraw.Amount = withdrawDto.Amount;
                 existingWithdraw.RequestedDate = DateTime.Now;

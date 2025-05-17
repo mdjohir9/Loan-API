@@ -9,7 +9,7 @@ namespace Loan_API.DTO
         public int PaymentMethodID { get; set; }
 
         [Required]
-        public string? BankName { get; set; }
+        public int BankId { get; set; }
 
         [Required]
         [StringLength(20)]

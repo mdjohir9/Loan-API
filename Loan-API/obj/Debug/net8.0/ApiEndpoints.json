@@ -669,6 +669,22 @@
   },
   {
     "ContainingType": "Loan_API.Controllers.RechargeController",
+    "Method": "GetRechargeRequestById",
+    "RelativePath": "api/Recharge/recharge/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeController",
     "Method": "GetAllRechagres",
     "RelativePath": "api/Recharge/requerts-ByeCustomerId",
     "HttpMethod": "GET",

@@ -750,6 +750,192 @@ BEGIN
     VALUES (N'20250516090738_Transcttion_payment_method_id_forern_key_remove_on_recharge_account', N'9.0.3');
 END;
 
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516181451_Rcharge_and_withdraw_who_update_and_delete_track'
+)
+BEGIN
+    ALTER TABLE [dbo].[Withdraw] ADD [ApplyedBy] int NULL;
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516181451_Rcharge_and_withdraw_who_update_and_delete_track'
+)
+BEGIN
+    ALTER TABLE [dbo].[Withdraw] ADD [ApprovedAt] datetime2 NULL;
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516181451_Rcharge_and_withdraw_who_update_and_delete_track'
+)
+BEGIN
+    ALTER TABLE [dbo].[Withdraw] ADD [DeletedAt] datetime2 NULL;
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516181451_Rcharge_and_withdraw_who_update_and_delete_track'
+)
+BEGIN
+    ALTER TABLE [dbo].[Withdraw] ADD [DeletedBy] int NULL;
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516181451_Rcharge_and_withdraw_who_update_and_delete_track'
+)
+BEGIN
+    ALTER TABLE [dbo].[Withdraw] ADD [UpdatedAt] datetime2 NULL;
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516181451_Rcharge_and_withdraw_who_update_and_delete_track'
+)
+BEGIN
+    ALTER TABLE [dbo].[Withdraw] ADD [UpdatedBy] int NULL;
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516181451_Rcharge_and_withdraw_who_update_and_delete_track'
+)
+BEGIN
+    ALTER TABLE [dbo].[Recharge] ADD [ApplyedBy] int NULL;
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516181451_Rcharge_and_withdraw_who_update_and_delete_track'
+)
+BEGIN
+    ALTER TABLE [dbo].[Recharge] ADD [ApprovedAt] datetime2 NULL;
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516181451_Rcharge_and_withdraw_who_update_and_delete_track'
+)
+BEGIN
+    ALTER TABLE [dbo].[Recharge] ADD [DeletedAt] datetime2 NULL;
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516181451_Rcharge_and_withdraw_who_update_and_delete_track'
+)
+BEGIN
+    ALTER TABLE [dbo].[Recharge] ADD [DeletedBy] int NULL;
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516181451_Rcharge_and_withdraw_who_update_and_delete_track'
+)
+BEGIN
+    ALTER TABLE [dbo].[Recharge] ADD [RejectAt] datetime2 NULL;
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516181451_Rcharge_and_withdraw_who_update_and_delete_track'
+)
+BEGIN
+    ALTER TABLE [dbo].[Recharge] ADD [RejectBy] int NULL;
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516181451_Rcharge_and_withdraw_who_update_and_delete_track'
+)
+BEGIN
+    ALTER TABLE [dbo].[Recharge] ADD [UpdatedAt] datetime2 NULL;
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516181451_Rcharge_and_withdraw_who_update_and_delete_track'
+)
+BEGIN
+    ALTER TABLE [dbo].[Recharge] ADD [UpdatedBy] int NULL;
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516181451_Rcharge_and_withdraw_who_update_and_delete_track'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250516181451_Rcharge_and_withdraw_who_update_and_delete_track', N'9.0.3');
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516182507_Approveat_misteck_correction'
+)
+BEGIN
+    EXEC sp_rename N'[dbo].[Withdraw].[ApprovedAt]', N'ApplyedAt', 'COLUMN';
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516182507_Approveat_misteck_correction'
+)
+BEGIN
+    EXEC sp_rename N'[dbo].[Recharge].[ApprovedAt]', N'ApplyedAt', 'COLUMN';
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250516182507_Approveat_misteck_correction'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250516182507_Approveat_misteck_correction', N'9.0.3');
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250517192613_withdraw_table_BankName_to_BankId'
+)
+BEGIN
+    EXEC sp_rename N'[dbo].[Withdraw].[BankName]', N'BankId', 'COLUMN';
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250517192613_withdraw_table_BankName_to_BankId'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250517192613_withdraw_table_BankName_to_BankId', N'9.0.3');
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250517194250_Withdraw_BankId_int'
+)
+BEGIN
+    DECLARE @var1 sysname;
+    SELECT @var1 = [d].[name]
+    FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+    WHERE ([d].[parent_object_id] = OBJECT_ID(N'[dbo].[Withdraw]') AND [c].[name] = N'BankId');
+    IF @var1 IS NOT NULL EXEC(N'ALTER TABLE [dbo].[Withdraw] DROP CONSTRAINT [' + @var1 + '];');
+    ALTER TABLE [dbo].[Withdraw] ALTER COLUMN [BankId] int NOT NULL;
+END;
+
+IF NOT EXISTS (
+    SELECT * FROM [__EFMigrationsHistory]
+    WHERE [MigrationId] = N'20250517194250_Withdraw_BankId_int'
+)
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20250517194250_Withdraw_BankId_int', N'9.0.3');
+END;
+
 COMMIT;
 GO
 

@@ -26,11 +26,13 @@ namespace Loan_API.Implementation
                         from cei in ceiGroup.DefaultIfEmpty()
                         join rpm in _dbContext.RechargePaymentMethod on wd.PaymentMethodID equals rpm.Id into rpmGroup
                         from rpm in rpmGroup.DefaultIfEmpty()
+                        join rca in _dbContext.RechargeAccount on wd.BankId equals rca.Id into rcaGroup
+                        from rca in rcaGroup.DefaultIfEmpty()
                         orderby wd.WithdrawaID descending
                         select new WithdrawDetailDTO
                         {
                             WithdrawaID = wd.WithdrawaID,
-                            BankName = wd.BankName,
+                            BankName = rca.BankOrWalletName,
                             AccountNumber = wd.AccountNumber,
                             Amount = wd.Amount,
                             RequestedDate = wd.RequestedDate,
@@ -58,12 +60,14 @@ namespace Loan_API.Implementation
                         from cei in ceiGroup.DefaultIfEmpty()   
                         join rpm in _dbContext.RechargePaymentMethod on wd.PaymentMethodID equals rpm.Id into rpmGroup
                         from rpm in rpmGroup.DefaultIfEmpty()
+                        join rca in _dbContext.RechargeAccount on wd.BankId equals rca.Id into rcaGroup
+                        from rca in rcaGroup.DefaultIfEmpty()
                         where wd.CustommerID == customerId
                         orderby wd.WithdrawaID descending
                         select new WithdrawDetailDTO
                         {
                             WithdrawaID = wd.WithdrawaID,
-                            BankName = wd.BankName,
+                            BankName = rca.BankOrWalletName,
                             AccountNumber = wd.AccountNumber,
                             Amount = wd.Amount,
                             RequestedDate = wd.RequestedDate,
