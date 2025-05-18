@@ -1,4 +1,6 @@
-﻿using Loan_API.Repository;
+﻿using Loan_API.DTO;
+using Loan_API.Entities;
+using Loan_API.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
@@ -83,6 +85,71 @@ namespace Loan_API.Controllers
                 return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
             }
         }
+
+        [HttpPost("signature/create")]
+        public async Task<IActionResult> PostFullCustomer([FromBody] CustomerSignatureDTO customerDto)
+        {
+            if (customerDto == null)
+                return BadRequest("Customer information cannot be null.");
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            using var transaction = await _unitOfWork.BeginTransactionAsync(); // Begin transaction
+
+            try
+            {
+                string companyId = "1111";
+                string? imageResult = null;
+                string? signatureResult = null;
+
+                var result = await _unitOfWork.Custommer.GetByIdAsync(customerDto.CustomerId);
+
+                if (result == null)
+                {
+                    return NotFound(new { StatusCode = 404, message = "Customer not found!" });
+                }
+
+                if (customerDto.CustommerSignature != null && customerDto.CustommerSignature.Any())
+                {
+                    string DocumentTypeSigImage = "CustommerSignature";
+                    signatureResult = await _unitOfWork.Custommer.SaveDocumentsListsAsync(
+                        customerDto.CustommerSignature,
+                        result.CustCardNo,
+                        companyId,
+                        DocumentTypeSigImage
+                    );
+                }
+
+
+                result.CustommerSignature = signatureResult;
+                _unitOfWork.Custommer.UpdateAsync(result);
+
+
+
+                await _unitOfWork.Save();
+
+                await transaction.CommitAsync();
+
+                return Ok(new
+                {
+                    StatusCode = 200,
+                    Message = "Customer with full details created successfully."
+                    
+                });
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+
+                return StatusCode(500, new
+                {
+                    StatusCode = 500,
+                    Message = $"An error occurred: {ex.Message}"
+                });
+            }
+        }
+
 
 
     }
