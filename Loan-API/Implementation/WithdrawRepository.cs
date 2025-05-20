@@ -28,6 +28,12 @@ namespace Loan_API.Implementation
                         from rpm in rpmGroup.DefaultIfEmpty()
                         join rca in _dbContext.RechargeAccount on wd.BankId equals rca.Id into rcaGroup
                         from rca in rcaGroup.DefaultIfEmpty()
+                        join user in _dbContext.Users on wd.ApproveBy equals user.UserId into userGroup
+                        from user in userGroup.DefaultIfEmpty()
+                        join rejuser in _dbContext.Users on wd.RejectBy equals rejuser.UserId into RejuserGroup
+                        from rejuser in RejuserGroup.DefaultIfEmpty()
+                        join upuser in _dbContext.Users on wd.UpdatedBy equals upuser.UserId into UpuserGroup
+                        from upuser in UpuserGroup.DefaultIfEmpty()
                         orderby wd.WithdrawaID descending
                         select new WithdrawDetailDTO
                         {
@@ -38,14 +44,18 @@ namespace Loan_API.Implementation
                             RequestedDate = wd.RequestedDate,
                             IsApproved = wd.IsApproved,
                             TransactionCode = wd.TransactionCode,
-                            AdminRemarks = wd.AdminRemarks,
-                            ApproveAt = wd.ApproveAt,
-                            ApproveBy = wd.ApproveBy,
+                            AdminRemarks = wd.AdminRemarks,  
                             CustommerID = wd.CustommerID,
                             FullName = cei.FullName,
                             CustommerImage = $"{baseUrl}/1111/CustommerImage/{cei.CustommerImage}",
                             CustCardNo = cei.CustCardNo,
-                            PaymentMethodType = rpm.Name
+                            PaymentMethodType = rpm.Name,
+                            ApproveAt = wd.ApproveAt,
+                            ApproveBy = user.Email,
+                            RejectBy = rejuser.Email,
+                            RejectedAt = wd.RejectAt,
+                            UpdateBy = upuser.Email,
+                            UpdatedAt = wd.UpdatedAt,
                         };
 
             return await query.ToListAsync();
@@ -62,6 +72,12 @@ namespace Loan_API.Implementation
                         from rpm in rpmGroup.DefaultIfEmpty()
                         join rca in _dbContext.RechargeAccount on wd.BankId equals rca.Id into rcaGroup
                         from rca in rcaGroup.DefaultIfEmpty()
+                        join user in _dbContext.Users on wd.ApproveBy equals user.UserId into userGroup
+                        from user in userGroup.DefaultIfEmpty()
+                        join rejuser in _dbContext.Users on wd.RejectBy equals rejuser.UserId into RejuserGroup
+                        from rejuser in RejuserGroup.DefaultIfEmpty()
+                        join upuser in _dbContext.Users on wd.UpdatedBy equals upuser.UserId into UpuserGroup
+                        from upuser in UpuserGroup.DefaultIfEmpty()
                         where wd.CustommerID == customerId
                         orderby wd.WithdrawaID descending
                         select new WithdrawDetailDTO
@@ -74,13 +90,17 @@ namespace Loan_API.Implementation
                             IsApproved = wd.IsApproved,
                             TransactionCode = wd.TransactionCode,
                             AdminRemarks = wd.AdminRemarks,
-                            ApproveAt = wd.ApproveAt,
-                            ApproveBy = wd.ApproveBy,
                             CustommerID = wd.CustommerID,
                             FullName = cei.FullName,
                             CustommerImage = $"{baseUrl}/1111/CustommerImage/{cei.CustommerImage}",
                             CustCardNo = cei.CustCardNo,
-                            PaymentMethodType = rpm.Name
+                            PaymentMethodType = rpm.Name,
+                            ApproveAt = wd.ApproveAt,
+                            ApproveBy = user.Email,
+                            RejectBy = rejuser.Email,
+                            RejectedAt = wd.RejectAt,
+                            UpdateBy = upuser.Email,
+                            UpdatedAt = wd.UpdatedAt,
                         };
 
             return await query.ToListAsync();

@@ -2,6 +2,7 @@
 using Loan_API.Entities;
 using Loan_API.Implementation;
 using Loan_API.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ namespace Loan_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CustommerController : ControllerBase
     {
         private readonly IMemoryCache _cache;

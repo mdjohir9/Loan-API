@@ -1,6 +1,7 @@
 ﻿using Loan_API.DTO;
 using Loan_API.Entities;
 using Loan_API.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
@@ -9,12 +10,14 @@ namespace Loan_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RechargeController : ControllerBase
     {
         private readonly IMemoryCache _cache;
 
         private readonly IUnitOfWork _unitOfWork;
         int userId = 1;
+
         public RechargeController(IUnitOfWork unitOfWork, IMemoryCache cache)
         {
 

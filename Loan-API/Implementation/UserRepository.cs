@@ -181,7 +181,8 @@ namespace Loan_API.Implementation
                     icon = "stock",
                     submenu = new List<object>
             {
-                new { path = "/loan/add", title = "Loan Application", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
+                new { path = "/loan/loan-Application", title = "Loan Application", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
+                new { path = "/loan/customer-loan-list", title = "Loan List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
                 new { path = "/loan/instalment", title = "Instalments", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }
             }
                 });
@@ -252,7 +253,7 @@ namespace Loan_API.Implementation
                     icon = "stock",
                     submenu = new List<object>
             {
-                new { path = "/loan/add", title = "Loan Application", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
+                new { path = "/loan/loan-Application", title = "Loan Application", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
                 new { path = "/loan/loan-request-list", title = "Loan Application List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
                 new { path = "/loan/all-instalmets", title = "Upcoming Instalments", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() },
                 new { path = "/loan/loan-list", title = "Loan List", iconType = "", icon = "", iconTheme = "", submenu = new List<object>() }

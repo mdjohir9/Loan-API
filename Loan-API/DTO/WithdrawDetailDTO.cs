@@ -10,8 +10,6 @@
         public bool? IsApproved { get; set; }
         public string? TransactionCode { get; set; }
         public string? AdminRemarks { get; set; }
-        public DateTime? ApproveAt { get; set; }
-        public int? ApproveBy { get; set; }
         public int CustommerID { get; set; }
 
         // From Customer
@@ -19,5 +17,12 @@
         public string? CustommerImage { get; set; }
         public string? CustCardNo { get; set; }
         public string? PaymentMethodType { get; set; }
+
+        public DateTime? ApproveAt { get; set; }
+        public string? ApproveBy { get; set; }
+        public string? RejectBy { get; set; }
+        public DateTime? RejectedAt { get; set; }
+        public string? UpdateBy { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }

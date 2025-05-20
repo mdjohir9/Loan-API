@@ -184,6 +184,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Loan_API.Controllers.LoanController",
+    "Method": "PostFullCustomer",
+    "RelativePath": "api/Loan/signature/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerDto",
+        "Type": "Loan_API.DTO.CustomerSignatureDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Loan_API.Controllers.LoanApplicationController",
     "Method": "GetLoanApplicationById",
     "RelativePath": "api/LoanApplication/application/{id}",
