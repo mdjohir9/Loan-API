@@ -125,7 +125,9 @@ namespace Loan_API.Controllers
                     AccountNumber = withdrawDto.AccountNumber,
                     Amount = withdrawDto.Amount,
                     RequestedDate = DateTime.Now,
-                    CustommerID = withdrawDto.CustommerID
+                    CustommerID = withdrawDto.CustommerID,
+                    ApplyedBy=withdrawDto.UserId,
+                    ApplyedAt=DateTime.Now,
                 };
 
                 await _unitOfWork.Withdraw.AddAsync(withdrawRequest);
@@ -191,6 +193,8 @@ namespace Loan_API.Controllers
                 existingWithdraw.Amount = withdrawDto.Amount;
                 existingWithdraw.RequestedDate = DateTime.Now;
                 existingWithdraw.CustommerID = withdrawDto.CustommerID;
+                existingWithdraw.UpdatedBy = withdrawDto.UserId;
+                existingWithdraw.UpdatedAt = DateTime.Now;
 
                 _unitOfWork.Withdraw.UpdateAsync(existingWithdraw);
                 await _unitOfWork.Save();

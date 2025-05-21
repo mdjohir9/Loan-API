@@ -26,11 +26,8 @@ namespace Loan_API.DTO
 
         public DateTime ApplicationDate { get; set; } = DateTime.UtcNow;
 
+ 
 
-        public int? ApplyedBy { get; set; }
-        public int? ApprovedBy { get; set; }
-        public int? RejectedBy { get; set; }
-        public int? UpdatedBy { get; set; }
 
         [Required]
         public int PlanID { get; set; }
@@ -39,7 +36,7 @@ namespace Loan_API.DTO
         public int CustomerID { get; set; }
         [Required]
         public int PayMethodID { get; set; }
-
+        public int? UserId { get; set; }
 
     }
 }

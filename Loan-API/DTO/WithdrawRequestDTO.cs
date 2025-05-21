@@ -21,5 +21,6 @@ namespace Loan_API.DTO
 
         [Required]
         public int CustommerID { get; set; }
+        public int ? UserId { get; set; }
     }
 }

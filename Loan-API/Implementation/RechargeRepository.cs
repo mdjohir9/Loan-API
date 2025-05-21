@@ -29,12 +29,14 @@ namespace Loan_API.Implementation
             from rca in rcaGroup.DefaultIfEmpty()
                         join rpm in _dbContext.RechargePaymentMethod on rc.PaymentMethodID equals rpm.Id into rpmGroup
                         from rpm in rpmGroup.DefaultIfEmpty()
-                        join user in _dbContext.Users on rc.ApproveBy equals user.UserId into userGroup
-                        from user in userGroup.DefaultIfEmpty()
+                        join appuser in _dbContext.Users on rc.ApproveBy equals appuser.UserId into userGroup
+                        from appuser in userGroup.DefaultIfEmpty()
                         join rejuser in _dbContext.Users on rc.RejectBy equals rejuser.UserId into RejuserGroup
                         from rejuser in RejuserGroup.DefaultIfEmpty()
                         join upuser in _dbContext.Users on rc.UpdatedBy equals upuser.UserId into UpuserGroup
                         from upuser in UpuserGroup.DefaultIfEmpty()
+                        join applyuser in _dbContext.Users on rc.ApplyedBy equals applyuser.UserId into applyuserGroup
+                        from applyuser in applyuserGroup.DefaultIfEmpty()
                         orderby rc.RechargeID descending
                         select new RechargeDetailDTO
                         {
@@ -54,11 +56,13 @@ namespace Loan_API.Implementation
                             AccountNumber = rca.AccountNumber,
                             PaymentMethodType = rpm.Name,
                             ApproveAt = rc.ApproveAt,
-                            ApproveBy = user.Email,
+                            ApproveBy = appuser.Email,
                             RejectBy=rejuser.Email,
                             RejectedAt=rc.RejectAt,
                             UpdateBy=upuser.Email,
                             UpdatedAt=rc.UpdatedAt,
+                            ApplyedBy=applyuser.Email,
+                            ApplyedAt=rc.ApplyedAt,
 
 
                         };

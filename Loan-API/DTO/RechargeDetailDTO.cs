@@ -23,6 +23,8 @@
         public DateTime? RejectedAt { get; set; }
         public string? UpdateBy { get; set; }
         public DateTime? UpdatedAt { get; set; }
+        public string? ApplyedBy { get; set; }
+        public DateTime? ApplyedAt { get; set; }
 
     }
 }

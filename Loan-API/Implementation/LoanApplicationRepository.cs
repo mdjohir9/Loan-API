@@ -29,6 +29,15 @@ namespace Loan_API.Implementation
 
                                 join lp in _dbContext.LoanPlan on la.PlanID equals lp.PlanID into lpJoin
                                 from lp in lpJoin.DefaultIfEmpty()
+                                join appuser in _dbContext.Users on la.ApprovedBy equals appuser.UserId into userGroup
+                                from appuser in userGroup.DefaultIfEmpty()
+                                join rejuser in _dbContext.Users on la.RejectedBy equals rejuser.UserId into RejuserGroup
+                                from rejuser in RejuserGroup.DefaultIfEmpty()
+                                join upuser in _dbContext.Users on la.UpdatedBy equals upuser.UserId into UpuserGroup
+                                from upuser in UpuserGroup.DefaultIfEmpty()
+                                join applyuser in _dbContext.Users on la.ApplyedBy equals applyuser.UserId into applyuserGroup
+                                from applyuser in applyuserGroup.DefaultIfEmpty()
+
                                 orderby la.ApplicationID descending
                                 select new LoanApplicationDetailesDTO
                                 {
@@ -46,7 +55,15 @@ namespace Loan_API.Implementation
                                     PurposeOfLoan = la.PurposeOfLoan,
                                     Status = la.Status,
                                     PaymentMethodName = pm != null ? pm.Name : null,
-                                    PlanName = lp != null ? lp.PlanName : null
+                                    PlanName = lp != null ? lp.PlanName : null,
+                                    ApproveAt = la.ApprovedAt,
+                                    ApproveBy = appuser.Email,
+                                    RejectBy = rejuser.Email,
+                                    RejectedAt = la.RejectAt,
+                                    UpdateBy = upuser.Email,
+                                    UpdatedAt = la.UpdatedAt,
+                                    ApplyedBy = applyuser.Email,
+                                    ApplyedAt = la.ApplyedAt,
                                 }).ToListAsync();
 
             return result;

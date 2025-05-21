@@ -28,12 +28,14 @@ namespace Loan_API.Implementation
                         from rpm in rpmGroup.DefaultIfEmpty()
                         join rca in _dbContext.RechargeAccount on wd.BankId equals rca.Id into rcaGroup
                         from rca in rcaGroup.DefaultIfEmpty()
-                        join user in _dbContext.Users on wd.ApproveBy equals user.UserId into userGroup
-                        from user in userGroup.DefaultIfEmpty()
+                        join appuser in _dbContext.Users on wd.ApproveBy equals appuser.UserId into userGroup
+                        from appuser in userGroup.DefaultIfEmpty()
                         join rejuser in _dbContext.Users on wd.RejectBy equals rejuser.UserId into RejuserGroup
                         from rejuser in RejuserGroup.DefaultIfEmpty()
                         join upuser in _dbContext.Users on wd.UpdatedBy equals upuser.UserId into UpuserGroup
                         from upuser in UpuserGroup.DefaultIfEmpty()
+                        join applyuser in _dbContext.Users on wd.ApplyedBy equals applyuser.UserId into applyuserGroup
+                        from applyuser in applyuserGroup.DefaultIfEmpty()
                         orderby wd.WithdrawaID descending
                         select new WithdrawDetailDTO
                         {
@@ -51,11 +53,13 @@ namespace Loan_API.Implementation
                             CustCardNo = cei.CustCardNo,
                             PaymentMethodType = rpm.Name,
                             ApproveAt = wd.ApproveAt,
-                            ApproveBy = user.Email,
+                            ApproveBy = appuser.Email,
                             RejectBy = rejuser.Email,
                             RejectedAt = wd.RejectAt,
                             UpdateBy = upuser.Email,
                             UpdatedAt = wd.UpdatedAt,
+                            ApplyedBy = applyuser.Email,
+                            ApplyedAt = wd.ApplyedAt,
                         };
 
             return await query.ToListAsync();

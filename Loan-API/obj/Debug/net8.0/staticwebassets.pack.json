@@ -21,8 +21,8 @@
       "PackagePath": "staticwebassets\\1111\\CompanyDocuments\\logo.png"
     },
     {
-      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerImage\\UPS1001.png",
-      "PackagePath": "staticwebassets\\1111\\CustommerImage\\UPS1001.png"
+      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerImage\\UPS1001.jpeg",
+      "PackagePath": "staticwebassets\\1111\\CustommerImage\\UPS1001.jpeg"
     },
     {
       "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerImage\\UPS1002.png",
@@ -65,6 +65,10 @@
       "PackagePath": "staticwebassets\\1111\\CustommerImage\\ot2222.jpeg"
     },
     {
+      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerSignature\\UPS1001.png",
+      "PackagePath": "staticwebassets\\1111\\CustommerSignature\\UPS1001.png"
+    },
+    {
       "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerSignature\\UPS1008.png",
       "PackagePath": "staticwebassets\\1111\\CustommerSignature\\UPS1008.png"
     },
@@ -75,6 +79,10 @@
     {
       "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\RechargeStatement\\2.png",
       "PackagePath": "staticwebassets\\1111\\RechargeStatement\\2.png"
+    },
+    {
+      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\RechargeStatement\\34.png",
+      "PackagePath": "staticwebassets\\1111\\RechargeStatement\\34.png"
     },
     {
       "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\RechargeStatement\\345678765rdfdsds.jpeg",
@@ -97,12 +105,28 @@
       "PackagePath": "staticwebassets\\1111\\RechargeStatement\\567898tyuii.png"
     },
     {
+      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\RechargeStatement\\676ythf.png",
+      "PackagePath": "staticwebassets\\1111\\RechargeStatement\\676ythf.png"
+    },
+    {
       "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\RechargeStatement\\DFGHY456789.png",
       "PackagePath": "staticwebassets\\1111\\RechargeStatement\\DFGHY456789.png"
     },
     {
+      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\RechargeStatement\\dfdf.png",
+      "PackagePath": "staticwebassets\\1111\\RechargeStatement\\dfdf.png"
+    },
+    {
+      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\RechargeStatement\\dgfhgfgfdsdsdssds.jpeg",
+      "PackagePath": "staticwebassets\\1111\\RechargeStatement\\dgfhgfgfdsdsdssds.jpeg"
+    },
+    {
       "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\RechargeStatement\\fghjk567.png",
       "PackagePath": "staticwebassets\\1111\\RechargeStatement\\fghjk567.png"
+    },
+    {
+      "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\RechargeStatement\\gfgfgfrfdf.png",
+      "PackagePath": "staticwebassets\\1111\\RechargeStatement\\gfgfgfrfdf.png"
     },
     {
       "Id": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\RechargeStatement\\rtere3443434343.png",

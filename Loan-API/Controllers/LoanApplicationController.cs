@@ -12,7 +12,7 @@ namespace Loan_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class LoanApplicationController : ControllerBase
     {
         private readonly IMemoryCache _cache;
@@ -296,7 +296,7 @@ namespace Loan_API.Controllers
                 loanApplication.MonthlyInstallments = result.MonthlyInstallment;
                 loanApplication.ApplicationDate = approveDto.ApplicationDate;
                 loanApplication.PayMethodID = approveDto.PayMethodID;
-                loanApplication.ApprovedBy = approveDto.ApprovedBy;
+                loanApplication.ApprovedBy = approveDto.UserId;
                 loanApplication.ApprovedAt = DateTime.UtcNow;
 
                 _unitOfWork.LoanApplication.UpdateAsync(loanApplication);
@@ -388,7 +388,7 @@ namespace Loan_API.Controllers
 
 
         [HttpPut("reject/{id}")]
-        public async Task<IActionResult> RejectLoanApplication(int id)
+        public async Task<IActionResult> RejectLoanApplication(int id, int userId)
         {
             try
             {
@@ -407,6 +407,7 @@ namespace Loan_API.Controllers
 
                 // Update the loan application status to Rejected (2)
                 loanApplication.Status = 2; // 2 = Rejected
+                loanApplication.RejectedBy = userId;
                 _unitOfWork.LoanApplication.UpdateAsync(loanApplication);
                 await _unitOfWork.Save();
 
@@ -566,7 +567,8 @@ namespace Loan_API.Controllers
                         ApplicationDate = loanDto.ApplicationDate,
                         PayMethodID = loanDto.PayMethodID,
                         LateCharge = result.LateCharge,
-                        DepositAmount = result.DepositAmount
+                        DepositAmount = result.DepositAmount,
+                        ApplyedBy = loanDto.UserId,
                     };
 
                     await _unitOfWork.LoanApplication.AddAsync(loanApplication);
@@ -632,6 +634,9 @@ namespace Loan_API.Controllers
                 existingLoan.Status = 0;
                 existingLoan.ApplicationDate = loanDto.ApplicationDate;
                 existingLoan.PayMethodID = loanDto.PayMethodID;
+                existingLoan.UpdatedBy = loanDto.UserId;
+                existingLoan.UpdatedAt = DateTime.Now;
+                
 
                 // Save changes
                 _unitOfWork.LoanApplication.UpdateAsync(existingLoan);

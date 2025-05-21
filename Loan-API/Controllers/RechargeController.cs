@@ -10,7 +10,7 @@ namespace Loan_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class RechargeController : ControllerBase
     {
         private readonly IMemoryCache _cache;
@@ -45,8 +45,18 @@ namespace Loan_API.Controllers
 
                 var customerId = recharge.CustommerID;
                 recharge.ApproveAt = DateTime.UtcNow;
-                recharge.ApproveBy = userId;
-                recharge.IsApproved = IsApproved;
+                if (IsApproved == false)
+                {
+                    recharge.RejectBy = userId;
+                    recharge.IsApproved = false;
+                }
+                else
+                {
+                    recharge.ApproveBy = userId;
+                    recharge.IsApproved = true;
+
+                }
+                
                 recharge.AdminRemarks = "Approved"; 
                 await _unitOfWork.Recharge.UpdateAsync(recharge);
 
