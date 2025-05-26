@@ -128,6 +128,22 @@
   {
     "ContainingType": "Loan_API.Controllers.DashboardController",
     "Method": "GetAdminDashboardBalance",
+    "RelativePath": "api/Dashboard/recharge-withdraw/{date}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "date",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.DashboardController",
+    "Method": "GetAdminDashboardBalance",
     "RelativePath": "api/Dashboard/repayment-disbursed/{year}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -181,6 +197,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanController",
+    "Method": "GetLoansbyCustomer",
+    "RelativePath": "api/Loan/loans/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

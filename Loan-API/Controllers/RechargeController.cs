@@ -10,7 +10,7 @@ namespace Loan_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class RechargeController : ControllerBase
     {
         private readonly IMemoryCache _cache;

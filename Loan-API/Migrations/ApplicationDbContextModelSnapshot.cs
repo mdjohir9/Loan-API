@@ -442,6 +442,9 @@ namespace Loan_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LoanID"));
 
+                    b.Property<int?>("ApplicationID")
+                        .HasColumnType("int");
+
                     b.Property<int>("CustomerID")
                         .HasColumnType("int");
 
@@ -496,9 +499,9 @@ namespace Loan_API.Migrations
 
                     b.HasKey("LoanID");
 
-                    b.HasIndex("CustomerID");
+                    b.HasIndex("ApplicationID");
 
-                    b.HasIndex("PayMethodId");
+                    b.HasIndex("CustomerID");
 
                     b.HasIndex("PlanID");
 
@@ -1232,15 +1235,15 @@ namespace Loan_API.Migrations
 
             modelBuilder.Entity("Loan_API.Entities.Loan", b =>
                 {
+                    b.HasOne("Loan_API.Entities.LoanApplication", "LoanApplication")
+                        .WithMany()
+                        .HasForeignKey("ApplicationID");
+
                     b.HasOne("Loan_API.Entities.CustommerPersonnelInfo", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Loan_API.Entities.PaymentMethod", "PaymentMethod")
-                        .WithMany()
-                        .HasForeignKey("PayMethodId");
 
                     b.HasOne("Loan_API.Entities.LoanPlan", "LoanPlan")
                         .WithMany()
@@ -1248,9 +1251,9 @@ namespace Loan_API.Migrations
 
                     b.Navigation("Customer");
 
-                    b.Navigation("LoanPlan");
+                    b.Navigation("LoanApplication");
 
-                    b.Navigation("PaymentMethod");
+                    b.Navigation("LoanPlan");
                 });
 
             modelBuilder.Entity("Loan_API.Entities.LoanApplication", b =>

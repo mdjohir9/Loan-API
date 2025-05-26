@@ -37,6 +37,8 @@ namespace Loan_API.DTO
         [Required]
         public int PayMethodID { get; set; }
         public int? UserId { get; set; }
+        public int? ApplicationId { get; set; }
+
 
     }
 }

@@ -63,12 +63,17 @@ namespace Loan_API.Entities
 
         public int? PayMethodId { get; set; }
 
-        [ForeignKey(nameof(PayMethodId))]
-        public PaymentMethod? PaymentMethod { get; set; }
-
         public int? PlanID { get; set; }
 
         [ForeignKey(nameof(PlanID))]
         public LoanPlan? LoanPlan { get; set; }
+
+        public int? ApplicationID { get; set; }
+
+        [ForeignKey(nameof(ApplicationID))]
+        public LoanApplication? LoanApplication { get; set; }
+
+
+
     }
 }

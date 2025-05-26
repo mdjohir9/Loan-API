@@ -8,7 +8,7 @@ namespace Loan_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class DashboardController : ControllerBase
     {
         private readonly IMemoryCache _cache;
@@ -50,6 +50,21 @@ namespace Loan_API.Controllers
                 return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
             }
         }
+
+        [HttpGet("recharge-withdraw/{date}")]
+        public async Task<IActionResult> GetAdminDashboardBalance(string date)
+        {
+            try
+            {
+                var result = await _unitOfWork.Transction.GetRechargeAndWithdrawChartDataAsync(DateTime.Parse(date));
+                return Ok(new { StatusCode = 200, message = "Success", data = result });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
+            }
+        }
+
 
     }
 }

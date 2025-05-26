@@ -25,6 +25,27 @@ namespace Loan_API.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        [HttpGet("loans/{customerId}")]
+        public async Task<IActionResult> GetLoansbyCustomer(int customerId)
+        {
+            try
+            {
+                // Retrieve all loan applications from the unit of work
+                var result = await _unitOfWork.Loan.GetLoanByCustomerDetailsAsync(customerId);
+
+                if (result == null || !result.Any())
+                {
+                    return NotFound(new { StatusCode = 404, message = "No loan applications found!" });
+                }
+
+                return Ok(new { StatusCode = 200, message = "Success", data = result });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
+            }
+        }
+
         [HttpGet("loans")]
         public async Task<IActionResult> GetAllLoans()
         {

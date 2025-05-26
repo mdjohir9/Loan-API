@@ -12,7 +12,7 @@ namespace Loan_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class LoanApplicationController : ControllerBase
     {
         private readonly IMemoryCache _cache;
@@ -286,21 +286,28 @@ namespace Loan_API.Controllers
 
                 // Update Loan Application
                 loanApplication.Status = 1;
-                loanApplication.PlanID = approveDto.PlanID;
-                loanApplication.LoanAmount = approveDto.LoanAmount;
-                loanApplication.RepaymentPeriod = approveDto.RepaymentPeriod;
-                loanApplication.PurposeOfLoan = approveDto.PurposeOfLoan;
-                loanApplication.HasExistingLoans = false;
-                loanApplication.ExistingLoanAmount = 0;
-                loanApplication.LenderName = "Upstartloan";
-                loanApplication.MonthlyInstallments = result.MonthlyInstallment;
-                loanApplication.ApplicationDate = approveDto.ApplicationDate;
-                loanApplication.PayMethodID = approveDto.PayMethodID;
+                //loanApplication.PlanID = approveDto.PlanID;
+                //loanApplication.LoanAmount = approveDto.LoanAmount;
+                //loanApplication.RepaymentPeriod = approveDto.RepaymentPeriod;
+                //loanApplication.PurposeOfLoan = approveDto.PurposeOfLoan;
+                //loanApplication.HasExistingLoans = false;
+                //loanApplication.ExistingLoanAmount = 0;
+                //loanApplication.LenderName = "Upstartloan";
+                //loanApplication.MonthlyInstallments = result.MonthlyInstallment;
+                //loanApplication.ApplicationDate = approveDto.ApplicationDate;
+                //loanApplication.PayMethodID = approveDto.PayMethodID;
                 loanApplication.ApprovedBy = approveDto.UserId;
                 loanApplication.ApprovedAt = DateTime.UtcNow;
 
                 _unitOfWork.LoanApplication.UpdateAsync(loanApplication);
                 await _unitOfWork.Save();
+
+                var loanApplicationExist = await _unitOfWork.Loan.GetByIdAsync(id);
+                if (loanApplicationExist != null)
+                {
+                    return BadRequest(new { StatusCode = 400, message = "The Loan is Allready Exist and Approve " });
+                }
+
 
                 // Create Loan
                 var newLoan = new Loan
@@ -317,18 +324,19 @@ namespace Loan_API.Controllers
                     LoanEndDate = DateTime.UtcNow.AddMonths(approveDto.RepaymentPeriod),
                     LoanStatus = 1, // Active
                     Purpose = approveDto.PurposeOfLoan,
-                    CustomerID = approveDto.CustomerID,
+                    CustomerID = loanApplication.CustomerID,
                     PayMethodId = approveDto.PayMethodID,
                     DisbursementDate = DateTime.UtcNow,
                     DepositAmount = result.DepositAmount,
-                    PlanID = approveDto.PlanID
+                    PlanID = approveDto.PlanID,
+                    ApplicationID=id,
                 };
 
                 await _unitOfWork.Loan.AddAsync(newLoan);
                 await _unitOfWork.Save();
 
                 // Fetch Customer Account
-                var account =  _unitOfWork.Account.GetAccountInfoCustomerId(approveDto.CustomerID);
+                var account =  _unitOfWork.Account.GetAccountInfoCustomerId(loanApplication.CustomerID);
                 if (account == null)
                 {
                     await transaction.RollbackAsync();
@@ -341,7 +349,7 @@ namespace Loan_API.Controllers
                     TransactionType = 1, // Loan Disbursement
                     Amount = approveDto.LoanAmount,
                     TransactionDate = DateTime.UtcNow,
-                    CustomerId = approveDto.CustomerID,
+                    CustomerId = loanApplication.CustomerID,
                     PaytMethodID = approveDto.PayMethodID,
                     Remarks = $"Loan disbursed. LoanID: {newLoan.LoanID}"
                 };
@@ -398,8 +406,12 @@ namespace Loan_API.Controllers
                 {
                     return NotFound(new { StatusCode = 404, message = "Loan application not found!" });
                 }
+                if (loanApplication.Status==1)
+                {
+                    return BadRequest(new { StatusCode = 400, message = "Loan application is already Approved. so its not rejectable" });
+                }
 
-                // Check if the loan is already rejected
+                
                 if (loanApplication.Status == 2) // Assuming 2 = Rejected
                 {
                     return BadRequest(new { StatusCode = 400, message = "Loan application is already rejected." });
@@ -408,6 +420,7 @@ namespace Loan_API.Controllers
                 // Update the loan application status to Rejected (2)
                 loanApplication.Status = 2; // 2 = Rejected
                 loanApplication.RejectedBy = userId;
+                loanApplication.RejectAt = DateTime.Now;
                 _unitOfWork.LoanApplication.UpdateAsync(loanApplication);
                 await _unitOfWork.Save();
 
