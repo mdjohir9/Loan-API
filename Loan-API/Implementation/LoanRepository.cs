@@ -145,6 +145,25 @@ namespace Loan_API.Implementation
                           }).FirstOrDefaultAsync();
         }
 
+        public async Task<bool> IsAbleForLoanAsync(int customerId)
+        {
+            var hasActiveLoan = await _dbContext.Loan
+                .AnyAsync(l => l.CustomerID == customerId && l.LoanStatus == 1);
+
+            // Return true if customer is eligible (i.e., has no active loan)
+            return !hasActiveLoan;
+        }
+
+        public async Task<bool> IsLoanApplicationExistAsync(int ApplicationId)
+        {
+            var hasActiveLoan = await _dbContext.Loan
+                .AnyAsync(l => l.ApplicationID == ApplicationId && l.LoanStatus == 1);
+
+            // Return true if customer is eligible (i.e., has no active loan)
+            return !hasActiveLoan;
+        }
+
+
 
     }
 }

@@ -150,7 +150,7 @@ namespace Loan_API.Controllers
                     bool userNameExists = await _unitOfWork.User.CheckUserNameIsExist(usersDTO.EamilOrPhone);
                     if (userNameExists)
                     {
-                        return Ok(new { StatusCode = 400, message = "The Phone Or Email already exists. Please choose a different Email or Phone Number." });
+                        return Ok(new { StatusCode = 400, message = "An account with this email or phone number already exists. Would you like to sign in instead?." });
                     }
                 }
                 else

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6oRYejrY+JYsMXhpNGgWcxV6j0SdQnx+7X8zbbhiiOE=",
+  "Hash": "S8SxssltlzrJWiPKLcrSy8944W5CI30xbsc0EVb4BOE=",
   "Source": "Loan-API",
   "BasePath": "_content/Loan-API",
   "Mode": "Default",
@@ -378,6 +378,25 @@
       "OriginalItemSpec": "wwwroot\\1111\\CustommerSignature\\UPS1002.png"
     },
     {
+      "Identity": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerSignature\\UPS1003.png",
+      "SourceId": "Loan-API",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\",
+      "BasePath": "_content/Loan-API",
+      "RelativePath": "1111/CustommerSignature/UPS1003.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\1111\\CustommerSignature\\UPS1003.png"
+    },
+    {
       "Identity": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerSignature\\UPS1008.png",
       "SourceId": "Loan-API",
       "SourceType": "Discovered",
@@ -644,6 +663,44 @@
       "OriginalItemSpec": "wwwroot\\1111\\RechargeStatement\\dgfhgfgfdsdsdssds.jpeg"
     },
     {
+      "Identity": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\RechargeStatement\\edfdge4r5redf.png",
+      "SourceId": "Loan-API",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\",
+      "BasePath": "_content/Loan-API",
+      "RelativePath": "1111/RechargeStatement/edfdge4r5redf.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\1111\\RechargeStatement\\edfdge4r5redf.png"
+    },
+    {
+      "Identity": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\RechargeStatement\\fddrfdfe4343redf.png",
+      "SourceId": "Loan-API",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\",
+      "BasePath": "_content/Loan-API",
+      "RelativePath": "1111/RechargeStatement/fddrfdfe4343redf.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\1111\\RechargeStatement\\fddrfdfe4343redf.png"
+    },
+    {
       "Identity": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\RechargeStatement\\fghjk567.png",
       "SourceId": "Loan-API",
       "SourceType": "Discovered",
@@ -682,6 +739,25 @@
       "OriginalItemSpec": "wwwroot\\1111\\RechargeStatement\\gfgfgfrfdf.png"
     },
     {
+      "Identity": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\RechargeStatement\\r5rerdfer.jpeg",
+      "SourceId": "Loan-API",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\",
+      "BasePath": "_content/Loan-API",
+      "RelativePath": "1111/RechargeStatement/r5rerdfer.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\1111\\RechargeStatement\\r5rerdfer.jpeg"
+    },
+    {
       "Identity": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\RechargeStatement\\rtere3443434343.png",
       "SourceId": "Loan-API",
       "SourceType": "Discovered",
@@ -718,6 +794,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\1111\\RechargeStatement\\sdfg5tre.png"
+    },
+    {
+      "Identity": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\RechargeStatement\\vugyifugyfugyvt867.png",
+      "SourceId": "Loan-API",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\",
+      "BasePath": "_content/Loan-API",
+      "RelativePath": "1111/RechargeStatement/vugyifugyfugyvt867.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\1111\\RechargeStatement\\vugyifugyfugyvt867.png"
     }
   ]
 }

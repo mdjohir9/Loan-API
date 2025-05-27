@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KscipLZ1oe4UzLUlICzX6Q1CGprSb7tKzcRKMS+3Rx8=",
+  "Hash": "36+RSmtNoi/BLSyQ7joBsxUafv3r6VSwtmqOa3OUq6I=",
   "Source": "Loan-API",
   "BasePath": "_content/Loan-API",
   "Mode": "Default",
@@ -376,6 +376,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\1111\\CustommerSignature\\UPS1002.png"
+    },
+    {
+      "Identity": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerSignature\\UPS1003.png",
+      "SourceId": "Loan-API",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\",
+      "BasePath": "_content/Loan-API",
+      "RelativePath": "1111/CustommerSignature/UPS1003.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\1111\\CustommerSignature\\UPS1003.png"
     },
     {
       "Identity": "E:\\My-personnel-project\\Loan-API\\Loan-API\\wwwroot\\1111\\CustommerSignature\\UPS1008.png",

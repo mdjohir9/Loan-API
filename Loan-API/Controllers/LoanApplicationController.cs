@@ -256,6 +256,26 @@ namespace Loan_API.Controllers
 
             try
             {
+                var isLoanExist = await _unitOfWork.Loan.IsLoanApplicationExistAsync(id);
+                if (!isLoanExist)
+                {
+                    return BadRequest(new
+                    {
+                        StatusCode = 400,
+                        message = "The Loan Already approve "
+                    });
+                }
+
+                bool isEligible = await _unitOfWork.Loan.IsAbleForLoanAsync(approveDto.CustomerID);
+
+                if (!isEligible)
+                {
+                    return BadRequest(new
+                    {
+                        StatusCode = 400,
+                        message = "You currently have an unpaid loan. Please pay it off before applying for a new one."
+                    });
+                }
                 // Retrieve the loan application
                 var loanApplication = await _unitOfWork.LoanApplication.GetByIdAsync(id);
                 if (loanApplication == null)
@@ -302,12 +322,7 @@ namespace Loan_API.Controllers
                 _unitOfWork.LoanApplication.UpdateAsync(loanApplication);
                 await _unitOfWork.Save();
 
-                var loanApplicationExist = await _unitOfWork.Loan.GetByIdAsync(id);
-                if (loanApplicationExist != null)
-                {
-                    return BadRequest(new { StatusCode = 400, message = "The Loan is Allready Exist and Approve " });
-                }
-
+            
 
                 // Create Loan
                 var newLoan = new Loan
@@ -521,6 +536,17 @@ namespace Loan_API.Controllers
 
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
+
+                bool isEligible = await _unitOfWork.Loan.IsAbleForLoanAsync(loanDto.CustomerID);
+
+                if (!isEligible)
+                {
+                    return BadRequest(new
+                    {
+                        StatusCode = 400,
+                        message = "You currently have an unpaid loan. Please pay it off before applying for a new one."
+                    });
+                }
 
                 var account =  _unitOfWork.Account.GetAccountInfoCustomerId(loanDto.CustomerID);
                 if (account == null)
