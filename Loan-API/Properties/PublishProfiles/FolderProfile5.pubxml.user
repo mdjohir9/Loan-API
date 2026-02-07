@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>E:\API Publish</_PublishTargetUrl>
+    <History>True|2025-05-07T17:05:52.0868635Z||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DbConnection">
+      <Value>Server=5.77.32.139%3bDatabase=UPSLOAN%3bUser Id=UPSLOAN42%3bPassword=%40cw%40ups#2025%3bTrustServerCertificate=True%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="Loan_API.Entities.ApplicationDbContext">
+      <Value>Server=5.77.32.139%3bDatabase=UPSLOAN%3bUser Id=UPSLOAN42%3bPassword=%40cw%40ups#2025%3bTrustServerCertificate=True%3b</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,238 @@
+﻿using Loan_API.DTO;
+using Loan_API.Entities;
+using Loan_API.Implementation;
+using Loan_API.Repository;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
+
+namespace Loan_API.Controllers
+{
+    [ApiExplorerSettings(IgnoreApi = true)]
+    [Route("api/[controller]")]
+    [ApiController]
+    [Authorize]
+    public class CustommerContactController : ControllerBase
+    {
+        private readonly IMemoryCache _cache;
+
+        private readonly IUnitOfWork _unitOfWork;
+        int userId = 1;
+        public CustommerContactController(IUnitOfWork unitOfWork, IMemoryCache cache)
+        {
+
+            _cache = cache;
+            _unitOfWork = unitOfWork;
+        }
+
+
+
+
+        [HttpGet]
+        [Route("contact/{id}")]
+        public async Task<IActionResult> GetContactById(int id)
+        {
+            try
+            {
+                // Retrieve the contact by ID from the unit of work
+                var result = await _unitOfWork.Contact.GetByIdAsync(id);
+
+
+                if (result == null)
+                {
+                    return NotFound(new { StatusCode = 404, message = "Customer contact not found!" });
+                }
+
+                return Ok(new { StatusCode = 200, message = "Success", data = result });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
+            }
+        }
+
+        [HttpPost("create")]
+        public async Task<IActionResult> PostCustomer([FromBody] CustommerContactDTO contactDto)
+        {
+            try
+            {
+                if (contactDto == null)
+                {
+                    return BadRequest("Customer contact details cannot be null.");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                // Check if contact with the given CustomerID already exists
+                var existingContact = _unitOfWork.Contact.GetCustommerContactByCustomerId(contactDto.CustomerID);
+
+                if (existingContact != null)
+                {
+                    // If contact exists, update it
+                    return await UpdateCustomer(contactDto, contactDto.CustomerID);
+                }
+
+                // If contact does not exist, create a new one
+                var contact = new CustommerContact
+                {
+                    CustomerID = contactDto.CustomerID,
+                    PhoneNumber = contactDto.PhoneNumber,
+                    AlternativePhoneNumber = contactDto.AlternativePhoneNumber,
+                    EmailAddress = contactDto.EmailAddress,
+                    PreStreet = contactDto.PreStreet,
+                    PerStreet = contactDto.PerStreet,
+                    PreZIP = contactDto.PreZIP,
+                    PerZIP = contactDto.PerZIP,
+                    PreCity = contactDto.PreCity,
+                    PerCity = contactDto.PerCity,
+                    PreState = contactDto.PreState,
+                    PerState = contactDto.PerState
+                };
+
+                await _unitOfWork.Contact.AddAsync(contact);
+                await _unitOfWork.Save();
+                return Ok(new { StatusCode = 200, message = "Customer contact saved successfully." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+        }
+
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateCustomer([FromBody] CustommerContactDTO contactDto, int id)
+        {
+            try
+            {
+                if (contactDto == null)
+                {
+                    return BadRequest("Customer contact details cannot be null.");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                await _unitOfWork.Contact.UpdateByForeignKeyAsync<CustommerContact>(
+                    c => c.CustomerID == id,
+                    existingContact =>
+                    {
+                        // Apply updates
+                        existingContact.PhoneNumber = contactDto.PhoneNumber;
+                        existingContact.AlternativePhoneNumber = contactDto.AlternativePhoneNumber;
+                        existingContact.EmailAddress = contactDto.EmailAddress;
+                        existingContact.PreStreet = contactDto.PreStreet;
+                        existingContact.PerStreet = contactDto.PerStreet;
+                        existingContact.PreZIP = contactDto.PreZIP;
+                        existingContact.PerZIP = contactDto.PerZIP;
+                        existingContact.PreCity = contactDto.PreCity;
+                        existingContact.PerCity = contactDto.PerCity;
+                        existingContact.PreState = contactDto.PreState;
+                        existingContact.PerState = contactDto.PerState;
+                    }
+                );
+
+                await _unitOfWork.Save();
+                return Ok(new { StatusCode = 200, message = "Customer contact updated successfully." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+        }
+
+
+
+        //[HttpPost("create")]
+        //public async Task<IActionResult> PostCustomer([FromBody] CustommerContactDTO contactDto)
+        //{
+        //    try
+        //    {
+        //        if (contactDto == null)
+        //        {
+        //            return BadRequest("Customer contact details cannot be null.");
+        //        }
+
+        //        if (!ModelState.IsValid)
+        //        {
+        //            return BadRequest(ModelState);
+        //        }
+        //        var result = _unitOfWork.Contact.GetCustommerContactByCustomerId(contactDto.CustomerID);
+
+        //        var contact = new CustommerContact
+        //        {
+        //            CustomerID = contactDto.CustomerID,
+        //            PhoneNumber = contactDto.PhoneNumber,
+        //            AlternativePhoneNumber = contactDto.AlternativePhoneNumber,
+        //            EmailAddress = contactDto.EmailAddress,
+        //            PreStreet = contactDto.PreStreet,
+        //            PerStreet = contactDto.PerStreet,
+        //            PreZIP = contactDto.PreZIP,
+        //            PerZIP = contactDto.PerZIP,
+        //            PreCity = contactDto.PreCity,
+        //            PerCity = contactDto.PerCity,
+        //            PreState = contactDto.PreState,
+        //            PerState = contactDto.PerState
+        //        };
+
+        //        await _unitOfWork.Contact.AddAsync(contact);
+        //        await _unitOfWork.Save();
+        //        return Ok(new { StatusCode = 200, message = "Customer contact saved successfully." });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, $"An error occurred: {ex.Message}");
+        //    }
+        //}
+        //[HttpPut("update/{id}")]
+        //public async Task<IActionResult> UpdateCustomer([FromBody] CustommerContactDTO contactDto, int id)
+        //{
+        //    try
+        //    {
+        //        if (contactDto == null)
+        //        {
+        //            return BadRequest("Customer contact details cannot be null.");
+        //        }
+
+        //        if (!ModelState.IsValid)
+        //        {
+        //            return BadRequest(ModelState);
+        //        }
+
+        //        await _unitOfWork.Contact.UpdateByForeignKeyAsync<CustommerContact>(
+        //            c => c.CustomerID == id, 
+        //            existingContact =>
+        //            {
+        //                // Apply updates
+        //                existingContact.PhoneNumber = contactDto.PhoneNumber;
+        //                existingContact.AlternativePhoneNumber = contactDto.AlternativePhoneNumber;
+        //                existingContact.EmailAddress = contactDto.EmailAddress;
+        //                existingContact.PreStreet = contactDto.PreStreet;
+        //                existingContact.PerStreet = contactDto.PerStreet;
+        //                existingContact.PreZIP = contactDto.PreZIP;
+        //                existingContact.PerZIP = contactDto.PerZIP;
+        //                existingContact.PreCity = contactDto.PreCity;
+        //                existingContact.PerCity = contactDto.PerCity;
+        //                existingContact.PreState = contactDto.PreState;
+        //                existingContact.PerState = contactDto.PerState;
+        //            }
+        //        );
+
+        //        await _unitOfWork.Save();
+        //        return Ok(new { StatusCode = 200, message = "Customer contact updated successfully." });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, $"An error occurred: {ex.Message}");
+        //    }
+        //}
+
+
+
+    }
+}

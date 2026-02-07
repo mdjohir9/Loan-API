@@ -1,0 +1,22 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Loan-API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Custommer/GetCustommer": {
+      "get": {
+        "tags": [
+          "Custommer"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": { }
+}

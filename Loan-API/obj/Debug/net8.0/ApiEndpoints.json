@@ -1,12 +1,1339 @@
 [
   {
     "ContainingType": "Loan_API.Controllers.CustommerController",
-    "Method": "GetCustommer",
-    "RelativePath": "api/Custommer/GetCustommer",
+    "Method": "GetCountries",
+    "RelativePath": "api/Custommer/countries",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerController",
+    "Method": "PostFullCustomer",
+    "RelativePath": "api/Custommer/create-full",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerDto",
+        "Type": "Loan_API.DTO.CustommerSaveDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerController",
+    "Method": "GetCustommerById",
+    "RelativePath": "api/Custommer/custommer/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerController",
+    "Method": "GetCustommerDetailesById",
+    "RelativePath": "api/Custommer/custommerDetailes/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerController",
+    "Method": "GetCustommers",
+    "RelativePath": "api/Custommer/custommers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerController",
+    "Method": "GetCustommerIdNameById",
+    "RelativePath": "api/Custommer/custommerSummary",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerController",
+    "Method": "DeleteCustomer",
+    "RelativePath": "api/Custommer/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.CustommerController",
+    "Method": "UpdateFullCustomer",
+    "RelativePath": "api/Custommer/update-full",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerDto",
+        "Type": "Loan_API.DTO.CustommerSaveDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.DashboardController",
+    "Method": "GetAdminDashboardBalance",
+    "RelativePath": "api/Dashboard/admin-balance",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.DashboardController",
+    "Method": "GetAdminDashboardBalance",
+    "RelativePath": "api/Dashboard/recharge-withdraw/{date}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "date",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.DashboardController",
+    "Method": "GetAdminDashboardBalance",
+    "RelativePath": "api/Dashboard/repayment-disbursed/{year}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "year",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanController",
+    "Method": "GetLoanBalanceByCustomerId",
+    "RelativePath": "api/Loan/balance/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanController",
+    "Method": "GetLoanById",
+    "RelativePath": "api/Loan/loan/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanController",
+    "Method": "GetAllLoans",
+    "RelativePath": "api/Loan/loans",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanController",
+    "Method": "GetLoansbyCustomer",
+    "RelativePath": "api/Loan/loans/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanController",
+    "Method": "PostFullCustomer",
+    "RelativePath": "api/Loan/signature/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerDto",
+        "Type": "Loan_API.DTO.CustomerSignatureDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanApplicationController",
+    "Method": "GetLoanApplicationById",
+    "RelativePath": "api/LoanApplication/application/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanApplicationController",
+    "Method": "GetAllLoanApplications",
+    "RelativePath": "api/LoanApplication/applications",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanApplicationController",
+    "Method": "GetLoanApplicationsByCustomerId",
+    "RelativePath": "api/LoanApplication/applications/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanApplicationController",
+    "Method": "ApproveLoanApplication",
+    "RelativePath": "api/LoanApplication/approve/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "approveDto",
+        "Type": "Loan_API.DTO.LoanApplicationDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanApplicationController",
+    "Method": "CalculateEMI",
+    "RelativePath": "api/LoanApplication/calculate-emi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "LoanAmount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "RepaymentPeriod",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PlanID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanApplicationController",
+    "Method": "CreateLoanApplication",
+    "RelativePath": "api/LoanApplication/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loanDto",
+        "Type": "Loan_API.DTO.LoanApplicationDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanApplicationController",
+    "Method": "GetLoanLimitsByPlanId",
+    "RelativePath": "api/LoanApplication/loan-limits/{planId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "planId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanApplicationController",
+    "Method": "RejectLoanApplication",
+    "RelativePath": "api/LoanApplication/reject/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanApplicationController",
+    "Method": "UpdateLoanApplication",
+    "RelativePath": "api/LoanApplication/update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "loanDto",
+        "Type": "Loan_API.DTO.LoanApplicationDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanInstalmentController",
+    "Method": "GetInstalmentById",
+    "RelativePath": "api/LoanInstalment/instalment/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanInstalmentController",
+    "Method": "GetInstalmentsByMonth",
+    "RelativePath": "api/LoanInstalment/instalments-by-month",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "date",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanInstalmentController",
+    "Method": "MarkLoanInstalmentAsPaid",
+    "RelativePath": "api/LoanInstalment/paid/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "lateCharge",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanPlanController",
+    "Method": "CreateLoanPlan",
+    "RelativePath": "api/LoanPlan/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loanPlanDto",
+        "Type": "Loan_API.Entities.LoanPlanCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanPlanController",
+    "Method": "DeleteLoanPlan",
+    "RelativePath": "api/LoanPlan/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanPlanController",
+    "Method": "GetLoanPlanById",
+    "RelativePath": "api/LoanPlan/plan/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanPlanController",
+    "Method": "GetAllLoanPlan",
+    "RelativePath": "api/LoanPlan/plans",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LoanPlanController",
+    "Method": "UpdateLoanPlan",
+    "RelativePath": "api/LoanPlan/update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "loanPlanDto",
+        "Type": "Loan_API.Entities.LoanPlanCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LogInController",
+    "Method": "PostUsers",
+    "RelativePath": "api/LogIn/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDTO",
+        "Type": "Loan_API.DTO.LoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.LogInController",
+    "Method": "PostUsers",
+    "RelativePath": "api/LogIn/registration",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usersDTO",
+        "Type": "Loan_API.DTO.users.RegistrationDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.PaymentMethodController",
+    "Method": "GetAllActivePaymentTypes",
+    "RelativePath": "api/PaymentMethod/activePaymentMetdods",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.PaymentMethodController",
+    "Method": "CreatePaymentType",
+    "RelativePath": "api/PaymentMethod/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Loan_API.DTO.RechargePaymentMethodDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.PaymentMethodController",
+    "Method": "DeletePaymentType",
+    "RelativePath": "api/PaymentMethod/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.PaymentMethodController",
+    "Method": "GetPaymentTypeById",
+    "RelativePath": "api/PaymentMethod/paymentMetdod/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.PaymentMethodController",
+    "Method": "GetAllPaymentTypes",
+    "RelativePath": "api/PaymentMethod/paymentMetdods",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.PaymentMethodController",
+    "Method": "UpdatePaymentType",
+    "RelativePath": "api/PaymentMethod/update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Loan_API.DTO.RechargePaymentMethodDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeController",
+    "Method": "ApproveRechargeRequest",
+    "RelativePath": "api/Recharge/approve/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "IsApproved",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeController",
+    "Method": "PostRechargeRequest",
+    "RelativePath": "api/Recharge/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "rechargeDto",
+        "Type": "Loan_API.DTO.RechargeRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeController",
+    "Method": "DeleteRechargeRequest",
+    "RelativePath": "api/Recharge/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeController",
+    "Method": "GetAllRechagres",
+    "RelativePath": "api/Recharge/recharge-requerts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeController",
+    "Method": "GetRechargeRequestById",
+    "RelativePath": "api/Recharge/recharge/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeController",
+    "Method": "GetAllRechagres",
+    "RelativePath": "api/Recharge/requerts-ByeCustomerId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeController",
+    "Method": "UpdateRechargeRequest",
+    "RelativePath": "api/Recharge/update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "rechargeDto",
+        "Type": "Loan_API.DTO.RechargeRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeAccountController",
+    "Method": "CreateRechargeAccount",
+    "RelativePath": "api/RechargeAccount/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newAccount",
+        "Type": "Loan_API.DTO.RechargeAccountDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeAccountController",
+    "Method": "DeleteRechargeAccount",
+    "RelativePath": "api/RechargeAccount/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeAccountController",
+    "Method": "GetPaymentTypeById",
+    "RelativePath": "api/RechargeAccount/PaymentType",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeAccountController",
+    "Method": "GetRechargeAccountById",
+    "RelativePath": "api/RechargeAccount/rechargeAccount/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeAccountController",
+    "Method": "GetRechargeAccountByPeymentTypes",
+    "RelativePath": "api/RechargeAccount/rechargeAccountByPaymentType/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeAccountController",
+    "Method": "GetRechargeAccounts",
+    "RelativePath": "api/RechargeAccount/rechargeAccounts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.RechargeAccountController",
+    "Method": "UpdateRechargeAccount",
+    "RelativePath": "api/RechargeAccount/update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedAccount",
+        "Type": "Loan_API.DTO.RechargeAccountDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.TransctionController",
+    "Method": "GetTransactionsByCustomerAndDateRange",
+    "RelativePath": "api/Transction/transactions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "fromDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "toDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.UserController",
+    "Method": "GetDynamicMenue",
+    "RelativePath": "api/User/dynamicMenu",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "DataAccessLevel",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.UserController",
+    "Method": "GetUserIdAndName",
+    "RelativePath": "api/User/UserNameAndId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "companyId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "dataAccessLevel",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.UserController",
+    "Method": "GetUsers",
+    "RelativePath": "api/User/users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "companyId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAdministrator",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.UserController",
+    "Method": "GetUser",
+    "RelativePath": "api/User/users/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.UserController",
+    "Method": "PostUsers",
+    "RelativePath": "api/User/users/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usersDTO",
+        "Type": "Loan_API.DTO.users.UserCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.UserController",
+    "Method": "DeleteUser",
+    "RelativePath": "api/User/users/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.UserController",
+    "Method": "UploadImage",
+    "RelativePath": "api/User/users/ImageUpdate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "imageUpdateDTO",
+        "Type": "Loan_API.DTO.ImageUpdateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.UserController",
+    "Method": "UpdateUsersPassword",
+    "RelativePath": "api/User/users/password/update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "usersDTO",
+        "Type": "Loan_API.DTO.users.UserPasswordUpdateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.UserController",
+    "Method": "UpdateUsers",
+    "RelativePath": "api/User/users/update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "usersDTO",
+        "Type": "Loan_API.DTO.UsersDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.UserRolesController",
+    "Method": "PostUserRoles",
+    "RelativePath": "api/UserRoles/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userRolesDTO",
+        "Type": "Loan_API.DTO.UserRoles.UserRolesDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.UserRolesController",
+    "Method": "DeleteUserRole",
+    "RelativePath": "api/UserRoles/delete/{Id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.UserRolesController",
+    "Method": "UpdateUserRoles",
+    "RelativePath": "api/UserRoles/update/{Id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userRolesDto",
+        "Type": "Loan_API.DTO.UserRoles.UserRolesDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.UserRolesController",
+    "Method": "GetUserRolesAsync",
+    "RelativePath": "api/UserRoles/userRoles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "companyId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAdministrator",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.UserRolesController",
+    "Method": "GetUserRole",
+    "RelativePath": "api/UserRoles/userRoles/{Id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.UserRolesController",
+    "Method": "GetRolesWithGuestUserValidationAsync",
+    "RelativePath": "api/UserRoles/userRolesWithGuestUser",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IsGuestUser",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "CompanyId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.WithdrawController",
+    "Method": "ApproveWithdrawRequest",
+    "RelativePath": "api/Withdraw/approve/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "transctionId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.WithdrawController",
+    "Method": "PostWithdrawRequest",
+    "RelativePath": "api/Withdraw/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "withdrawDto",
+        "Type": "Loan_API.DTO.WithdrawRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.WithdrawController",
+    "Method": "DeleteWithdrawRequest",
+    "RelativePath": "api/Withdraw/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.WithdrawController",
+    "Method": "RejectWithdrawRequest",
+    "RelativePath": "api/Withdraw/reject/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "remarks",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.WithdrawController",
+    "Method": "UpdateWithdrawRequest",
+    "RelativePath": "api/Withdraw/update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "withdrawDto",
+        "Type": "Loan_API.DTO.WithdrawRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.WithdrawController",
+    "Method": "GetAllWithdraws",
+    "RelativePath": "api/Withdraw/withdraw-requests",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.WithdrawController",
+    "Method": "GetAllWithdrawsByCustomerId",
+    "RelativePath": "api/Withdraw/withdraw-requests-by-customerId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Loan_API.Controllers.WithdrawController",
+    "Method": "GetWithdrawById",
+    "RelativePath": "api/Withdraw/withdraw/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   }
 ]

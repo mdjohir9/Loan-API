@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>E:\API Publish</_PublishTargetUrl>
+    <History>True|2025-05-06T10:19:16.6018156Z||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DbConnection">
+      <Value>Server=SQL1003.site4now.net%3bDatabase=db_ab879f_upstartloan42%3bUser Id=db_ab879f_upstartloan42_admin%3bPassword=upstartloan42%3bTrustServerCertificate=True%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="Loan_API.Entities.ApplicationDbContext">
+      <Value>Server=SQL1003.site4now.net%3bDatabase=db_ab879f_upstartloan42%3bUser Id=db_ab879f_upstartloan42_admin%3bPassword=upstartloan42%3bTrustServerCertificate=True%3b</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>
