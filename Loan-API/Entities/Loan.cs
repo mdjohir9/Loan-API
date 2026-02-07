@@ -67,7 +67,7 @@ namespace Loan_API.Entities
 
         [ForeignKey(nameof(PlanID))]
         public LoanPlan? LoanPlan { get; set; }
-
+        [Required]
         public int? ApplicationID { get; set; }
 
         [ForeignKey(nameof(ApplicationID))]

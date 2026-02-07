@@ -37,7 +37,39 @@ namespace Loan_API.Entities
             modelBuilder.HasDefaultSchema("dbo");
 
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<User>()
+            .HasIndex(u => u.UserName)
+             .IsUnique(); // Makes the UserName column unique
+
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<CustommerPersonnelInfo>()
+        .HasOne(e => e.CustommerEmployment)
+        .WithOne(e => e.CustommerPersonnelInfo)
+        .HasForeignKey<CustommerEmployment>(e => e.CustomerID)
+        .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<CustommerPersonnelInfo>()
+                .HasOne(c => c.CustommerContact)
+                .WithOne(c => c.CustommerPersonnelInfo)
+                .HasForeignKey<CustommerContact>(c => c.CustomerID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<CustommerPersonnelInfo>()
+                .HasOne(f => f.CustommerFinancialInfo)
+                .WithOne(f => f.CustommerPersonnelInfo)
+                .HasForeignKey<CustommerFinancialInfo>(f => f.CustomerID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<CustommerPersonnelInfo>()
+                .HasOne(g => g.CustommerGuarantorDetails)
+                .WithOne(g => g.CustommerPersonnelInfo)
+                .HasForeignKey<CustommerGuarantorDetails>(g => g.CustomerID)
+                .OnDelete(DeleteBehavior.Cascade);
         }
+
+
 
 
     }

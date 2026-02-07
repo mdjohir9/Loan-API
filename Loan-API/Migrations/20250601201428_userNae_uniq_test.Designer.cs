@@ -4,6 +4,7 @@ using Loan_API.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Loan_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250601201428_userNae_uniq_test")]
+    partial class userNae_uniq_test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -442,7 +445,7 @@ namespace Loan_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LoanID"));
 
-                    b.Property<int>("ApplicationID")
+                    b.Property<int?>("ApplicationID")
                         .HasColumnType("int");
 
                     b.Property<int>("CustomerID")
@@ -1204,8 +1207,7 @@ namespace Loan_API.Migrations
                 {
                     b.HasOne("Loan_API.Entities.CustommerPersonnelInfo", "CustommerPersonnelInfo")
                         .WithOne("CustommerContact")
-                        .HasForeignKey("Loan_API.Entities.CustommerContact", "CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("Loan_API.Entities.CustommerContact", "CustomerID");
 
                     b.Navigation("CustommerPersonnelInfo");
                 });
@@ -1214,8 +1216,7 @@ namespace Loan_API.Migrations
                 {
                     b.HasOne("Loan_API.Entities.CustommerPersonnelInfo", "CustommerPersonnelInfo")
                         .WithOne("CustommerEmployment")
-                        .HasForeignKey("Loan_API.Entities.CustommerEmployment", "CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("Loan_API.Entities.CustommerEmployment", "CustomerID");
 
                     b.Navigation("CustommerPersonnelInfo");
                 });
@@ -1224,8 +1225,7 @@ namespace Loan_API.Migrations
                 {
                     b.HasOne("Loan_API.Entities.CustommerPersonnelInfo", "CustommerPersonnelInfo")
                         .WithOne("CustommerFinancialInfo")
-                        .HasForeignKey("Loan_API.Entities.CustommerFinancialInfo", "CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("Loan_API.Entities.CustommerFinancialInfo", "CustomerID");
 
                     b.Navigation("CustommerPersonnelInfo");
                 });
@@ -1234,8 +1234,7 @@ namespace Loan_API.Migrations
                 {
                     b.HasOne("Loan_API.Entities.CustommerPersonnelInfo", "CustommerPersonnelInfo")
                         .WithOne("CustommerGuarantorDetails")
-                        .HasForeignKey("Loan_API.Entities.CustommerGuarantorDetails", "CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("Loan_API.Entities.CustommerGuarantorDetails", "CustomerID");
 
                     b.Navigation("CustommerPersonnelInfo");
                 });
@@ -1244,9 +1243,7 @@ namespace Loan_API.Migrations
                 {
                     b.HasOne("Loan_API.Entities.LoanApplication", "LoanApplication")
                         .WithMany()
-                        .HasForeignKey("ApplicationID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ApplicationID");
 
                     b.HasOne("Loan_API.Entities.CustommerPersonnelInfo", "Customer")
                         .WithMany()

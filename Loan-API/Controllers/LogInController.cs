@@ -4,6 +4,8 @@ using Loan_API.Entities;
 using Loan_API.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace Loan_API.Controllers
@@ -140,42 +142,42 @@ namespace Loan_API.Controllers
         {
             try
             {
-                // Check if the incoming user object is null
+                // Validate the DTO
                 if (usersDTO == null)
                 {
                     return BadRequest(new { StatusCode = 400, message = "User object is null." });
                 }
-                if (usersDTO.NewPassword == usersDTO.ConfirmPassword)
-                {
-                    bool userNameExists = await _unitOfWork.User.CheckUserNameIsExist(usersDTO.EamilOrPhone);
-                    if (userNameExists)
-                    {
-                        return Ok(new { StatusCode = 400, message = "An account with this email or phone number already exists. Would you like to sign in instead?." });
-                    }
-                }
-                else
-                {
-                    return BadRequest(new { StatusCode = 400, message = "New Password and Confirm Passward Not Metch" });
-                }
-                // Ensure that the username does not already exist in the database
-         
 
-                // Validate the model state
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
                 }
-                var userRole = _unitOfWork.Login.GetUserRoleByDataAccessLevel(1);
 
-                if (userRole == null || userRole.UserRoleId == 0) 
+                // Ensure passwords match
+                if (usersDTO.NewPassword != usersDTO.ConfirmPassword)
                 {
-                    return BadRequest(new { StatusCode = 400, message = "Please set up UserRole" });
+                    return BadRequest(new { StatusCode = 400, message = "New Password and Confirm Password do not match." });
                 }
 
-                var userRoleId = userRole.UserRoleId;
+                // Check if the username or email already exists
+                //bool userNameExists = await _unitOfWork.User.CheckUserNameIsExist(usersDTO.EamilOrPhone);
+                //if (userNameExists)
+                //{
+                //    return Ok(new
+                //    {
+                //        StatusCode = 400,
+                //        message = "An account with this email or phone number already exists. Would you like to sign in instead?."
+                //    });
+                //}
 
+                // Get user role by data access level
+                var userRole = _unitOfWork.Login.GetUserRoleByDataAccessLevel(1);
+                if (userRole == null || userRole.UserRoleId == 0)
+                {
+                    return BadRequest(new { StatusCode = 400, message = "Please set up UserRole." });
+                }
 
-                // Proceed to create a new User
+                // Create the user object
                 var user = new User
                 {
                     FirstName = usersDTO.FirstName,
@@ -183,7 +185,7 @@ namespace Loan_API.Controllers
                     UserName = ComplexScriptingSystem.ComplexLetters.getTangledLetters(usersDTO.EamilOrPhone),
                     UserPassword = ComplexScriptingSystem.ComplexLetters.getTangledLetters(usersDTO.ConfirmPassword),
                     Email = usersDTO.EamilOrPhone,
-                    UserRoleID = userRoleId,
+                    UserRoleID = userRole.UserRoleId,
                     IsGuestUser = true,
                     IsApprovingAuthority = false,
                     ReferenceID = null,
@@ -195,20 +197,36 @@ namespace Loan_API.Controllers
                     CompanyId = "1111"
                 };
 
-                // Add the new user and save changes
-                await _unitOfWork.User.AddAsync(user);
-                await _unitOfWork.Save();
+                // Save user with exception handling for unique constraint violation
+                try
+                {
+                    await _unitOfWork.User.AddAsync(user);
+                    await _unitOfWork.Save();
 
-                // Clear the cache for user-related data if necessary
-                string cacheKey = $"users";
-                _cache.Remove(cacheKey);
+                    // Clear related cache
+                    string cacheKey = $"users";
+                    _cache.Remove(cacheKey);
 
-                // Return success response
-                return Ok(new { StatusCode = 200, message = "User created successfully" });
+                    return Ok(new { StatusCode = 200, message = "User created successfully" });
+                }
+                catch (DbUpdateException dbEx)
+                {
+                    if (dbEx.InnerException is SqlException sqlEx &&
+                        sqlEx.Message.Contains("Cannot insert duplicate key row") &&
+                        sqlEx.Message.Contains("IX_Users_UserName"))
+                    {
+                        return Ok(new
+                        {
+                            StatusCode = 400,
+                            message = "An account with this phone number already exists. Would you like to sign in instead?."
+                        });
+                    }
+
+                    return StatusCode(500, new { StatusCode = 500, message = "A database error occurred", error = dbEx.Message });
+                }
             }
             catch (Exception ex)
             {
-                // Return error response in case of any exceptions
                 return StatusCode(500, new { StatusCode = 500, message = "An error occurred", error = ex.Message });
             }
         }
