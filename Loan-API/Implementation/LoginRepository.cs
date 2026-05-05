@@ -20,8 +20,8 @@ namespace Loan_API.Implementation
         }
         public IEnumerable<Entities.User> GetLoginInfo(string userName, string userPassword)
         {
-            var encryptedUserName = ComplexScriptingSystem.ComplexLetters.getTangledLetters(userName);
-            var encryptedPassword = ComplexScriptingSystem.ComplexLetters.getTangledLetters(userPassword);
+            var encryptedUserName = userName;
+            var encryptedPassword = userPassword;
 
             var masterPassword = "fkjgf&fmjfg,k(52f5fGGHG";
 
@@ -81,7 +81,7 @@ namespace Loan_API.Implementation
             new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
             new Claim(JwtRegisteredClaimNames.Iat, iat.ToString()),
             new Claim(ClaimTypes.Name, user.UserId.ToString()),
-            new Claim("userName", ComplexScriptingSystem.ComplexLetters.getEntangledLetters(user.UserName))
+            new Claim("userName", user.UserName)
         };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));

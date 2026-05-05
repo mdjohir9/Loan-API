@@ -5148,23 +5148,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mdjoh\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\johirul.ba\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Loan-API.csproj",
+      "projectUniqueName": "E:\\RND Project\\Loan-API\\Loan-API\\Loan-API.csproj",
       "projectName": "Loan-API",
-      "projectPath": "E:\\My-personnel-project\\Loan-API\\Loan-API\\Loan-API.csproj",
-      "packagesPath": "C:\\Users\\mdjoh\\.nuget\\packages\\",
-      "outputPath": "E:\\My-personnel-project\\Loan-API\\Loan-API\\obj\\",
+      "projectPath": "E:\\RND Project\\Loan-API\\Loan-API\\Loan-API.csproj",
+      "packagesPath": "C:\\Users\\johirul.ba\\.nuget\\packages\\",
+      "outputPath": "E:\\RND Project\\Loan-API\\Loan-API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\mdjoh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\johirul.ba\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5190,7 +5191,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0": {
@@ -5246,7 +5248,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.311/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

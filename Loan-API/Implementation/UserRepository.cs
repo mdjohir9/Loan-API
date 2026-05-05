@@ -66,7 +66,7 @@ namespace Loan_API.Implementation
                 .Select(u => new
                 {
                     u.UserId,
-                    UserName = ComplexScriptingSystem.ComplexLetters.getEntangledLetters(u.UserName)
+                    UserName =u.UserName
                 })
                 .ToListAsync();
 
@@ -87,7 +87,7 @@ namespace Loan_API.Implementation
         {
 
             var existingUser = await _dbContext.Users
-                                               .Where(u => u.UserName == ComplexScriptingSystem.ComplexLetters.getTangledLetters(userName) &&
+                                               .Where(u => u.UserName ==userName &&
                                                            (u.Deleted == false || u.Deleted == null))
                                                .FirstOrDefaultAsync();
 
@@ -100,7 +100,7 @@ namespace Loan_API.Implementation
             // Step 1: Check if the username exists for the specific UserId
             var existingUser = await _dbContext.Users
                                                .Where(u => u.UserId == UserId &&
-                                                           u.UserName == ComplexScriptingSystem.ComplexLetters.getTangledLetters(userName) &&
+                                                           u.UserName == userName &&
                                                            (u.Deleted == false || u.Deleted == null))
                                                .FirstOrDefaultAsync();
 
@@ -113,7 +113,7 @@ namespace Loan_API.Implementation
             // Step 2: If the user doesn't match, check if any other user has this username
             var otherUser = await _dbContext.Users
                                             .Where(u => u.UserId != UserId &&
-                                                        u.UserName == ComplexScriptingSystem.ComplexLetters.getTangledLetters(userName) &&
+                                                        u.UserName == userName &&
                                                         (u.Deleted == false || u.Deleted == null))
                                             .FirstOrDefaultAsync();
 

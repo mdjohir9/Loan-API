@@ -162,9 +162,9 @@ namespace Loan_API.Controllers
                         Name = user.UserName,
                         FirstName = user.FirstName,
                         LastName = user.LastName,
-                        UserName = ComplexScriptingSystem.ComplexLetters.getEntangledLetters(user.UserName),
+                        UserName = user.UserName,
                         UserImage = imageUrl, // Full URL for UserImage
-                        UserPassword = ComplexScriptingSystem.ComplexLetters.getEntangledLetters(user.UserPassword),
+                        UserPassword =user.UserPassword,
                         Email = user.Email,
                         UserRoleID = user.UserRoleID,
                         IsGuestUser = user.IsGuestUser,
@@ -230,8 +230,8 @@ namespace Loan_API.Controllers
                 {
                     FirstName = usersDTO.FirstName,
                     LastName = usersDTO.LastName,
-                    UserName = ComplexScriptingSystem.ComplexLetters.getTangledLetters(usersDTO.UserName),
-                    UserPassword = ComplexScriptingSystem.ComplexLetters.getTangledLetters(usersDTO.UserPassword),
+                    UserName = usersDTO.UserName,
+                    UserPassword = usersDTO.UserPassword,
                     Email = usersDTO.UserName,
                     UserRoleID = usersDTO.UserRoleID,
                     IsGuestUser = false,
@@ -291,7 +291,7 @@ namespace Loan_API.Controllers
                 }
 
                 // Decrypt the stored password and compare with the provided old password
-                string oldUserPasswordDecrypted = ComplexScriptingSystem.ComplexLetters.getEntangledLetters(existingUser.UserPassword);
+                string oldUserPasswordDecrypted = existingUser.UserPassword;
 
                 if (oldUserPasswordDecrypted != usersDTO.OldUserPassword)
                 {
@@ -300,7 +300,7 @@ namespace Loan_API.Controllers
                 }
 
                 // Update the password and save the changes
-                existingUser.UserPassword = ComplexScriptingSystem.ComplexLetters.getTangledLetters(usersDTO.NewUserPassword);
+                existingUser.UserPassword =usersDTO.NewUserPassword;
                 existingUser.UpdatedAt = DateTime.Now;
                 existingUser.UpdatedBy = id;
 
@@ -356,9 +356,9 @@ namespace Loan_API.Controllers
                 }
                 existingUser.FirstName = usersDTO.FirstName;
                 existingUser.LastName = usersDTO.LastName;
-                existingUser.UserName = ComplexScriptingSystem.ComplexLetters.getTangledLetters(usersDTO.UserName);
+                existingUser.UserName = usersDTO.UserName;
                 existingUser.UserImage = usersDTO.UserImage;
-                existingUser.UserPassword = ComplexScriptingSystem.ComplexLetters.getTangledLetters(usersDTO.UserPassword);
+                existingUser.UserPassword =usersDTO.UserPassword;
                 existingUser.Email = usersDTO.Email;
                 existingUser.UserRoleID = usersDTO.UserRoleID;
                 existingUser.IsGuestUser = usersDTO.IsGuestUser;
