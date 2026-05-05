@@ -67,6 +67,11 @@ jobs:
         run: |
           robocopy publish "${{ env.IIS_PATH }}" /MIR
 
+          if ($LASTEXITCODE -le 7) {
+              exit 0
+          } else {
+              exit $LASTEXITCODE
+          }
       # =========================
       # START IIS APP POOL (SAFE)
       # =========================
