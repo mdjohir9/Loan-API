@@ -31,26 +31,54 @@ jobs:
       - name: Publish
         run: dotnet publish Loan-API/Loan-API.csproj -c Release -o publish
 
+      # =========================
+      # STOP IIS APP POOL (SAFE)
+      # =========================
       - name: Stop IIS App Pool
         shell: powershell
         run: |
           Import-Module WebAdministration
-          Stop-WebAppPool -Name "${{ env.APP_POOL }}"
 
+          $pool = "${{ env.APP_POOL }}"
+
+          if ((Get-WebAppPoolState $pool -ErrorAction SilentlyContinue).Value -eq "Started") {
+              Stop-WebAppPool -Name $pool
+          } else {
+              Write-Host "App Pool already stopped or not found, skipping stop."
+          }
+
+      # =========================
+      # CLEAN FOLDER (SAFE)
+      # =========================
       - name: Clean IIS Folder
         shell: powershell
         run: |
-          if (Test-Path "${{ env.IIS_PATH }}") {
-            Remove-Item "${{ env.IIS_PATH }}\*" -Recurse -Force
+          $path = "${{ env.IIS_PATH }}"
+
+          if (Test-Path $path) {
+              Remove-Item "$path\*" -Recurse -Force -ErrorAction SilentlyContinue
           }
 
+      # =========================
+      # COPY FILES (ROBUST FIX)
+      # =========================
       - name: Copy Files
         shell: powershell
         run: |
-          Copy-Item "publish\*" -Destination "${{ env.IIS_PATH }}" -Recurse -Force
+          robocopy publish "${{ env.IIS_PATH }}" /MIR
 
+      # =========================
+      # START IIS APP POOL (SAFE)
+      # =========================
       - name: Start IIS App Pool
         shell: powershell
         run: |
           Import-Module WebAdministration
-          Start-WebAppPool -Name "${{ env.APP_POOL }}"
+
+          $pool = "${{ env.APP_POOL }}"
+
+          if ((Get-WebAppPoolState $pool -ErrorAction SilentlyContinue).Value -eq "Stopped") {
+              Start-WebAppPool -Name $pool
+          } else {
+              Write-Host "App Pool already running or not found."
+          }
