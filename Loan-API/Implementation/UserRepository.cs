@@ -110,6 +110,7 @@ namespace Loan_API.Implementation
                 return false;
             }
             //test ci/cd test
+            // test ami 
             // Step 2: If the user doesn't match, check if any other user has this username
             var otherUser = await _dbContext.Users
                                             .Where(u => u.UserId != UserId &&
