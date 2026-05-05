@@ -2,56 +2,55 @@ name: Auto Deploy to Local IIS
 
 on:
   push:
-    branches: [ "main" ]   # change if your branch is different
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: self-hosted
 
     env:
-      PROJECT_PATH: "Loan-API/Loan-API.csproj"
-      PUBLISH_DIR: "publish"
-      IIS_PATH: "C:\inetpub\wwwroot\myapp"
-      APP_POOL: "MyAppPool"
+      IIS_PATH: "C:\inetpub\wwwroot\loan-api"
+      APP_POOL: "LoanApiPool"
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '8.0.x'
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
 
-    - name: Restore
-      run: dotnet restore $env:PROJECT_PATH
+      - name: Restore
+        run: dotnet restore Loan-API.sln
 
-    - name: Build
-      run: dotnet build $env:PROJECT_PATH --configuration Release --no-restore
+      - name: Build
+        run: dotnet build Loan-API.sln --configuration Release --no-restore
 
-    - name: Publish
-      run: dotnet publish $env:PROJECT_PATH -c Release -o $env:PUBLISH_DIR
+      - name: Publish
+        run: dotnet publish Loan-API/Loan-API.csproj -c Release -o publish
 
-    # 🔴 Stop IIS App Pool
-    - name: Stop App Pool
-      run: |
-        Import-Module WebAdministration
-        Stop-WebAppPool -Name $env:APP_POOL
+      - name: Stop IIS App Pool
+        shell: powershell
+        run: |
+          Import-Module WebAdministration
+          Stop-WebAppPool -Name "${{ env.APP_POOL }}"
 
-    # 🧹 Clean IIS Folder
-    - name: Clean IIS Folder
-      run: |
-        if (Test-Path $env:IIS_PATH) {
-          Remove-Item "$env:IIS_PATH\*" -Recurse -Force
-        }
+      - name: Clean IIS Folder
+        shell: powershell
+        run: |
+          if (Test-Path "${{ env.IIS_PATH }}") {
+            Remove-Item "${{ env.IIS_PATH }}\*" -Recurse -Force
+          }
 
-    # 📂 Copy New Build
-    - name: Deploy Files
-      run: |
-        Copy-Item "$env:PUBLISH_DIR\*" -Destination $env:IIS_PATH -Recurse -Force
+      - name: Copy Files
+        shell: powershell
+        run: |
+          Copy-Item "publish\*" -Destination "${{ env.IIS_PATH }}" -Recurse -Force
 
-    # 🟢 Start IIS App Pool
-    - name: Start App Pool
-      run: |
-        Import-Module WebAdministration
-        Start-WebAppPool -Name $env:APP_POOL
+      - name: Start IIS App Pool
+        shell: powershell
+        run: |
+          Import-Module WebAdministration
+          Start-WebAppPool -Name "${{ env.APP_POOL }}"
